@@ -1,0 +1,723 @@
+.teamHistoryDiv {
+  padding-top:40px;
+  padding-bottom:40px;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.teamHistoryYearSelector {
+  color:#000;
+  margin-bottom:20px;
+  margin-left:20px;
+}
+
+nav.navbar.navbar-default {
+  background-color:rgba(33,33,33,0);
+}
+
+body {
+  background-color:#FFFFFF;
+  margin:0px;
+  overflow-x:hidden;
+}
+
+html {
+  background-color:#FFFFFF;
+}
+
+h1 h2 h3 h4 h5 h6 h7 {
+  font-family:fantasy;
+}
+
+h1 {
+  font-weight:bold;
+}
+
+p {
+  color:black;
+}
+
+.navbar {
+  height:60px;
+}
+
+.navbar-brand {
+  margin-top:10px;
+}
+
+.navbar-nav {
+  margin-top:10px;
+  margin-right:5px;
+}
+
+.NavButton {
+  padding-right:2px;
+  padding-left:2px;
+}
+
+.MicroLogo {
+  height:50px;
+  width:50px;
+}
+
+.MicroLogoInner {
+  margin-right:20px;
+  position:relative;
+  margin-top:-15px;
+}
+
+.MicroLogoOuter {
+  margin-left:15px;
+  margin-top:5px;
+  z-index:10000;
+}
+
+.FixedLogo {
+  position:fixed;
+}
+
+div.divOrange {
+  height:60px;
+  overflow:hidden;
+}
+
+img#DivOrangeImage, img#DivBlueImage {
+  height:100%;
+  width:100%;
+  z-index:-1;
+  display:block;
+}
+
+div.divBlue {
+  height:100px;
+  overflow:hidden;
+  position:relative;
+  background-image:url("../../assets/img/Backdrops/BlueBlurBackdrop.png");
+}
+
+.modal-body {
+  position:relative;
+  height:auto;
+  text-align:center;
+}
+
+.SocialMediaModalButton {
+  width:140px;
+  margin:0 10px 0 10px;
+}
+
+.TitleHeading {
+  color:#FFFFFF;
+  line-height:60px;
+  margin-left:40px;
+  margin-right:40px;
+  text-overflow:ellipsis;
+  width:auto;
+  display:inline-block;
+}
+
+.TitleHeadingMobileSmall {
+  font-size:26px;
+  padding-bottom:5px;
+  line-height:40px;
+}
+
+.TitleHeadingSmall {
+  display:inline-block;
+  font-size:24px;
+}
+
+.TitleHeadingRight {
+  float:right;
+  margin-right:40px;
+}
+
+.TitleHeadingLeft {
+  float:left;
+  margin-left:40px;
+}
+
+.TitleHeadingInverted {
+  color:black !important;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-nav > .active > a:hover {
+  background-color:#FFF;
+  color:#1E6C93;
+  font-weight:bold;
+}
+
+a {
+  font-weight:bold;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color:#1E6C93 !important;
+  background-color:#FFFFFF;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.dropdown-toggle:active, .open .dropdown-toggle {
+  background:#FFF !important;
+  color:#1E6C93 !important;
+}
+
+.navbar {
+  margin-bottom:0;
+  border:none;
+}
+
+.navbar-brand .glyphicon {
+  margin-right:6px;
+}
+
+.site-footer {
+  padding:20px 0;
+  text-align:center;
+}
+
+@media (min-width:768px) {
+  .site-footer h5 {
+    text-align:left;
+  }
+}
+
+.site-footer h5 {
+  color:inherit;
+  font-size:20px;
+}
+
+.site-footer .social-icons a:hover {
+  opacity:1;
+}
+
+.site-footer .social-icons a {
+  display:inline-block;
+  width:32px;
+  border:none;
+  font-size:20px;
+  border-radius:50%;
+  margin:4px;
+  color:#dddddd;
+  text-align:center;
+  background-color:#798FA5;
+  height:32px;
+  opacity:0.8;
+  line-height:32px;
+}
+
+@media (min-width:768px) {
+  .site-footer .social-icons {
+    text-align:right;
+  }
+}
+
+.ButtonSets {
+  height:auto;
+  padding-right:10px;
+  padding-top:30px;
+  padding-bottom:0px;
+}
+
+.about_btn {
+  float:right;
+  margin-left:10px;
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+.sectionContainer {
+  text-align:center;
+  margin-top:80px;
+  padding-left:80px;
+  margin-bottom:40px;
+  padding-right:80px;
+}
+
+.ParagraphContent {
+  font-size:large;
+}
+
+.paralaxHalf {
+  padding-top:150px;
+}
+
+div.paralax {
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  background-size:100% auto;
+  padding-top:300px;
+  z-index:-1;
+  overflow:hidden;
+  background-color:#1E6C93;
+  filter:blur(3px);
+}
+
+div.splashContentHalf {
+  height:auto;
+}
+
+div.splashContent {
+  overflow:hidden;
+  height:auto;
+  background-color:#1E6C93;
+}
+
+.splashContentHeaderHalf {
+  height:auto;
+}
+
+div.splashContentHeader {
+  position:absolute;
+  padding-left:20px;
+  padding-right:20px;
+  width:100%;
+  height:auto;
+  z-index:2;
+  text-align:center;
+  top:200px;
+}
+
+#SplashPageVideo {
+  display:block;
+  margin:0 auto;
+}
+
+img.SplashHeaderLogo {
+  height:auto;
+  width:14%;
+}
+
+p.SplashHeaderText {
+  font-weight:bold;
+  font-size:6vw;
+  display:inline-block;
+  color:#FFFFFF;
+  padding-right:40px;
+  padding-left:40px;
+}
+
+.PageFooter, .copyright {
+  background-color:rgb(33,33,33);
+  color:#FFFFFF;
+}
+
+.socialMediaIcon {
+  padding-right:5px;
+  padding-left:5px;
+}
+
+.LogoFull {
+  width:240px;
+  float:left;
+  margin-right:30px;
+  margin-bottom:30px;
+}
+
+#SplashPageVideoFull {
+  width:100%;
+  height:400px;
+  margin:0 0 -5px 0;
+}
+
+.VideoBlackPadding {
+  background-color:#000;
+  height:60px;
+}
+
+.SplashPageVideoTitle {
+  color:#FFFFFF;
+  align-content:center;
+  text-align:center;
+  padding:20px 0 10px 0px;
+}
+
+.divMedia {
+  height:auto;
+  padding:0 10px 0 10px;
+  background-color:#000;
+}
+
+.FIRSTBanner {
+  height:16vh;
+  margin-top:40px;
+}
+
+.SponsorContainer {
+  align-content:center;
+  width:auto;
+  max-width:100%;
+  margin-top:40px;
+}
+
+.SponsorContainerInner {
+  width:50%;
+  display:inline-block;
+}
+
+.SponsorLogoFloatLeft {
+  float:left;
+}
+
+.SponsorLogoFloatRight {
+  float:right;
+}
+
+.SponsorLogo {
+  padding:15px 15px 15px 15px;
+  margin:10px 10px 10px 10px;
+  background-color:#DDD;
+  height:16vh;
+}
+
+.SponsorLogo:hover {
+  background-color:#EEE;
+}
+
+.headerSplashDisplay {
+  background-image:url(../../assets/img/SplashHeaders/section-02.jpg);
+  height:100px;
+  background-size:100%;
+}
+
+.clearSpacer {
+  height:60px;
+}
+
+.divClear {
+  overflow:hidden;
+}
+
+.modal-body {
+  background-color:#EEEEEE;
+}
+
+.modal-header {
+  background-color:#1E6C93;
+}
+
+.pushModal {
+  padding-top:50px;
+}
+
+.modal-footer {
+  background-color:#CCC;
+}
+
+.modal-close {
+  width:100%;
+}
+
+.modal-title {
+  color:#FFF;
+  font-weight:bold;
+  text-align:center;
+}
+
+.FlickrModalButtonBackground {
+  background-image:url(../../assets/img/Backdrops/BlueBlurBackdrop.png);
+  overflow:hidden;
+  width:100%;
+  padding-top:20px;
+  padding-bottom:20px;
+  margin-bottom:10px;
+  font-size:x-large;
+}
+
+.smallDiv {
+  background-color:#888;
+  height:1px;
+  margin:10px;
+}
+
+.teamHistoryBox {
+  border-radius:4px;
+  border:1px solid #DDD;
+  padding:10px 10px 10px 10px;
+  height:auto;
+  position:relative;
+}
+
+.PersonDisplayBox {
+  border-radius:4px;
+  border:1px solid #DDD;
+  background-color:#EEE;
+  margin-right:10px;
+  margin-bottom:8px;
+  display:inline-block;
+  position:relative;
+  height:140px;
+  overflow:hidden;
+}
+
+.PersonDisplayHeadshotDiv {
+  border-radius:2px 0 0 2px;
+  height:140px;
+  width:140px;
+  float:left;
+  display:inline-block;
+}
+
+.PersonDisplayContent {
+  display:inline-block;
+  margin-left:20px;
+  /*float:left;*/
+  height:auto;
+  width:auto;
+}
+
+.PersonDisplayName {
+  color:#1E6C93;
+  background-color:rgb(255,20,20);
+  margin-top:5px;
+  font-size:150%;
+  max-width:100%;
+  white-space:normal;
+  position:relative;
+  overflow:hidden;
+  text-overflow:clip;
+}
+
+.PersonDisplayTitles {
+  color:#444;
+  background-color:rgb(20,150,1205);
+  height:50px;
+  margin-top:10px;
+  margin-bottom:5px;
+  font-size:100%;
+  max-width:100%;
+  white-space:nowrap;
+}
+
+.PersonDisplayInfo {
+  color:#000;
+  background-color:rgb(20,255,20);
+  margin-top:15px;
+  margin-bottom:5px;
+  margin-left:10px;
+  font-size:100%;
+  width:48%;
+  white-space:nowrap;
+}
+
+.PersonDisplayLinkDiv {
+  height:140px;
+  width:30px;
+  display:inline-block;
+  float:right;
+  padding-top:10px;
+  border-radius:0 2px 2px 0;
+  background-color:#DDD;
+}
+
+.PersonDisplayHeadshot {
+  max-width:100%;
+  position:relative;
+}
+
+.PersonDisplayLink {
+  color:#444;
+  width:20px;
+  height:20px;
+  align-content:center;
+  padding:0 0px 0 10px;
+  margin:10px 0 10px 0;
+  display:inline-block;
+}
+
+#PersonDisplayBox_Template {
+  position:absolute;
+  visibility:hidden;
+}
+
+#FirstAtAGlance {
+  width:100%;
+  max-width:800px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+#FirstDetails {
+  width:100%;
+}
+
+.RobotListDiv {
+  height:auto;
+  min-height:40px;
+  border-radius:4px;
+  border:solid 1px #000;
+  padding:10px;
+}
+
+.RobotDisplayDivPadding {
+  width:100%;
+  height:auto;
+  padding:20px;
+}
+
+.RobotDisplayButton {
+  width:100%;
+  margin-bottom:5px;
+}
+
+.RobotDisplayLabel {
+  float:left;
+}
+
+.RobotTitleHeading, .RobotTitleSubHeading {
+  color:#1E6C93;
+}
+
+.RobotTitleSubHeading {
+  float:right;
+}
+
+.contactSingleDiv {
+  min-height:70px;
+  height:auto;
+  margin-top:40px;
+}
+
+.contactLeft {
+  width:40%;
+  /*float:left;*/
+  text-align:right;
+  padding-right:8px;
+}
+
+.contactRight {
+  width:60%;
+  float:right;
+  text-align:left;
+  padding-left:8px;
+}
+
+.infoBlock {
+  margin-top:10px;
+}
+
+.calendarDateSingleDiv {
+  height:auto;
+}
+
+.calendarDateRight {
+  width:50%;
+  float:right;
+  padding-left:8px;
+  text-align:left;
+}
+
+.calendarDateLeft {
+  width:50%;
+  float:left;
+  padding-right:8px;
+  text-align:right;
+}
+
+.SocialMediaBanner {
+  height:80px;
+  background-color:#DDD;
+  margin-bottom:30px;
+  position:relative;
+  overflow:hidden;
+}
+
+.BannerTopRight {
+  width:95%;
+  float:right;
+}
+
+.SocialMediaHeading, .SocialMediaHeading:hover {
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index:1;
+  background-color:rgba(0,0,0,0);
+  font-size:40px;
+  font-weight:bold;
+}
+
+.SocialMediaBannerImage {
+  width:100%;
+  filter:blur(5px);
+}
+
+.BannerTopLeft {
+  width:100%;
+  float:left;
+}
+
+.BannerBottomLeft {
+  width:95%;
+  float:left;
+}
+
+.BannerBottomRight {
+  width:100%;
+  float:right;
+}
+
+.BlackFont {
+  color:black;
+}
+
+.SponsorKeyButton {
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.PanelContent {
+  padding:40px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.PanelButton {
+  width:100%;
+  max-width:400px;
+  margin:5px;
+}
+
+.PanelBox {
+  padding-top:5px;
+  padding-bottom:20px;
+  height:300px;
+}
+
+.PanelBoxLight {
+  background-color:#DDD;
+}
+
+.PanelBoxDark {
+  background-color:#CCC;
+}
+
+#DiscordSVG {
+  width:20px;
+}
+
+.permissionsBox {
+  padding:10px;
+}
+
+.float-left {
+  float:left;
+}
+
+.permissionText {
+  display:inline-block;
+}
+
+.permissionDiv {
+  margin-bottom:20px;
+}
+
+.FacebookLoginHeader {
+  margin-bottom:50px;
+}
+
+.FacebookLoginHeaderPermissions {
+  margin-top:75px;
+}
+

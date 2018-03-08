@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Team5599Website</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="assets/css/Social-Icons.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+<script> 
+ window.fbAsyncInit = function() {
+
+    FB.init({
+      appId            : '138369146905135',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      cookie           : true,
+      version          : 'v2.12'
+    });
+
+    FB.getLoginStatus(function(response){
+
+      function waitForFacebookAPI(){
+
+        console.log("Waiting for the facebook API");
+
+        if (typeof facebookReady == 'function'){ 
+
+          console.log("facebookAPI Loaded")
+          facebookReady(response);
+
+        } else {
+
+          setTimeout(function(){
+              waitForFacebookAPI();
+          }, 100);
+
+        }
+
+      }
+
+      waitForFacebookAPI();
+
+      
+    });
+
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+</script>
+</head>
+
+<body>
+    <div class="PageHeader"><img src="assets/img/Logos/SubLogo_Blue.png" class="navbar-left MicroLogo MicroLogoOuter FixedLogo hidden-md hidden-lg hidden-xl">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header"><a class="navbar-brand hidden-sm hidden-xs" href="index.html"><strong>&lt; Cardozo Robotics | Team 5599 &gt;</strong><img src="assets/img/Logos/SubLogo_Blue.png" class="navbar-left MicroLogo MicroLogoInner"></a><button class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+                <div class="collapse navbar-collapse"
+                    id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a href="index.html">About Us</a></li>
+                                <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
+                                <li role="presentation"><a href="Team.html">Our Leadership</a></li>
+                                <li role="presentation"><a href="Robots.html">Our Robots</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown NavButton" id="BlogMediaNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Blog &amp; Media<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a href="www.blog.team5599.com">Our Blog </a></li>
+                                <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
+                                <li
+                                    role="presentation" id="FlickrModalTrigger"><a target="_top" data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
+                        </ul>
+                        </li>
+                        <li class="dropdown NavButton" id="CommunityResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Community Resources<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
+                                <li role="presentation"><a href="Projects.html">Documents &amp; Tutorials</a></li>
+                                <li role="presentation"><a href="Calendar.html">Team Calendar </a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown NavButton" id="SponsorsNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-group socialMediaIcon"></i>Sponsors <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a href="Sponsors.html">Our Sponsors</a></li>
+                                <li role="presentation"><a href="SponsorsUs.html#SponsorUs"><strong>Sponsor Us</strong></a></li>
+                                <li role="presentation"><a href="SponsorsUs.html#Incentives">Incentives<i class="fa fa-line-chart socialMediaIcon" data-bs-hover-animate="flash"></i></a></li>
+                                <li role="presentation"><a href="SponsorsUs.html#OtherSupport"><strong>Donatations</strong></a></li>
+                            </ul>
+                        </li>
+                        <li role="presentation" id="ContactNavButton" class="NavButton"><a href="ContactUs.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="splashContent">
+            <div class="splashContentHeader">
+                <div>
+                    <p class="SplashHeaderText">How you can make an impact</p>
+                </div>
+                <div><img src="assets/img/Logos/SubLogo_Blue.png" class="SplashHeaderLogo"></div>
+            </div>
+            <div id="splashImage" class="paralax"></div>
+        </div>
+    </div>
+    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="FlickrModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Photos &amp; Videos</h4>
+                </div>
+                <div class="modal-body">
+                    <p><em>All of our photos can be found on Flickr at Flickr.Team5599.com!</em></p><a class="btn btn-default FlickrModalButtonBackground" role="button" href="https://www.flickr.com/photos/142731277@N02/">Proceed to Flickr</a><a class="btn btn-link"
+                        role="button" href="">Are you looking for our Instagram or Youtube?</a>
+                    <div class="smallDiv"></div>
+                    <p>If you have any photos you would like to submit, hit the button below to be redirected to Upload.Team5599.com</p>
+                </div>
+                <div class="modal-footer"><a class="btn btn-info" role="button" href="#">Submit Photos</a><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="PageContent">
+        <div class="clearSpacer"></div>
+        <div class="headerSplashDisplay"></div>
+        <div id="SponsorUs" class="sectionContainer">
+            <h4 class="BlackFont">Sponsor Us</h4>
+            <p class="text-center">Are you looking to sponsor our team? Send us an email at&nbsp;<span style="text-decoration: underline;">sentinels@team5599.com!</span></p>
+        </div>
+        <div class="sectionContainer"><a class="btn btn-success SponsorKeyButton" role="button" href="#OtherSupport">Other Ways You Can Support Us</a><a class="btn btn-info" role="button" href="Sponsors.html">Our Sponsors</a></div>
+        <div class="sectionContainer">
+            <div id="Incentives"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="BlackFont">Why Us?</h4>
+                    <p class="text-left">The Benjamin N. Cardozo Robotics Team is a dedicated and determined team with a fresh and diverse background. We are a new but experienced team with members virtually doubling every year. <br></p>
+                    <p class="text-left"><br><strong>FACT: </strong>For our first year, we had roughly 15 members. The second year we had just over 30. Now, our fourth year and going strong, we have over 60 members! We assure a constant growth rate, in both members and influence.<br><br></p>
+                    <p
+                        class="text-left"><br>Sponsoring our team, whether it be through funding or supplies, allows your brand to be exposed to an ever-growing audience of people. Not only will your brand be granted exposure to this ever-growing team, but you also gain the
+                        added benefits of word-of-mouth and the constant exposure to the community our team provides, should you opt for our more moderate and upper Sponsorship Levels.<br><br></p>
+                        <p class="text-left"><br><strong>FACT:</strong> In 2016, 3,128 teams, over 75,000 students, and 19,000 mentors from 24 countries participated in the FIRST STRONGHOLD competition at the popular Jacob K. Javits Center.<br></p><a href="FIRST.html" class="text-left">FIRST at a Glance</a>
+                        <p
+                            class="text-left"><br>Not to mention, we're qualified!<br><br><strong>FACT: </strong>Team 5599 has brought home three awards to date- <em>Future Glory,</em>&nbsp;<em>Rookie Inspiration </em>(NYC Regional)<em>, </em>and <em>Finalists</em>&nbsp;(Hudson
+                            Valley Ralley)&nbsp;&nbsp;These two awards alone are self-explanatory and can speak for our potential and as a competitive and effective FRC Team.<br><br></p>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="BlackFont">Sponsorship Levels</h4>
+                    <p><em>*All levels stack downwards</em></p>
+                    <p class="text-left"><br></p>
+                    <ul>
+                        <li class="BlackFont text-left"><strong>Titanium </strong><em>$3,000+</em>&nbsp;|<em>Highest Benefactor</em><br></li>
+                    </ul>
+                    <p class="text-left">Benefactor will be given the honor of naming that season's competition robot (To gracious professionalist standards).<br></p>
+                    <ul>
+                        <li class="BlackFont text-left"><strong>Gold </strong><em>$1,000-$2,999</em><br></li>
+                    </ul>
+                    <p class="text-left">Benefactors will get a featured post on each of our ever-growing social media outlets, each one with a strong following by our school's students, staff, alumni, friends, fans, and family.<br><br>Benefactors will have their logo/decal
+                        displayed at our fund-raising events such as demonstrations, bake-sales, and catering for school shows. Business cards for distribution are also possible.<br></p>
+                    <ul>
+                        <li class="BlackFont text-left"><strong>Carbon </strong><em>$900-$999</em><br></li>
+                    </ul>
+                    <p class="text-left">Benefactors will have their logo posted on the landing page of our website.<br><br>Benefactors will also receive team apparel of choice, such as a wristband, button, T-Shirt, etc.<br></p>
+                    <ul>
+                        <li class="BlackFont text-left"><strong>Silver </strong><em>$500-$899</em><br></li>
+                    </ul>
+                    <p class="text-left">Benefactors will receive a letter of appreciation displaying their support for the team.<br><br>Benefactors will receive their logo on the team's seasonal T-shirt, along with an exclusive T-shirt from the team.<br></p>
+                    <ul>
+                        <li class="BlackFont text-left"><strong>Iron </strong><em>$250-$499</em><br></li>
+                    </ul>
+                    <p class="text-left">Benefactors will receive their company's logo/decal on our website's Sponsors page for the season and your company's logo/decal will be placed in our team lab.<br></p>
+                    <ul>
+                        <li class="BlackFont text-left"><strong>Bronze </strong><em>$50-$249</em><br></li>
+                    </ul>
+                    <p class="text-left">Benefactors will receive a letter of appreciation displaying their support for the team along with an invitation to our regional competition.<br></p>
+                    <p><em>*NOTE* Danielle we should lower these for lower-end backers. We should have two standards, one for a family-level type of support and enterprise.</em></p>
+                </div>
+            </div>
+        </div>
+        <div id="OtherSupport" class="sectionContainer">
+            <h4 class="BlackFont">Other Ways You Can Support Us</h4>
+            <p class="text-left">There are many other ways you can support our team! We accept various donations in a variety of forms.</p>
+            <ul class="BlackFont text-left">
+                <li>Small monetary donations</li>
+                <li>Mechanical Resources</li>
+                <li>Electronic Resources (Controllers, Keyboards, Projectors, Desktops*)</li>
+                <li>Various Hardware Tools</li>
+                <li>Access to Machinery</li>
+                <li>Consumables, like water and snacks</li>
+                <li>Local restaurant business? Sponsor us with discounts!</li>
+            </ul>
+            <p class="text-left">*Desktops:<em> Engineering tools usually require copious amounts of modern software, such as 4+GB of RAM minimum for Computer Aided Design, Physics Simulations, and Chrome.</em></p>
+        </div>
+        <div class="clearSpacer"></div>
+        <div class="clearSpacer"></div>
+    </div>
+    <div class="PageFooter footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="index.html">The Team</a></li>
+                            <li><a href="Robots.html">The Robots</a></li>
+                            <li><a href="FIRST.html">FIRST</a></li>
+                            <li><a href="ContactUs.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>Community</h3>
+                        <ul>
+                            <li><a href="www.blog.team5599.com">Blog</a></li>
+                            <li><a href="SocialMedia.html">Social Media</a></li>
+                            <li><a href="Projects.html">Projects &amp; Demos</a></li>
+                            <li><a href="SponsorsUs.html">Sponsor</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>Team</h3>
+                        <ul>
+                            <li><a href="Calendar.html">Calendar</a></li>
+                            <li><a href="#">Upload Photos</a></li>
+                            <li><a href="Login.html" id="FooterLoginButton">Sign In</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 item social"><a href="www.blog.team5599.com"><i class="icon ion-ios-paper-outline"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <a
+                            href="#"><i class="fa fa-youtube-play"></i></a>
+                            <p class="copyright">Team 5599 | The Sentinels</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+</body>
+
+</html>

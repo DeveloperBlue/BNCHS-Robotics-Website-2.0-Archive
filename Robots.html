@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Team5599Website</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="assets/css/Social-Icons.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+<script> 
+ window.fbAsyncInit = function() {
+
+    FB.init({
+      appId            : '138369146905135',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      cookie           : true,
+      version          : 'v2.12'
+    });
+
+    FB.getLoginStatus(function(response){
+
+      function waitForFacebookAPI(){
+
+        console.log("Waiting for the facebook API");
+
+        if (typeof facebookReady == 'function'){ 
+
+          console.log("facebookAPI Loaded")
+          facebookReady(response);
+
+        } else {
+
+          setTimeout(function(){
+              waitForFacebookAPI();
+          }, 100);
+
+        }
+
+      }
+
+      waitForFacebookAPI();
+
+      
+    });
+
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+</script>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header"><a class="navbar-brand hidden-sm hidden-xs" href="index.html"><strong>&lt; Cardozo Robotics | Team 5599 &gt;</strong><img src="assets/img/Logos/SubLogo_Blue.png" class="navbar-left MicroLogo MicroLogoInner"></a><button class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="index.html">About Us</a></li>
+                            <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
+                            <li role="presentation"><a href="Team.html">Our Leadership</a></li>
+                            <li role="presentation"><a href="Robots.html">Our Robots</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown NavButton" id="BlogMediaNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Blog &amp; Media<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="www.blog.team5599.com">Our Blog </a></li>
+                            <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
+                            <li
+                                role="presentation" id="FlickrModalTrigger"><a target="_top" data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
+                    </ul>
+                    </li>
+                    <li class="dropdown NavButton" id="CommunityResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Community Resources<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
+                            <li role="presentation"><a href="Projects.html">Documents &amp; Tutorials</a></li>
+                            <li role="presentation"><a href="Calendar.html">Team Calendar </a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown NavButton" id="SponsorsNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-group socialMediaIcon"></i>Sponsors <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="Sponsors.html">Our Sponsors</a></li>
+                            <li role="presentation"><a href="SponsorsUs.html#SponsorUs"><strong>Sponsor Us</strong></a></li>
+                            <li role="presentation"><a href="SponsorsUs.html#Incentives">Incentives<i class="fa fa-line-chart socialMediaIcon" data-bs-hover-animate="flash"></i></a></li>
+                            <li role="presentation"><a href="SponsorsUs.html#OtherSupport"><strong>Donatations</strong></a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" id="ContactNavButton" class="NavButton"><a href="ContactUs.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="PageHeader"><img src="assets/img/Logos/SubLogo_Blue.png" class="navbar-left MicroLogo MicroLogoOuter FixedLogo hidden-md hidden-lg hidden-xl">
+        <div class="splashContent splashContentHalf">
+            <div class="splashContentHeader splashContentHeaderHalf">
+                <div>
+                    <p class="SplashHeaderText">Meet the Robots</p>
+                </div>
+            </div>
+            <div id="splashImage" class="paralax paralaxHalf"></div>
+        </div>
+    </div>
+    <div class="PageContent">
+        <div class="clearSpacer"></div>
+        <div class="headerSplashDisplay"></div>
+        <div class="RobotDisplayDivPadding">
+            <div class="row">
+                <div class="col-md-3"><button class="btn btn-info RobotDisplayButton" type="button">To Be Decided<span class="label label-info RobotDisplayLabel">2018</span></button><button class="btn btn-info RobotDisplayButton" type="button">HAL 5700<span class="label label-info RobotDisplayLabel">2017</span></button>
+                    <button
+                        class="btn btn-info RobotDisplayButton" type="button">The Hound<span class="label label-info RobotDisplayLabel">2016</span></button><button class="btn btn-info RobotDisplayButton" type="button">Pied Piper<span class="label label-info RobotDisplayLabel">2015</span></button></div>
+                <div class="col-md-9">
+                    <div class="RobotListDiv">
+                        <p>&lt;iFrame CAD file&gt;</p><img class="RobotImageDisplay">
+                        <h2 class="RobotTitleSubHeading">2018</h2>
+                        <h1 class="RobotTitleHeading">Robot Title</h1>
+                        <p>&lt;ROBOT TITLE&gt; was Team 5599's robot for the &lt;YEAR&gt; season. It competed in FIRST &lt;SEASON&gt;. &lt;ROBOT TITLE&gt; was capable of &lt;COMPETITION ACTIONS&gt;. This robot was named by &lt;THE TEAM/OUR MENTOR/OUR SPONSOR&gt;.</p>
+                        <h3
+                            class="RobotTitleHeading">Reveal Video</h3>
+                            <p>&lt;Reveal Video&gt;</p>
+                            <h3 class="RobotTitleHeading">Match Recordings</h3>
+                            <p>&lt;YouTube Season Playlist&gt;</p>
+                            <h3 class="RobotTitleHeading">The Blue Alliance</h3>
+                            <p>&lt;Blue Alliance Match Data&gt;</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="PageFooter footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="index.html">The Team</a></li>
+                            <li><a href="Robots.html">The Robots</a></li>
+                            <li><a href="FIRST.html">FIRST</a></li>
+                            <li><a href="ContactUs.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>Community</h3>
+                        <ul>
+                            <li><a href="www.blog.team5599.com">Blog</a></li>
+                            <li><a href="SocialMedia.html">Social Media</a></li>
+                            <li><a href="Projects.html">Projects &amp; Demos</a></li>
+                            <li><a href="SponsorsUs.html">Sponsor</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>Team</h3>
+                        <ul>
+                            <li><a href="Calendar.html">Calendar</a></li>
+                            <li><a href="#">Upload Photos</a></li>
+                            <li><a href="Login.html" id="FooterLoginButton">Sign In</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 item social"><a href="www.blog.team5599.com"><i class="icon ion-ios-paper-outline"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <a
+                            href="#"><i class="fa fa-youtube-play"></i></a>
+                            <p class="copyright">Team 5599 | The Sentinels</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="FlickrModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Photos &amp; Videos</h4>
+                </div>
+                <div class="modal-body">
+                    <p><em>All of our photos can be found on Flickr at Flickr.Team5599.com!</em></p><a class="btn btn-default FlickrModalButtonBackground" role="button" href="https://www.flickr.com/photos/142731277@N02/">Proceed to Flickr</a><a class="btn btn-link"
+                        role="button" href="">Are you looking for our Instagram or Youtube?</a>
+                    <div class="smallDiv"></div>
+                    <p>If you have any photos you would like to submit, hit the button below to be redirected to Upload.Team5599.com</p>
+                </div>
+                <div class="modal-footer"><a class="btn btn-info" role="button" href="#">Submit Photos</a><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+</body>
+
+</html>
