@@ -230,10 +230,11 @@ function activateAdminPanel(uid){
 
 			FB.api("/"+facebookPageId+"/roles/"+uid, function(charlieResponse){
 
-
 				if (charlieResponse && !charlieResponse.error) {
 					console.log("Role Results:\n" + JSON.stringify(charlieResponse));
 					var role = charlieResponse.data[0].role;
+                    
+                    $("#userFacebookRole").text("Identified as role " + role.toUpperCase());
 
 					if (role == "Admin"){
 						unlockAdministratorButtons();
