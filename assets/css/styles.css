@@ -81,6 +81,10 @@ div.divOrange {
   overflow:hidden;
 }
 
+#DivOrangeImage {
+  object-fit:cover;
+}
+
 img#DivOrangeImage, img#DivBlueImage {
   height:100%;
   width:100%;
@@ -317,7 +321,7 @@ p.SplashHeaderText {
 
 #SplashPageVideoFull {
   width:100%;
-  height:400px;
+  height:500px;
   margin:0 0 -5px 0;
 }
 
@@ -719,5 +723,218 @@ p.SplashHeaderText {
 
 .FacebookLoginHeaderPermissions {
   margin-top:75px;
+}
+
+#toggleTeamPageButton {
+  float:right;
+  margin-right:0px;
+  width:30%;
+  min-width:160px;
+  height:100%;
+}
+
+.spaced_button {
+  margin-left:5px;
+  margin-right:5px;
+  margin-top:5px;
+  float:right;
+}
+
+#LogOutButton {
+  width:300px;
+  height:50px;
+}
+
+.panel {
+  background-color:#CCC;
+}
+
+#accordion-1 {
+  margin-left:20px;
+  margin-right:20px;
+}
+
+.accordian_container {
+  padding-left:20px;
+  padding-right:20px;
+  padding-bottom:20px;
+}
+
+.accordian_inputbox {
+  width:400px;
+  height:200px;
+}
+
+.accordian_linkbox {
+  width:500px;
+}
+
+.webmaster_confirmDiv {
+  height:55px;
+  padding-top:10px;
+  padding-right:10px;
+}
+
+.projectDiv {
+  width:100%;
+  height:auto;
+  border-radius:5px;
+  border:1px solid #444;
+  padding-left:10px;
+  padding-right:10px;
+  margin-bottom:30px;
+}
+
+.projectHeading {
+  float:left;
+  font-weight:bold;
+  color:#1E6C93;
+}
+
+.projectButton {
+  margin-bottom:10px;
+  width:140px;
+  float:right;
+  border-radius:2px;
+  font-weight:bold;
+}
+
+.projectAuthors {
+  float:left;
+  font-size:small;
+}
+
+.projectInfo {
+  margin-top:5px;
+  height:40px;
+  width:auto;
+  float:left;
+}
+
+.projectAuthorDiv {
+  height:20px;
+}
+
+.projectLanguages {
+  height:20px;
+}
+
+.projectLanguageText {
+  height:15px;
+  font-size:small;
+  width:100px;
+  text-align:left;
+}
+
+.projectSpacer {
+  height:20px;
+}
+
+.languageCircleJava {
+  color:rgb(176, 114, 25);
+}
+
+.languageCircleJavascript {
+  color:rgb(241, 224, 90);
+}
+
+.languageCircleHTML {
+  color:rgb(227, 76, 38);
+}
+
+.languageCircleAHK {
+  color:rgb(101, 148, 185);
+}
+
+.languageCircle {
+  margin-top:3px;
+  display:inline-block;
+  padding-right:5px;
+}
+
+.buttonIcon {
+  padding-left:10px;
+}
+
+.webmasterRobotPanel, .webmasterPeoplePanel {
+  width:240px;
+  height:400px;
+  margin-top:20px;
+  background-color:#BBB;
+  display:inline-block;
+  float:left;
+  overflow-y:scroll;
+}
+
+.webmasterPeopleSortPanel {
+  width:240px;
+  height:400px;
+  margin-top:20px;
+  background-color:#BBB;
+  display:inline-block;
+  float:right;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.webmasterRobotInfo, .webmasterPeopleInfoPanel {
+  width:auto;
+  min-width:300px;
+  height:auto;
+  margin-top:20px;
+  margin-left:20px;
+  background-color:#BBB;
+  display:inline-block;
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom:10px;
+}
+
+.robotInfoTextField {
+  width:300px;
+}
+
+.robotInfoTextFieldShort {
+  width:100px;
+}
+
+.robotInfoTextArea {
+  width:400px;
+  height:100px;
+}
+
+.personTitleFieldBox {
+  background-color:#CCC;
+  height:100px;
+  width:512px;
+  overflow-y:scroll;
+}
+
+.personTitleBar {
+  width:100%;
+  height:32px;
+  background-color:#666;
+  margin-bottom:4px;
+}
+
+.personTitleTitleInput {
+  width:285px;
+  margin-top:2px;
+  margin-bottom:2px;
+  margin-left:3px;
+}
+
+.personTitleY1Input, .personTitleY2Input {
+  width:60px;
+  margin-top:2px;
+  margin-bottom:2px;
+  margin-left:3px;
+}
+
+.personTitleDeleteButton {
+  width:50px;
+  margin-right:10px;
+  height:32px;
+  float:right;
 }
 

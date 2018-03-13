@@ -262,7 +262,10 @@ function activateAdminPanel(uid){
 	})
 
 	function unlockButton(button){
-		$(button).removeClass("disabled");
+		var buttonElement = $(button);
+		if (buttonElement){
+			buttonElement.removeClass("disabled");
+		}
 	}
 
 	function unlockAdministratorButtons(){
@@ -307,7 +310,12 @@ function handleTeamPage() {
 
 	function loadTeamHistory(year){
 
-		console.log("Loading Leadership Data for the " + year + " Season");
+		if (getUrlParam("viewType") == "alumni"){
+			console.log("Loading Alumni Data for the " + year + " Season");
+		} else {
+			console.log("Loading Leadership Data for the " + year + " Season");
+		}
+		
 
 		var leadershipJsonObject = {
 
@@ -342,6 +350,26 @@ function handleTeamPage() {
 			}
 
 		}
+
+		/*
+	
+		var applicablePeoples = [];
+
+		// Get Applicable People
+
+		// Build cases for searching for mentors, when dates == "present", etc. Haggerty, etc.
+
+		for (person in PersonObjects){
+			if (lookingForAlumni && (PersonObjects[person].yearGraduating < queryYear)){
+				applicablePeoples.push(PersonObjects[person]);
+			} else if (!lookingForAlumni && queryYear >= PersonObjects[person].yearJoined && queryYear <= PersonObjects[person].yearGraduating) {
+				applicablePeoples.push(PersonObjects[person]);
+			}
+		}
+
+		// Use javascript sorting algorithim to compare person object with unique hash codes to a different draggable "orderable" list.
+
+		*/
 
 		var personDisplayObject = $("#PersonDisplayBox_Template");
 
@@ -384,25 +412,146 @@ function handleTeamPage() {
 
 	$("#teamHistorySelector").empty();
 
-	var dateObject = new Date();
-	var currentYear = dateObject.getFullYear();
+	var queryYear = getUrlParam("year");
+	if (queryYear == null){
+		var dateObject = new Date();
+		queryYear = dateObject.getFullYear();
+	}
 
 	var baseObject = document.createElement("optgroup");
 	baseObject.label = "History";
 	$(baseObject).appendTo($("#teamHistorySelector"));
 
-	for (var year = currentYear; year >= 2015; year--){
+	for (var year = queryYear; year >= 2015; year--){
 		$(baseObject).append($("<option></option>").val(year).html("Season " + year));
 	}
 
 	// Handle
 
+	if (getUrlParam("viewType") == "alumni"){
+		$("#toggleTeamPageButton").prop("value", "Our Leadership");
+	} else {
+		$("#toggleTeamPageButton").prop("value", "Our Alumni");
+	}
+
+	$("#toggleTeamPageButton").click(function(){
+		var selectedYear = $("#teamHistorySelector").val();
+		if (getUrlParam("viewType") == "alumni"){
+			updateQueryStringParam("viewType","leadership");
+			$("#toggleTeamPageButton").prop("value", "Our Leadership");
+			loadTeamHistory(selectedYear);
+		} else {
+			updateQueryStringParam("viewType","alumni");
+			$("#toggleTeamPageButton").prop("value", "Our Alumni");
+			loadTeamHistory(selectedYear);
+		}
+	});
+
 	$("#teamHistorySelector").change(function(data){
-		loadTeamHistory($("#teamHistorySelector").val() );
+		var selectedYear = $("#teamHistorySelector").val();
+		updateQueryStringParam("year", selectedYear);
+		loadTeamHistory(selectedYear);
 	});
 
 	loadTeamHistory($("#teamHistorySelector").val());
 
+}
+
+var updateQueryStringParam = function (key, value) {
+
+    var baseUrl = [location.protocol, '//', location.host, location.pathname].join(''),
+        urlQueryString = document.location.search,
+        newParam = key + '=' + value,
+        params = '?' + newParam;
+
+    // If the "search" string exists, then build params from it
+    if (urlQueryString) {
+        var updateRegex = new RegExp('([\?&])' + key + '[^&]*');
+        var removeRegex = new RegExp('([\?&])' + key + '=[^&;]+[&;]?');
+
+        if( typeof value == 'undefined' || value == null || value == '' ) { // Remove param if value is empty
+            params = urlQueryString.replace(removeRegex, "$1");
+            params = params.replace( /[&;]$/, "" );
+
+        } else if (urlQueryString.match(updateRegex) !== null) { // If param exists already, update it
+            params = urlQueryString.replace(updateRegex, "$1" + newParam);
+
+        } else { // Otherwise, add it to end of query string
+            params = urlQueryString + '&' + newParam;
+        }
+    }
+
+    // no parameter was set so we don't need the question mark
+    params = params == '?' ? '' : params;
+
+    window.history.replaceState({}, "", baseUrl + params);
+};
+
+
+function getUrlParam(param, customUrl){
+	return getAllUrlParams(customUrl)[param];
+}
+
+function getAllUrlParams(url) {
+
+  // get query string from url (optional) or window
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+  // we'll store the parameters here
+  var obj = {};
+
+  // if query string exists
+  if (queryString) {
+
+    // stuff after # is not part of query string, so get rid of it
+    queryString = queryString.split('#')[0];
+
+    // split our query string into its component parts
+    var arr = queryString.split('&');
+
+    for (var i=0; i<arr.length; i++) {
+      // separate the keys and the values
+      var a = arr[i].split('=');
+
+      // in case params look like: list[]=thing1&list[]=thing2
+      var paramNum = undefined;
+      var paramName = a[0].replace(/\[\d*\]/, function(v) {
+        paramNum = v.slice(1,-1);
+        return '';
+      });
+
+      // set parameter value (use 'true' if empty)
+      var paramValue = typeof(a[1])==='undefined' ? true : a[1];
+
+      // (optional) keep case consistent
+      paramName = paramName.toLowerCase();
+      paramValue = paramValue.toLowerCase();
+
+      // if parameter name already exists
+      if (obj[paramName]) {
+        // convert value to array (if still string)
+        if (typeof obj[paramName] === 'string') {
+          obj[paramName] = [obj[paramName]];
+        }
+        // if no array index number specified...
+        if (typeof paramNum === 'undefined') {
+          // put the value on the end of the array
+          obj[paramName].push(paramValue);
+        }
+        // if array index number specified...
+        else {
+          // put the value at that index number
+          obj[paramName][paramNum] = paramValue;
+        }
+      }
+      // if param name doesn't exist yet, set it
+      else {
+        obj[paramName] = paramValue;
+      }
+    }
+  }
+
+  return obj;
 }
 
 function scrollUpdate(){ 
