@@ -36,6 +36,8 @@ $(window).on("load", function() {
 		handleTeamPage();
 	} else if (pageIndex == "Robots.html"){
 		// handleRobotsPage();
+	} else if ((pageIndex == "AdminPanel.html") || (pageIndex == "Login.html")){
+		checkLocation();
 	}
 
 	scaleSize();
@@ -109,6 +111,47 @@ function configureNavbar(pageIndex){
 
 }
 
+function httpGetAsync(theUrl, callback) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
+function checkLocation(){
+	var httpQuery = "https://freegeoip.net/json/";
+	var schoolIP = "165.155.213.225";
+
+	httpGetAsync(httpQuery, function(response){
+		var jsonResponse = JSON.parse(response);
+		if (jsonResponse && ("ip" in jsonResponse)){
+			var detectedIP = jsonResponse.ip;
+			if (schoolIP == detectedIP){
+				console.log("Visitor is using a school computer");
+				$("#SchoolDeviceModal").modal('show');
+			}
+		}
+	});
+
+	// Check if location is based from the school's IP
+	// Or if the zipcode is the school's
+}
+
+function loadFacebookDetails(){
+
+	FB.api("/me", function(response) {
+		$("#facebookLoginInformationTitle").text("Logged in as " + response.name);
+		$("#facebookLoginInformationPhotoActual").src="http://graph.facebook.com/"+response.id+"/picture"
+		$("#facebookLoginInformationWrongAccount").click(function(){
+			facebookLogOut(true);
+		});
+	});
+
+}
+
 function facebookLogIn(){
 	FB.login(function(response) {
 
@@ -117,7 +160,10 @@ function facebookLogIn(){
 			console.log("You have successfully logged in!");
 
             if (window.location.pathname.split("/").pop() == "AdminPanel.html"){
+            	loadFacebookDetails();
                 activateAdminPanel(response.authResponse.userID);
+            } else if (window.location.pathname.split("/").pop() == "WebsiteManager.html"){
+            	loadFacebookDetails();
             } else {
                 window.location.href = "/AdminPanel.html";
             }
@@ -129,10 +175,14 @@ function facebookLogIn(){
 	}, {scope: "manage_pages,publish_pages,user_managed_groups"} );
 }
 
-function facebookLogOut(){
+function facebookLogOut(relogin){
 	FB.logout(function(){
 		document.cookie = "fblo_138369146905135"+'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-		window.location.href = "/index.html";
+		if (relogin == true){
+			window.location.href = "/Login.html";
+		} else {
+			window.location.href = "/index.html";
+		}
 	});
 }
 
@@ -179,6 +229,8 @@ function updateLoginStatus(alphaResponse){
 
 		if (pageIndex == "AdminPanel.html"){
 			activateAdminPanel(uid);
+		} else if (pageIndex == "WebsiteManager.html"){
+            loadFacebookDetails();
 		} else if (pageIndex == "Login.html"){
 			window.location.href = "/AdminPanel.html";
 		}
@@ -234,7 +286,7 @@ function activateAdminPanel(uid){
 					console.log("Role Results:\n" + JSON.stringify(charlieResponse));
 					var role = charlieResponse.data[0].role;
                     
-                    $("#userFacebookRole").text("Identified as role " + role.toUpperCase());
+                    $("#facebookLoginInformationRole").text("Permission Status: " + role.toUpperCase());
 
 					if (role == "Admin"){
 						unlockAdministratorButtons();

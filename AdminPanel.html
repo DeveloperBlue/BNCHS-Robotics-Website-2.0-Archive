@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/ImageSelectorModal.css">
     <link rel="stylesheet" href="assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="assets/css/Social-Icons.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -121,11 +122,11 @@
                 <p>Roles stack downwards, so anyone with the Administrator role can manage the people and robots or review Flickr Submissions.</p>
             </div>
             <div class="calendarDateSingleDiv">
-                <p class="calendarDateLeft"><strong>Make Board Actions &amp; Manage the Website</strong></p><span class="label label-default float-left">Administrator</span>
+                <p class="calendarDateLeft"><strong>Adminsitrators can carry out all actions</strong></p><span class="label label-default float-left">Administrator</span>
                 <div class="clearfix"></div>
             </div>
             <div class="calendarDateSingleDiv">
-                <p class="calendarDateLeft"><strong>Manage People and Robots Page</strong></p><span class="label label-default float-left">Editor</span>
+                <p class="calendarDateLeft"><strong>Manage the website content, Robots, People, and Sponsors pages</strong></p><span class="label label-default float-left">Editor</span>
                 <div class="clearfix"></div>
             </div>
             <div class="calendarDateSingleDiv">
@@ -137,7 +138,12 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-        <p class="text-center" id="userFacebookRole">Paragraph</p>
+        <div id="facebookLoginInformation" class="facebookLoginInformation">
+            <p id="facebookLoginInformationTitle">Logged in as FIRSTNAME LASTNAME</p>
+            <div class="facebookLoginInformationPhoto">
+                <div class="facebookLoginInformationPhotoInner"><img id="facebookLoginInformationPhotoActual"></div>
+            </div>
+            <p class="text-center" id="facebookLoginInformationRole">PERMISSION STATUS</p><a href="#" id="facebookLoginInformationWrongAccount">Not this person?</a></div>
         <div class="PanelContent">
             <div class="row">
                 <div class="col-md-6 PanelBox PanelBoxLight" id="BoardPanel">
@@ -146,17 +152,18 @@
                         class="btn btn-default PanelButton BoardButton disabled" type="button" id="Panel_TrailerCam">Trailer Cam<i class="icon ion-videocamera socialMediaIcon"></i></button><button class="btn btn-default PanelButton BoardButton disabled" type="button" id="Panel_ActivityLog">View Activity Log</button></div>
                 <div class="col-md-6 PanelBox PanelBoxDark"
                     id="BlogPanel">
-                    <h2 class="BlackFont">Blog</h2><button class="btn btn-default PanelButton BlogButton disabled" type="button" id="Panel_NewPost">New Blog Post<i class="icon ion-edit socialMediaIcon"></i></button><button class="btn btn-default PanelButton BlogButton disabled"
-                        type="button" id="Panel_EditPosts">Edit Existing Posts</button><button class="btn btn-default PanelButton BlogButton disabled" type="button" id="Panel_EditCategories">Manage Blog Authors</button></div>
+                    <h2 class="BlackFont">Blog</h2><a class="btn btn-default PanelButton BlogButton disabled" role="button" href="https://www.blogger.com/blogger.g?blogID=2456470438116777821#editor/src=sidebar" id="Panel_NewPost">New Blog Post<i class="icon ion-edit socialMediaIcon"></i></a>
+                    <a
+                        class="btn btn-default PanelButton BlogButton disabled" role="button" href="https://www.blogger.com/blogger.g?blogID=2456470438116777821#allposts" id="Panel_EditPosts">Edit Existing Posts</a><a class="btn btn-default PanelButton BlogButton disabled" role="button" href="https://www.blogger.com/blogger.g?blogID=2456470438116777821#basicsettings" id="Panel_EditCategories">Manage Blog Authors</a></div>
             </div>
             <div class="row">
                 <div class="col-md-6 PanelBox PanelBoxDark" id="ModerationPanel">
-                    <h2 class="BlackFont">Moderation</h2><button class="btn btn-default PanelButton ModerationButton disabled" type="button" id="Panel_FlickrSubmissions">Review Flickr Submissions</button></div>
+                    <h2 class="BlackFont">Moderation</h2><button class="btn btn-default PanelButton ModerationButton disabled" type="button" id="Panel_FlickrSubmissions">Review Flickr Submissions</button><button class="btn btn-default PanelButton ModerationButton disabled"
+                        type="button" id="Panel_FlickrSubmissions">Manage Team Calendar</button></div>
                 <div class="col-md-6 PanelBox PanelBoxLight" id="WebmasterPanel">
-                    <h2 class="BlackFont">Website</h2><button class="btn btn-default PanelButton WebmasterButton disabled" type="button" id="Panel_ManageWebsite">Manage Website</button><button class="btn btn-default PanelButton WebmasterButton disabled" type="button" id="Panel_ManagePeople">Manage People<i class="icon ion-person-stalker socialMediaIcon"></i></button>
-                    <button
-                        class="btn btn-default PanelButton WebmasterButton disabled" type="button" id="Panel_ManageRobots">Manage Robots</button>
-                </div>
+                    <h2 class="BlackFont">Website</h2><a class="btn btn-default PanelButton WebmasterButton disabled" role="button" href="WebsiteManager.html" id="Panel_ManageWebsite">Manage Website</a><a class="btn btn-default PanelButton WebmasterButton disabled" role="button"
+                        href="WebsiteManager.html#Leadership" id="Panel_ManagePeople">Manage People<i class="icon ion-person-stalker socialMediaIcon"></i></a><a class="btn btn-default PanelButton WebmasterButton disabled" role="button" href="WebsiteManager.html#Robots"
+                        id="Panel_ManageRobots">Manage Robots</a><a class="btn btn-default PanelButton WebmasterButton disabled" role="button" href="WebsiteManager.html#Sponsors" id="Panel_ManageSponsors">Manage Sponsors</a></div>
             </div>
         </div>
         <div class="clearSpacer text-center"><button class="btn btn-danger text-center" type="button" id="LogOutButton">Log Out</button></div>
@@ -222,9 +229,9 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab">
-                    <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="true" href="#accordion-1 .item-4">How do I give others Permissions to manage the Website?</a></h4>
+                    <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-4">How do I give others Permissions to manage the Website?</a></h4>
                 </div>
-                <div class="panel-collapse collapse in item-4" role="tabpanel">
+                <div class="panel-collapse collapse item-4" role="tabpanel">
                     <div class="accordian_container">
                         <h3 class="BlackFont text-left">Facebook Page</h3>
                         <p>For the time being, the Website is handled by the Facebook Page.</p>
@@ -309,11 +316,27 @@
             </div>
         </div>
     </div>
+    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="SchoolDeviceModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Hey! You're in school!</h4>
+                </div>
+                <div class="modal-body">
+                    <p><em>We noticed that you've connected to this website over a DoE IP Address.</em></p>
+                    <p><strong>When logging into the Admin Panel, you need to MAKE SURE you are in <span style="text-decoration: underline;">Incognito</span> or <span style="text-decoration: underline;">log out</span> when you are finished!</strong></p>
+                    <p><em>Leaving yourself logged in to a public computer means anyone can</em><strong><em> pretend to be YOU</em></strong><em> and can make dramatic changes that you don't authorize!</em></p><button class="btn btn-primary FlickrModalButtonBackground"
+                        type="button" data-dismiss="modal">I got it</button></div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/bs-animation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="assets/js/ImageSelectorModal.js"></script>
 </body>
 
 </html>

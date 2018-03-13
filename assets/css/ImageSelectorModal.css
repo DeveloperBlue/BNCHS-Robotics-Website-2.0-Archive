@@ -1,0 +1,47 @@
+.imageSelectorModalImages {
+  margin-top:10px;
+  height:180px;
+  background-color:#DDD;
+  overflow-y:scroll;
+  border:1px solid #CCC;
+}
+
+#ImageSelectorModalDirectoryDropdown {
+  background-color:#666;
+  float:right;
+  width:200px;
+}
+
+.imageSelectorModalUploadPreview {
+  height:110px;
+  width:190px;
+  float:left;
+  margin-right:20px;
+  background-color:#DDD;
+  padding:2px;
+}
+
+#imageSelectorModalUploadPreviewActual {
+  height:106px;
+  width:186px;
+  margin-right:20px;
+  background-color:#FFF;
+  padding:2px;
+}
+
+.imageSelectorModalUploadDiv {
+  height:110px;
+  margin-left:200px;
+  position:relative;
+}
+
+#imageSelectorModalSelectButton {
+  margin-top:35px;
+  margin-bottom:10px;
+  float:left;
+}
+
+#imageSelectorModalUploadButton {
+  float:left;
+}
+

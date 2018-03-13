@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/ImageSelectorModal.css">
     <link rel="stylesheet" href="assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="assets/css/Social-Icons.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -113,7 +114,13 @@
     </nav>
     <div class="PageContent">
         <div class="divBlue"></div>
-        <div class="clearSpacer text-center"></div>
+        <div id="facebookLoginInformation" class="facebookLoginInformation">
+            <p id="facebookLoginInformationTitle">Logged in as FIRSTNAME LASTNAME</p>
+            <div class="facebookLoginInformationPhoto">
+                <div class="facebookLoginInformationPhotoInner"><img id="facebookLoginInformationPhotoActual"></div>
+            </div>
+            <p class="text-center" id="facebookLoginInformationRole">PERMISSION STATUS</p><a href="#" id="facebookLoginInformationWrongAccount">Not this person?</a></div>
+        <p class="text-center mobileWarning">You should use a computer to make changes, as using a mobile device will be extremely clunky and not fit many sections.</p>
         <div class="panel-group" role="tablist" aria-multiselectable="true" id="accordion-1">
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab">
@@ -122,7 +129,7 @@
                 <div class="panel-collapse collapse item-1" role="tabpanel">
                     <div class="accordian_container">
                         <h3 class="BlackFont text-left">About Team</h3><textarea class="input-lg accordian_inputbox" id="website_AboutTeam"></textarea>
-                        <h3 class="BlackFont text-left">Homepage Video</h3><input type="text" id="website_HomepageVideo" class="accordian_linkbox">
+                        <h3 class="BlackFont text-left">Homepage Video Link</h3><input type="text" id="website_HomepageVideo" class="accordian_linkbox">
                         <h3 class="BlackFont text-left">About FIRST (Brief)</h3><textarea class="input-lg accordian_inputbox" id="website_AboutFIRST"></textarea>
                         <h3 class="BlackFont text-left">About FIRST (In Dept)</h3><textarea class="input-lg accordian_inputbox" id="website_AboutFIRSTDept"></textarea></div>
                     <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Revert Changes</button><button class="btn btn-success spaced_button" type="submit">Save Changes</button></div>
@@ -146,8 +153,18 @@
                     <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-3">Contact Us Page</a></h4>
                 </div>
                 <div class="panel-collapse collapse item-3" role="tabpanel">
-                    <div class="accordian_container"></div>
-                    <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Cancel</button><button class="btn btn-success spaced_button" type="submit">Save Changes</button></div>
+                    <div class="accordian_container">
+                        <div class="webmasterRobotPanel"></div>
+                        <div class="webmasterRobotInfo">
+                            <h4 class="BlackFont">Contact Name</h4><input type="text" class="robotInfoTextField">
+                            <h4 class="BlackFont">Contact Email/Phone</h4><input type="text" class="accordian_linkbox">
+                            <div class="clearfix"></div>
+                            <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Delete Contact</button><button class="btn btn-success spaced_button" type="submit">Save Changes</button></div>
+                        </div>
+                        <div class="webmasterPeopleSortPanel">
+                            <h4 class="text-center BlackFont">Change Order</h4><button class="btn btn-success spaced_button" type="submit">Save Order</button></div>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -177,19 +194,25 @@
                         <div class="webmasterPeoplePanel"></div>
                         <div class="webmasterPeopleInfoPanel">
                             <h4 class="BlackFont">Full Name</h4><input type="text" class="robotInfoTextField">
-                            <h4 class="BlackFont">Year Person Joined Year</h4><input type="text" class="robotInfoTextFieldShort">
-                            <h4 class="BlackFont">Year of Graduation</h4><input type="text" class="robotInfoTextFieldShort">
+                            <h5 class="BlackFont">Year Person Joined Team</h5><input type="text" class="robotInfoTextFieldShort">
+                            <h5 class="BlackFont">Year of Graduation/Left Team</h5><input type="text" class="robotInfoTextFieldShort">
+                            <h4 class="BlackFont">Headshot</h4><input type="file">
                             <h4 class="BlackFont">Titles</h4>
                             <p>Title Name, Start Year, End Year</p>
                             <div class="personTitleFieldBox">
                                 <div class="personTitleBar"><input type="text" class="personTitleTitleInput"><input type="text" class="personTitleY2Input"><input type="text" class="personTitleY1Input"><button class="btn btn-danger personTitleDeleteButton" type="reset"><i class="glyphicon glyphicon-trash"></i></button></div>
-                            </div><button class="btn btn-info spaced_button" type="submit">Add Title</button>
-                            <div class="checkbox"><label class="BlackFont"><input type="checkbox">Mentor</label></div>
+                            </div><button class="btn btn-info spaced_button" type="submit">Add Title</button><br><br>
+                            <h4 class="BlackFont">Personal Links</h4>
+                            <h5 class="BlackFont">Website/Github/Instagram/Twitter/LinkedIn</h5><input type="text" class="accordian_linkbox">
+                            <div class="checkbox"><label class="BlackFont"><input type="checkbox">This person is a mentor</label></div>
                             <div class="clearfix"></div>
                             <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Delete Person</button><button class="btn btn-success spaced_button" type="submit">Save Changes</button></div>
                         </div>
                         <div class="webmasterPeopleSortPanel">
-                            <h4 class="text-center BlackFont">Change Order</h4><select id="teamHistorySelector" class="teamHistoryYearSelector"><optgroup label="History"><option value="2018" selected="">Season 2018</option><option value="2017">Season 2017</option><option value="2016">Season 2016</option><option value="2015">Season 2015</option></optgroup></select></div>
+                            <h4 class="text-center BlackFont">Change Order</h4><select id="teamHistorySelector" class="teamHistoryYearSelector"><optgroup label="History"><option value="2018" selected="">Season 2018</option><option value="2017">Season 2017</option><option value="2016">Season 2016</option><option value="2015">Season 2015</option></optgroup></select>
+                            <button
+                                class="btn btn-success spaced_button" type="submit">Save Order</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -292,12 +315,67 @@
                 <div class="modal-footer"><a class="btn btn-info" role="button" href="#">Submit Photos</a><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button></div>
             </div>
         </div>
-    </div><div>Custom Code</div>
+    </div>
+    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="ImageSelectorModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="imageSelectorModalTitle">Select an Image</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a class="bg-warning" href="#tab-1" role="tab" data-toggle="tab">Existing Images</a></li>
+                            <li><a class="bg-info" href="#tab-2" role="tab" data-toggle="tab">Upload</a></li>
+                            <li class="dropdown" id="ImageSelectorModalDirectoryDropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">/Images/Backdrops&nbsp;<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation"><a href="#">First Item</a></li>
+                                    <li role="presentation"><a href="#">Second Item</a></li>
+                                    <li role="presentation"><a href="#">Third Item</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                                <div class="imageSelectorModalImages"></div>
+                            </div>
+                            <div class="tab-pane" role="tabpanel" id="tab-2"><br>
+<p> Files must be in <b>.png</b> or <b>.jpg</b> format </p>
+<p> Photos larger than <b>1920x1080p</b> will automatically be compressed </p>
+                                <div class="imageSelectorModalUploadPreview">
+                                    <div id="imageSelectorModalUploadPreviewActual"></div>
+                                </div>
+                                <div class="imageSelectorModalUploadDiv"><input type="file" accept="image/*" id="imageSelectorModalSelectButton"><button class="btn btn-success" type="submit" id="imageSelectorModalUploadButton">Upload</button></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><a class="btn btn-success" role="button" href="#" id="imageSelectorModalConfirm">Confirm Image</a><button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="SchoolDeviceModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Hey! You're in school!</h4>
+                </div>
+                <div class="modal-body">
+                    <p><em>We noticed that you've connected to this website over a DoE IP Address.</em></p>
+                    <p><strong>When logging into the Admin Panel, you need to MAKE SURE you are in <span style="text-decoration: underline;">Incognito</span> or <span style="text-decoration: underline;">log out</span> when you are finished!</strong></p>
+                    <p><em>Leaving yourself logged in to a public computer means anyone can</em><strong><em> pretend to be YOU</em></strong><em> and can make dramatic changes that you don't authorize!</em></p><button class="btn btn-primary FlickrModalButtonBackground"
+                        type="button" data-dismiss="modal">I got it</button></div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/bs-animation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="assets/js/ImageSelectorModal.js"></script>
 </body>
 
 </html>

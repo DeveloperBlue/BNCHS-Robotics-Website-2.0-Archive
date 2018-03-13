@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/ImageSelectorModal.css">
     <link rel="stylesheet" href="assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="assets/css/Social-Icons.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -118,12 +119,28 @@
         </div>
         <div class="clearSpacer text-center">
             <p class="text-center">We host a variety of projects here, from our own Robotics related work to our team's personal projects.</p>
-            <p class="text-center">Check us out on our Github page!</p><a class="btn btn-default" role="button" href="https://github.com/Team5599">Github<i class="fa fa-github buttonIcon"></i></a></div>
-        <div class="sectionContainer">
+            <p class="text-center">Check us out on our Github page!</p><a class="btn btn-default" role="button" href="https://github.com/Team5599">Github<i class="fa fa-github buttonIcon"></i></a>
+            <div class="clearfix"></div>
+        </div>
+        <div class="sectionContainer indexContainer">
+            <h3 class="text-left BlackFont">Index</h3>
+            <ul>
+                <li><a href="#project_OurRobots">Our Robots</a></li>
+                <li><a href="#project_ControllerWrappers">Controller Wrappers</a></li>
+                <li><a href="#project_FRCDashboard">FRC Dashboard</a></li>
+                <li><a href="#project_GRIP">GRIP</a></li>
+                <li><a href="#project_Website2p0">Website 2.0</a></li>
+                <li><a href="#project_FlickrDuplicateTagger">Flickr Duplicate Tagger</a></li>
+                <li><a href="#project_WinCommanderAHK">WinCommander AHK</a></li>
+                <li><a href="#project_AuroraBot">AuroraBot - DiscordJS</a></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="sectionContainer projectsContainer">
             <div class="row">
                 <div class="col-md-4">
                     <div class="projectDiv">
-                        <h3 class="projectHeading">Our Robots</h3>
+                        <h3 id="project_OurRobots" class="projectHeading">Our Robots</h3>
                         <div class="clearfix"></div>
                         <p class="text-left">All of our FRC Robot Code is hosted in Github from our first rookie year 2015 to the present.</p>
                         <div class="projectSpacer"></div>
@@ -138,7 +155,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="projectDiv">
-                        <h3 class="projectHeading">GRIP</h3>
+                        <h3 id="project_GRIP" class="projectHeading">GRIP</h3>
                         <div class="clearfix"></div>
                         <p class="text-left">Our fork of the WPIRoboticsProjects GRIP project. GRIP is a "program for rapidly developing computer vision applications" used by many FRC Teams for vision tracking and other vision-related projects.</p>
                         <div class="projectSpacer"></div>
@@ -155,7 +172,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="projectDiv">
-                        <h3 class="projectHeading">Controller Wrappers</h3>
+                        <h3 id="project_ControllerWrappers" class="projectHeading">Controller Wrappers</h3>
                         <div class="clearfix"></div>
                         <p class="text-left">Java FRC Wrappers for various controller devices, including &nbsp;the XBox360, Logitech Attack 3, Logitech Extreme 3D, and more.<br></p>
                         <div class="projectSpacer"></div>
@@ -170,7 +187,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="projectDiv">
-                        <h3 class="projectHeading">Website 2.0</h3>
+                        <h3 id="project_Website2p0" class="projectHeading">Website 2.0</h3>
                         <div class="clearfix"></div>
                         <p class="text-left">A new dynamic website for the BNCHS Robotics Team. Beats out the Google Sites webpage while still looking sleek, providing functionality, and much much more dynamic control.</p>
                         <div class="projectSpacer"></div>
@@ -184,10 +201,25 @@
                         </div><a class="btn btn-danger projectButton" role="button" href="https://github.com/Team5599/Website-2.0">View Project</a>
                         <div class="clearfix"></div>
                     </div>
+                    <div class="projectDiv">
+                        <h3 id="project_WinCommanderAHK" class="projectHeading">WinCommander AHK</h3>
+                        <div class="clearfix"></div>
+                        <p class="text-left">WinCommander is a short and simple AutoHotkey script that allows you to toggle keeping a window "Always-Ontop", launch a list of websites, and auto-position and auto-scale them to the bottom-right corner.</p>
+                        <div class="projectSpacer"></div>
+                        <div class="projectInfo">
+                            <div class="projectLanguages">
+                                <p class="projectLanguageText">AutoHotkey<i class="fa fa-circle languageCircle languageCircleAHK float-left"></i></p>
+                            </div>
+                            <div class="projectAuthorDiv">
+                                <p class="projectAuthors">Michael Rooplall</p>
+                            </div>
+                        </div><a class="btn btn-danger projectButton" role="button" href="">View Project</a>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="projectDiv">
-                        <h3 class="projectHeading">FRC Dashboard</h3>
+                        <h3 id="project_FRCDashboard" class="projectHeading">FRC Dashboard</h3>
                         <div class="clearfix"></div>
                         <p class="text-left">Our fork of the FRC Dashboard. Allows for custom HTML JS Network Table based dashboards, allowing sleeker designs and a more robust level of control.</p>
                         <div class="projectSpacer"></div>
@@ -202,7 +234,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="projectDiv">
-                        <h3 class="projectHeading">Flickr Duplicate Tagger</h3>
+                        <h3 id="project_FlickrDuplicateTagger" class="projectHeading">Flickr Duplicate Tagger</h3>
                         <div class="clearfix"></div>
                         <p class="text-left">Handy tool hosted on Github Pages for finding and tagging duplicate photos uploaded to your Flickr.</p>
                         <div class="projectSpacer"></div>
@@ -217,7 +249,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="projectDiv">
-                        <h3 class="projectHeading">AuroraBot - Discord Bot</h3>
+                        <h3 id="project_AuroraBot" class="projectHeading">AuroraBot - Discord Bot</h3>
                         <div class="clearfix"></div>
                         <p class="text-left">AuroraBot is a multi-functional command-filled discord bot build in NodeJS. Plays music, has various logs, and a ton of useful and fun commands.</p>
                         <div class="projectSpacer"></div>
@@ -229,21 +261,6 @@
                                 <p class="projectAuthors">Michael Rooplall</p>
                             </div>
                         </div><a class="btn btn-success projectButton" role="button" href="">Visit Project</a>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="projectDiv">
-                        <h3 class="projectHeading">WinCommander AHK</h3>
-                        <div class="clearfix"></div>
-                        <p class="text-left">WinCommander is a short and simple AutoHotkey script that allows you to toggle keeping a windows "Always-Ontop", launch a list of websites, and auto-position and auto-scale them to the bottom-right corner.</p>
-                        <div class="projectSpacer"></div>
-                        <div class="projectInfo">
-                            <div class="projectLanguages">
-                                <p class="projectLanguageText">AutoHotkey<i class="fa fa-circle languageCircle languageCircleAHK float-left"></i></p>
-                            </div>
-                            <div class="projectAuthorDiv">
-                                <p class="projectAuthors">Michael Rooplall</p>
-                            </div>
-                        </div><a class="btn btn-danger projectButton" role="button" href="">View Project</a>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -311,6 +328,7 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/bs-animation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="assets/js/ImageSelectorModal.js"></script>
 </body>
 
 </html>

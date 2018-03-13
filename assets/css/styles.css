@@ -290,7 +290,7 @@ div.splashContentHeader {
 
 img.SplashHeaderLogo {
   height:auto;
-  width:14%;
+  width:13%;
 }
 
 p.SplashHeaderText {
@@ -857,7 +857,7 @@ p.SplashHeaderText {
 }
 
 .webmasterRobotPanel, .webmasterPeoplePanel {
-  width:240px;
+  width:200px;
   height:400px;
   margin-top:20px;
   background-color:#BBB;
@@ -867,7 +867,7 @@ p.SplashHeaderText {
 }
 
 .webmasterPeopleSortPanel {
-  width:240px;
+  width:180px;
   height:400px;
   margin-top:20px;
   background-color:#BBB;
@@ -936,5 +936,92 @@ p.SplashHeaderText {
   margin-right:10px;
   height:32px;
   float:right;
+}
+
+.indexContainer {
+  text-align:left;
+}
+
+.mobileWarning {
+  margin-left:20px;
+  margin-right:20px;
+  margin-bottom:40px;
+}
+
+.facebookLoginInformation {
+  margin-left:40px;
+  margin-right:40px;
+  margin-top:40px;
+  margin-bottom:40px;
+  padding-top:20px;
+  padding-bottom:10px;
+  padding-left:10px;
+  padding-right:10px;
+  text-align:center;
+  border:1px solid #444;
+  border-radius:10px;
+}
+
+.facebookLoginInformationPhoto {
+  width:120px;
+  height:120px;
+  margin:0 auto;
+  background-color:#EEE;
+  border-radius:50%;
+  padding-top:4px;
+  margin-top:20px;
+  margin-bottom:15px;
+}
+
+.facebookLoginInformationPhotoInner {
+  width:112px;
+  height:112px;
+  margin:0 auto;
+  background-color:#FFF;
+  border-radius:50%;
+  padding-top:2px;
+}
+
+#facebookLoginInformationPhotoActual {
+  width:108px;
+  height:108px;
+  background-color:rgba(0,0,0,0);
+  border-radius:50%;
+}
+
+.socialMediaActionDiv {
+  margin-right:20px;
+  margin-left:20px;
+  min-height:100px;
+  height:auto;
+  border:1px solid #000;
+  border-radius:60px;
+  text-align:center;
+}
+
+.socialMediaActionSubDiv {
+  margin-top:20px;
+  margin-bottom:20px;
+  width:100%;
+  text-align:center;
+}
+
+.socialMediaFeed {
+  text-align:center;
+  align-items:center;
+  align-content:center;
+  margin-left:60px;
+  margin-right:60px;
+  margin-bottom:60px;
+  height:auto;
+}
+
+.col-md-4.twitterColumn {
+  height:500px;
+  overflow-y:scroll;
+}
+
+.blueFont {
+  color:#1E6C93;
 }
 
