@@ -142,9 +142,14 @@ function checkLocation(){
 
 function loadFacebookDetails(){
 
+	console.log("Getting Login Details for Style Blurb 2.0");
+
 	FB.api("/me", function(response) {
+
+		console.log("Loading details . . .");
 		$("#facebookLoginInformationTitle").text("Logged in as " + response.name);
-		$("#facebookLoginInformationPhotoActual").src="http://graph.facebook.com/"+response.id+"/picture"
+		$("#facebookLoginInformationPhotoActual").css("background-image", "url(http://graph.facebook.com/"+response.id+"/picture?type=normal)");
+		//$("#facebookLoginInformationPhotoActual").src="http://graph.facebook.com/"+response.id+"/picture"
 		$("#facebookLoginInformationWrongAccount").click(function(){
 			facebookLogOut(true);
 		});
@@ -228,6 +233,7 @@ function updateLoginStatus(alphaResponse){
 		var pageIndex = window.location.pathname.split("/").pop();
 
 		if (pageIndex == "AdminPanel.html"){
+			loadFacebookDetails();
 			activateAdminPanel(uid);
 		} else if (pageIndex == "WebsiteManager.html"){
             loadFacebookDetails();
