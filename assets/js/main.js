@@ -164,10 +164,12 @@ function facebookLogIn(){
 
 			console.log("You have successfully logged in!");
 
-            if (window.location.pathname.split("/").pop() == "AdminPanel.html"){
+			var pageIndex = window.location.pathname.split("/").pop();
+
+            if (pageIndex == "AdminPanel.html"){
             	loadFacebookDetails();
                 activateAdminPanel(response.authResponse.userID);
-            } else if (window.location.pathname.split("/").pop() == "WebsiteManager.html"){
+            } else if (pageIndex == "WebsiteManager.html"){
             	loadFacebookDetails();
             } else {
                 window.location.href = "/AdminPanel.html";
@@ -175,6 +177,9 @@ function facebookLogIn(){
 
 		} else {
 			console.log("User cancelled login or did not fully authorize.");
+			if ((pageIndex == "AdminPanel.html") || (pageIndex == "WebsiteManager.html")){
+				window.location.href = "/Login.html";
+			}
 		}
 
 	}, {scope: "manage_pages,publish_pages,user_managed_groups"} );
@@ -208,6 +213,13 @@ function updateLoginStatus(alphaResponse){
 
 	if (alphaResponse == null){
 		console.log("Facebook API called but not loaded");
+		return;
+	}
+
+	var pageIndex = window.location.pathname.split("/").pop();
+
+	if (((pageIndex == "AdminPanel.html") || (pageIndex == "WebsiteManager.html")) && (alphaResponse.status !== "connected")){
+		window.location.href = "/Login.html";
 		return;
 	}
 

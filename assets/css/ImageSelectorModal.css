@@ -9,7 +9,12 @@
 #ImageSelectorModalDirectoryDropdown {
   background-color:#666;
   float:right;
-  width:200px;
+  width:220px;
+  text-align:left;
+}
+
+.imageSelectorCaret {
+  margin-left:10px;
 }
 
 .imageSelectorModalUploadPreview {
@@ -43,5 +48,41 @@
 
 #imageSelectorModalUploadButton {
   float:left;
+}
+
+.uploadFileDiv {
+  height:auto;
+  width:auto;
+}
+
+.uploadFileButton {
+  width:120px;
+  background-color:#DDD;
+  border:1px solid #000;
+  border-radius:2px;
+  color:#111;
+  font-weight:bold;
+}
+
+.uploadFileLabel {
+  margin-left:10px;
+  margin-right:10px;
+  margin-top:10px;
+  padding-top:5px;
+  padding-bottom:8px;
+}
+
+.uploadFilePreview {
+  width:140px;
+  height:80px;
+  margin-top:10px;
+  background-color:#DDD;
+  border:1px solid #999;
+  background-size:cover;
+}
+
+.uploadFileRemove {
+  margin-left:10px;
+  width:40px;
 }
 

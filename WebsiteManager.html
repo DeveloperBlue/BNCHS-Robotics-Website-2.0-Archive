@@ -67,14 +67,17 @@
    }(document, 'script', 'facebook-jssdk'));
 
 </script>
+<script src="html5sortable.js"></script>
+<script src="webpanelMaster.js"></script>
 </head>
 
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand hidden-sm hidden-xs" href="index.html"><strong>&lt; Cardozo Robotics | Team 5599 &gt;</strong><img src="assets/img/Logos/SubLogo_Blue.png" class="navbar-left MicroLogo MicroLogoInner"></a><button class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
-            <div class="collapse navbar-collapse" id="navcol-1">
+            <div class="navbar-header"><a class="navbar-brand hidden-sm hidden-xs" href="index.html"><strong>&lt; Cardozo Robotics | Team 5599 &gt;</strong><img src="assets/img/Logos/SubLogo_Blue.png" data-bs-hover-animate="tada" class="navbar-left MicroLogo MicroLogoInner"></a><button class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -128,10 +131,10 @@
                 </div>
                 <div class="panel-collapse collapse item-1" role="tabpanel">
                     <div class="accordian_container">
-                        <h3 class="BlackFont text-left">About Team</h3><textarea class="input-lg accordian_inputbox" id="website_AboutTeam"></textarea>
+                        <h3 class="BlackFont text-left">About Team</h3><textarea id="website_AboutTeam" class="accordian_inputbox"></textarea>
                         <h3 class="BlackFont text-left">Homepage Video Link</h3><input type="text" id="website_HomepageVideo" class="accordian_linkbox">
-                        <h3 class="BlackFont text-left">About FIRST (Brief)</h3><textarea class="input-lg accordian_inputbox" id="website_AboutFIRST"></textarea>
-                        <h3 class="BlackFont text-left">About FIRST (In Dept)</h3><textarea class="input-lg accordian_inputbox" id="website_AboutFIRSTDept"></textarea></div>
+                        <h3 class="BlackFont text-left">About FIRST (Brief)</h3><textarea id="website_AboutFIRST" class="accordian_inputbox"></textarea>
+                        <h3 class="BlackFont text-left">About FIRST (In Dept)</h3><textarea id="website_AboutFIRSTDept" class="accordian_inputbox"></textarea></div>
                     <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Revert Changes</button><button class="btn btn-success spaced_button" type="submit">Save Changes</button></div>
                 </div>
             </div>
@@ -141,10 +144,10 @@
                 </div>
                 <div class="panel-collapse collapse item-2" role="tabpanel">
                     <div class="accordian_container">
-                        <h3 class="BlackFont text-left">Facebook Page</h3><input type="text" id="website_HomepageVideo" class="accordian_linkbox">
-                        <h3 class="BlackFont text-left">Twitter</h3><input type="text" id="website_HomepageVideo" class="accordian_linkbox">
-                        <h3 class="BlackFont text-left">YouTube</h3><input type="text" id="website_HomepageVideo" class="accordian_linkbox">
-                        <h3 class="BlackFont text-left">Instagram</h3><input type="text" id="website_HomepageVideo" class="accordian_linkbox"></div>
+                        <h4 class="BlackFont text-left">Facebook Page</h4><input type="text" id="website_HomepageVideo" class="accordian_linkbox">
+                        <h4 class="BlackFont text-left">Twitter</h4><input type="text" id="website_HomepageVideo" class="accordian_linkbox">
+                        <h4 class="BlackFont text-left">YouTube</h4><input type="text" id="website_HomepageVideo" class="accordian_linkbox">
+                        <h4 class="BlackFont text-left">Instagram</h4><input type="text" id="website_HomepageVideo" class="accordian_linkbox"></div>
                     <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Cancel</button><button class="btn btn-success spaced_button" type="submit">Save Changes</button></div>
                 </div>
             </div>
@@ -154,15 +157,13 @@
                 </div>
                 <div class="panel-collapse collapse item-3" role="tabpanel">
                     <div class="accordian_container">
-                        <div class="webmasterRobotPanel"></div>
+                        <div class="webmasterContactUsPanel"></div>
                         <div class="webmasterRobotInfo">
                             <h4 class="BlackFont">Contact Name</h4><input type="text" class="robotInfoTextField">
                             <h4 class="BlackFont">Contact Email/Phone</h4><input type="text" class="accordian_linkbox">
                             <div class="clearfix"></div>
                             <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Delete Contact</button><button class="btn btn-success spaced_button" type="submit">Save Changes</button></div>
                         </div>
-                        <div class="webmasterPeopleSortPanel">
-                            <h4 class="text-center BlackFont">Change Order</h4><button class="btn btn-success spaced_button" type="submit">Save Order</button></div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -191,27 +192,38 @@
                 </div>
                 <div class="panel-collapse collapse item-5" role="tabpanel">
                     <div class="accordian_container">
-                        <div class="webmasterPeoplePanel"></div>
-                        <div class="webmasterPeopleInfoPanel">
-                            <h4 class="BlackFont">Full Name</h4><input type="text" class="robotInfoTextField">
-                            <h5 class="BlackFont">Year Person Joined Team</h5><input type="text" class="robotInfoTextFieldShort">
-                            <h5 class="BlackFont">Year of Graduation/Left Team</h5><input type="text" class="robotInfoTextFieldShort">
-                            <h4 class="BlackFont">Headshot</h4><input type="file">
-                            <h4 class="BlackFont">Titles</h4>
-                            <p>Title Name, Start Year, End Year</p>
-                            <div class="personTitleFieldBox">
-                                <div class="personTitleBar"><input type="text" class="personTitleTitleInput"><input type="text" class="personTitleY2Input"><input type="text" class="personTitleY1Input"><button class="btn btn-danger personTitleDeleteButton" type="reset"><i class="glyphicon glyphicon-trash"></i></button></div>
-                            </div><button class="btn btn-info spaced_button" type="submit">Add Title</button><br><br>
-                            <h4 class="BlackFont">Personal Links</h4>
-                            <h5 class="BlackFont">Website/Github/Instagram/Twitter/LinkedIn</h5><input type="text" class="accordian_linkbox">
-                            <div class="checkbox"><label class="BlackFont"><input type="checkbox">This person is a mentor</label></div>
-                            <div class="clearfix"></div>
-                            <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Delete Person</button><button class="btn btn-success spaced_button" type="submit">Save Changes</button></div>
-                        </div>
-                        <div class="webmasterPeopleSortPanel">
-                            <h4 class="text-center BlackFont">Change Order</h4><select id="teamHistorySelector" class="teamHistoryYearSelector"><optgroup label="History"><option value="2018" selected="">Season 2018</option><option value="2017">Season 2017</option><option value="2016">Season 2016</option><option value="2015">Season 2015</option></optgroup></select>
-                            <button
-                                class="btn btn-success spaced_button" type="submit">Save Order</button>
+                        <div class="webmasterLeadershipTabs">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a class="bg-info" href="#tab-3" role="tab" data-toggle="tab">Manage People</a></li>
+                                <li><a class="bg-info" href="#tab-4" role="tab" data-toggle="tab">Change Display Order</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" role="tabpanel" id="tab-3">
+                                    <div class="webmasterPeoplePanel"></div>
+                                    <div class="webmasterPeopleInfoPanel">
+                                        <h4 class="BlackFont">Full Name</h4><input type="text" class="robotInfoTextField">
+                                        <h5 class="BlackFont">Year Person Joined Team</h5><input type="text" class="robotInfoTextFieldShort">
+                                        <h5 class="BlackFont">Year of Graduation/Left Team</h5><input type="text" class="robotInfoTextFieldShort">
+                                        <h4 class="BlackFont">Headshot</h4><input type="file">
+                                        <h4 class="BlackFont">Titles</h4>
+                                        <p>Title Name, Start Year, End Year</p>
+                                        <div class="personTitleFieldBox">
+                                            <div class="personTitleBar"><input type="text" class="personTitleTitleInput"><input type="text" class="personTitleY2Input"><input type="text" class="personTitleY1Input"><button class="btn btn-danger personTitleDeleteButton" type="reset"><i class="glyphicon glyphicon-trash"></i></button></div>
+                                        </div><button class="btn btn-info spaced_button" type="submit">Add Title</button><br><br>
+                                        <h4 class="BlackFont">Personal Link</h4>
+                                        <h5 class="BlackFont">Website/Github/Instagram/Twitter/LinkedIn *One Only</h5><input type="text" class="accordian_linkbox">
+                                        <div class="checkbox"><label class="BlackFont"><input type="checkbox">This person is a mentor</label></div>
+                                        <div class="clearfix"></div>
+                                        <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Delete Person</button><button class="btn btn-success spaced_button" type="submit">Save Changes</button></div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="tab-4">
+                                    <h3 class="text-left BlackFont">Change Order</h3><select id="teamHistorySelector" class="teamHistoryYearSelector"><optgroup label="History"><option value="2018" selected="">Season 2018</option><option value="2017">Season 2017</option><option value="2016">Season 2016</option><option value="2015">Season 2015</option></optgroup></select>
+                                    <button
+                                        class="btn btn-success spaced_button" type="submit">Save Order</button>
+                                        <div class="webmasterPeopleSortPanel"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -222,7 +234,7 @@
                 </div>
                 <div class="panel-collapse collapse item-6" role="tabpanel">
                     <div class="accordian_container">
-                        <div class="webmasterRobotPanel"></div>
+                        <div class="webmasterRobotPanel"><button class="btn btn-default testButton" type="button">Button Alpha</button><button class="btn btn-default testButton" type="button">Button Bravo</button></div>
                         <div class="webmasterRobotInfo">
                             <h4 class="BlackFont">Robot Name</h4><input type="text" class="robotInfoTextField">
                             <h4 class="BlackFont">Season Year</h4><input type="text" class="robotInfoTextFieldShort">
@@ -241,25 +253,72 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab">
-                    <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-7">Manage Page Splash Headers</a></h4>
+                    <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="true" href="#accordion-1 .item-7">Manage Page Splash Headers</a></h4>
                 </div>
-                <div class="panel-collapse collapse item-7" role="tabpanel">
+                <div class="panel-collapse collapse in item-7" role="tabpanel">
                     <div class="accordian_container">
                         <h3 class="BlackFont text-left">Uploading Images</h3>
-                        <p>Images MUST be in .jpg or .png format.</p>
+                        <p>Images MUST be in <strong>.jpg</strong> or <strong>.png</strong> format.</p>
                         <p>Any images uploaded greater than 1920x1080p will be compressed.</p>
-                        <h3 class="BlackFont text-left">Home Page</h3><input type="file">
-                        <h3 class="BlackFont text-left">The Team Page</h3><input type="file">
-                        <h3 class="BlackFont text-left">About FIRST Page</h3><input type="file">
-                        <h3 class="BlackFont text-left">Our Robots Page</h3><input type="file">
-                        <h3 class="BlackFont text-left">Social Media Page</h3><input type="file">
-                        <h3 class="BlackFont text-left">Our Sponsors Page</h3><input type="file">
-                        <h3 class="BlackFont text-left">Sponsor Incentives Page</h3><input type="file">
-                        <h3 class="BlackFont text-left">Contact Us Page</h3><input type="file"></div>
-                    <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Cancel</button><button class="btn btn-success spaced_button" type="submit">Upload Changes</button></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="BlackFont text-left">Home Page</h4>
+                                <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
+                                    <div
+                                        class="uploadFilePreview"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <h3 class="BlackFont text-left">The Team Page</h3>
+                            <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
+                                <div
+                                    class="uploadFilePreview"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <h4 class="BlackFont text-left">About FIRST Page</h4>
+                        <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
+                            <div
+                                class="uploadFilePreview"></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <h4 class="BlackFont text-left">Our Robots Page</h4>
+                    <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
+                        <div
+                            class="uploadFilePreview"></div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <h4 class="BlackFont text-left">Social Media Page</h4>
+                <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
+                    <div
+                        class="uploadFilePreview"></div>
+                <div class="clearfix"></div>
+            </div>
+            <h3 class="BlackFont text-left">Our Sponsors Page</h3>
+            <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
+                <div
+                    class="uploadFilePreview"></div>
+            <div class="clearfix"></div>
         </div>
+        <h4 class="BlackFont text-left">Sponsor Incentives Page</h4>
+        <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
+            <div
+                class="uploadFilePreview"></div>
+        <div class="clearfix"></div>
+    </div>
+    <h4 class="BlackFont text-left">Contact Us Page</h4>
+    <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
+        <div
+            class="uploadFilePreview"></div>
+    <div class="clearfix"></div>
+    </div>
+    </div>
+    </div>
+    <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="reset">Cancel</button><button class="btn btn-success spaced_button" type="submit">Upload Changes</button></div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     <div class="PageFooter footer-clean">
         <footer>
@@ -268,10 +327,11 @@
                     <div class="col-md-3 col-sm-4 item">
                         <h3>About</h3>
                         <ul>
-                            <li><a href="index.html">The Team</a></li>
-                            <li><a href="Robots.html">The Robots</a></li>
+                            <li><a href="index.html">Home</a></li>
+                            <li></li>
                             <li><a href="FIRST.html">FIRST</a></li>
-                            <li><a href="ContactUs.html">Contact</a></li>
+                            <li><a href="Policy.html">Privacy Policy &amp; ToS</a></li>
+                            <li><a href="ContactUs.html">Contact Us</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 col-sm-4 item">
@@ -280,21 +340,20 @@
                             <li><a href="www.blog.team5599.com">Blog</a></li>
                             <li><a href="SocialMedia.html">Social Media</a></li>
                             <li><a href="Projects.html">Projects &amp; Demos</a></li>
-                            <li><a href="SponsorsUs.html">Sponsor</a></li>
+                            <li><a href="SponsorsUs.html">Documents &amp; Tutorials</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 col-sm-4 item">
                         <h3>Team</h3>
                         <ul>
                             <li><a href="Calendar.html">Calendar</a></li>
-                            <li><a href="#">Upload Photos</a></li>
+                            <li><a href="#">Submit Photos</a></li>
+                            <li><a href="Sponsors.html">Sponsors</a></li>
                             <li><a href="Login.html" id="FooterLoginButton">Sign In</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 item social"><a href="www.blog.team5599.com"><i class="icon ion-ios-paper-outline"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
-                        <a
-                            href="#"><i class="fa fa-youtube-play"></i></a>
-                            <p class="copyright">Team 5599 | The Sentinels</p>
+                    <div class="col-md-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <p class="copyright">Team 5599 | The Sentinels</p>
                     </div>
                 </div>
             </div>
@@ -325,21 +384,23 @@
                 <div class="modal-body">
                     <div>
                         <ul class="nav nav-tabs">
-                            <li class="active"><a class="bg-warning" href="#tab-1" role="tab" data-toggle="tab">Existing Images</a></li>
-                            <li><a class="bg-info" href="#tab-2" role="tab" data-toggle="tab">Upload</a></li>
-                            <li class="dropdown" id="ImageSelectorModalDirectoryDropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">/Images/Backdrops&nbsp;<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a href="#">First Item</a></li>
-                                    <li role="presentation"><a href="#">Second Item</a></li>
-                                    <li role="presentation"><a href="#">Third Item</a></li>
+                            <li><a class="text-info bg-warning" href="#tab-1" role="tab" data-toggle="tab">Existing Images</a></li>
+                            <li class="active"><a class="bg-info" href="#tab-2" role="tab" data-toggle="tab">Upload</a></li>
+                            <li class="dropdown" id="ImageSelectorModalDirectoryDropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" id="imageSelectorModalDropdownSelected">/SplashHeaders<span class="caret imageSelectorCaret"></span></a>
+                                <ul class="dropdown-menu" role="menu"
+                                    id="imageSelectorModalDropdownMenu">
+                                    <li role="presentation"><a href="#">/Headshots</a></li>
+                                    <li role="presentation"><a href="#">/SplashHeaders</a></li>
+                                    <li role="presentation"><a href="#">/SponsorLogos</a></li>
+                                    <li role="presentation"><a href="#">/OtherImages</a></li>
                                 </ul>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                            <div class="tab-pane" role="tabpanel" id="tab-1">
                                 <div class="imageSelectorModalImages"></div>
                             </div>
-                            <div class="tab-pane" role="tabpanel" id="tab-2"><br>
+                            <div class="tab-pane active" role="tabpanel" id="tab-2"><br>
 <p> Files must be in <b>.png</b> or <b>.jpg</b> format </p>
 <p> Photos larger than <b>1920x1080p</b> will automatically be compressed </p>
                                 <div class="imageSelectorModalUploadPreview">
@@ -351,7 +412,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer"><a class="btn btn-success" role="button" href="#" id="imageSelectorModalConfirm">Confirm Image</a><button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button></div>
+                <div class="modal-footer"><button class="btn btn-success" type="button" id="imageSelectorModalConfirm">Confirm Image</button><button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button></div>
             </div>
         </div>
     </div>
@@ -374,8 +435,10 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/bs-animation.js"></script>
+    <script src="assets/js/html5sortable.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="assets/js/ImageSelectorModal.js"></script>
+    <script src="assets/js/webpanelMaster.js"></script>
 </body>
 
 </html>

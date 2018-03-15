@@ -762,7 +762,7 @@ p.SplashHeaderText {
 
 .accordian_inputbox {
   width:400px;
-  height:200px;
+  height:150px;
 }
 
 .accordian_linkbox {
@@ -856,8 +856,8 @@ p.SplashHeaderText {
   padding-left:10px;
 }
 
-.webmasterRobotPanel, .webmasterPeoplePanel {
-  width:200px;
+.webmasterRobotPanel, .webmasterPeoplePanel, .webmasterContactUsPanel {
+  width:240px;
   height:400px;
   margin-top:20px;
   background-color:#BBB;
@@ -867,12 +867,10 @@ p.SplashHeaderText {
 }
 
 .webmasterPeopleSortPanel {
-  width:180px;
+  width:300px;
   height:400px;
   margin-top:20px;
   background-color:#BBB;
-  display:inline-block;
-  float:right;
   padding-left:10px;
   padding-right:10px;
 }
@@ -1024,5 +1022,32 @@ p.SplashHeaderText {
 
 .blueFont {
   color:#1E6C93;
+}
+
+.policyTag {
+  margin-left:20px;
+  margin-right:20px;
+  height:auto;
+}
+
+.webmasterLeadershipTabs {
+  margin-top:20px;
+}
+
+.testButton {
+  width:100%;
+  margin-top:5px;
+}
+
+.placeholderClass {
+  width:100%;
+  height:50px;
+  margin-top:5px;
+  border:2px solid #777;
+  background-color:#AAA;
+}
+
+.accordian_container, .panel {
+  background-color:#EEE;
 }
 
