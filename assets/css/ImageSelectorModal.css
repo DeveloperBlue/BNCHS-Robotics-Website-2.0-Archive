@@ -41,7 +41,7 @@
 }
 
 #imageSelectorModalSelectButton {
-  margin-top:35px;
+  margin-top:5px;
   margin-bottom:10px;
   float:left;
 }
@@ -84,5 +84,18 @@
 .uploadFileRemove {
   margin-left:10px;
   width:40px;
+}
+
+.uploadTab {
+  background-color:#999;
+}
+
+.imageSelectorModalWarning {
+  color:red;
+  font-size:small;
+}
+
+.VisibilityHidden {
+  visibility:hidden;
 }
 

@@ -120,6 +120,10 @@ div.divBlue {
   display:inline-block;
 }
 
+.paragraphSmall {
+  font-size:x-small;
+}
+
 .TitleHeadingMobileSmall {
   font-size:26px;
   padding-bottom:5px;
@@ -229,6 +233,11 @@ a {
   margin-left:10px;
   margin-top:5px;
   margin-bottom:5px;
+}
+
+.scrollX {
+  overflow-x:scroll;
+  padding-bottom:40px;
 }
 
 .sectionContainer {
@@ -709,6 +718,10 @@ p.SplashHeaderText {
   float:left;
 }
 
+.float-right {
+  float:right;
+}
+
 .permissionText {
   display:inline-block;
 }
@@ -740,6 +753,12 @@ p.SplashHeaderText {
   float:right;
 }
 
+.buttonBottom {
+  margin-left:5px;
+  margin-top:5px;
+  float:right;
+}
+
 #LogOutButton {
   width:300px;
   height:50px;
@@ -758,6 +777,7 @@ p.SplashHeaderText {
   padding-left:20px;
   padding-right:20px;
   padding-bottom:20px;
+  margin-bottom:20px;
 }
 
 .accordian_inputbox {
@@ -765,8 +785,18 @@ p.SplashHeaderText {
   height:150px;
 }
 
+.spacedIcon {
+  margin-left:10px;
+}
+
 .accordian_linkbox {
-  width:500px;
+  width:400px;
+  height:20px;
+}
+
+.deleteButton {
+  margin-left:10px;
+  margin-top:10px;
 }
 
 .webmaster_confirmDiv {
@@ -869,10 +899,9 @@ p.SplashHeaderText {
 .webmasterPeopleSortPanel {
   width:300px;
   height:400px;
-  margin-top:20px;
+  padding-top:5px;
   background-color:#BBB;
-  padding-left:10px;
-  padding-right:10px;
+  overflow-y:scroll;
 }
 
 .webmasterRobotInfo, .webmasterPeopleInfoPanel {
@@ -882,10 +911,17 @@ p.SplashHeaderText {
   margin-top:20px;
   margin-left:20px;
   background-color:#BBB;
+  float:left;
   display:inline-block;
   padding-left:10px;
   padding-right:10px;
   padding-bottom:10px;
+}
+
+.left-float-button {
+  float:left;
+  margin-top:10px;
+  margin-right:10px;
 }
 
 .robotInfoTextField {
@@ -910,30 +946,59 @@ p.SplashHeaderText {
 
 .personTitleBar {
   width:100%;
-  height:32px;
+  height:29px;
   background-color:#666;
   margin-bottom:4px;
 }
 
+#personTitleBar-Template {
+  visibility:hidden;
+  width:20px;
+  position:absolute;
+}
+
 .personTitleTitleInput {
   width:285px;
-  margin-top:2px;
+  height:22px;
+  margin-top:3px;
   margin-bottom:2px;
   margin-left:3px;
 }
 
-.personTitleY1Input, .personTitleY2Input {
+.personTitleY1Input, .personTitleY2Input, .dropdownYearInput {
   width:60px;
   margin-top:2px;
   margin-bottom:2px;
   margin-left:3px;
 }
 
+.dropdownYearInput2 {
+  width:100px;
+  height:25px;
+}
+
 .personTitleDeleteButton {
   width:50px;
-  margin-right:10px;
-  height:32px;
+  height:29px;
   float:right;
+  font-size:x-small;
+}
+
+.personButton {
+  margin-right:5px;
+}
+
+.webmaster_configDiv {
+  height:50px;
+  width:60%;
+  float:left;
+  /*display:inline-block;*/
+  margin-top:20px;
+  margin-left:20px;
+}
+
+.panelNotActive {
+  visibility:hidden;
 }
 
 .indexContainer {
@@ -1049,5 +1114,21 @@ p.SplashHeaderText {
 
 .accordian_container, .panel {
   background-color:#EEE;
+}
+
+.icon-box {
+  background-color:#EEE;
+  margin-top:40px;
+  margin-bottom:40px;
+}
+
+.SortableDisplayButton {
+  width:100%;
+  margin-top:2px;
+  margin-bottom:2px;
+}
+
+.activeSortButton {
+  background-color:#888;
 }
 
