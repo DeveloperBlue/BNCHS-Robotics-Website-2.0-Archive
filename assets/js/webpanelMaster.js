@@ -300,7 +300,7 @@ function activateDynamicContentPanels(){
 				break;
 			case "People":
 				
-				proceed = checkField(
+				proceed = checkFields(
 					$("#form_People_name"),
 					$("#form_People_yearJoined"),
 					$("#form_People_yearGraduated")
@@ -442,6 +442,8 @@ function activateUploadModule(){
 
 	var directories = ["Headshots", "SplashHeaders", "SponsorLogos", "OtherImages"];
 
+
+	var selectedImageUrl = "";
 	var currentUploadFileBox;
 
 	$(".uploadFileButton").click(function(){
@@ -460,22 +462,163 @@ function activateUploadModule(){
 		loadFilesInDirectory();
 	});
 
+	function deselectSelected(){
+		$(".imageSelectorPreviewActive").each(function(){
+
+			$(this).removeClass("imageSelectorPreviewActive");
+
+		});
+	}
+
+	function prepareSelectEvents(){
+
+		$(".imageSelectorPreview").each(function(){
+
+			deselectSelected();
+
+			$(this).click(function(){
+				console.log("Selected " + $(this).attr("src"));
+				$(this).addClass("imageSelectorPreviewActive");
+				selectedImageUrl = $(this).attr("src");
+			})
+
+		});
+	}
+
+	$("#imageSelectorModalUploadPreviewActual").click(function(){
+		deselectSelected();
+		$(this).addClass("imageSelectorPreviewActive");
+		selectedImageUrl = "Upload";
+	})
+
 	function loadFilesInDirectory(){
+	    
+	    $(".imageSelectorModalImages").empty();
 
 		var directory = "/assets/img" + $("#imageSelectorModalDropdownSelected").text();
 		console.log("directory: " + directory);
-
+		
 		$.ajax({
-            url: "getImages.php",
-            dataType: "json",
+            url : directory,
             success: function (data) {
-
-                $.each(data, function(i,filename) {
-                	$(".imageSelectorModalImages").append("<img src='" + filename + "'>");
+                $(data).find("a").attr("href", function (i, fileName) {
+                    if( fileName.match(/\.(jpe?g|png|gif)$/) ) {
+                        $(".imageSelectorModalImages").append("<img id='" + fileName + "' class='imageSelectorPreview' src='" + directory + "/" + fileName + "'>");
+                    } 
                 });
+                prepareSelectEvents();
+            },
+            error : function(e){
+            	console.log("An error has occured");
+            	console.log(e);
+            	$(".imageSelectorModalImages").append("<br><p>Failed to grab images from directory. Try again?</p>");
             }
-
         });
         
 	}
+
+	$("#imageSelectorModalSelectButton").change(function(){
+
+		console.log("Upload detected");
+
+		var reader = new FileReader();
+		reader.onload = function(){
+			$("#imageSelectorModalUploadPreviewActual").attr("src", reader.result);
+		}
+		
+		var file = $("#imageSelectorModalSelectButton")[0].files[0];
+		reader.readAsDataURL(file);
+
+	});
+
+	function doUpload(){
+
+		var file = $("#imageSelectorModalSelectButton")[0].files[0];
+
+		// Ensure it's an image
+	    if(file.type.match(/image.*/)) {
+	        console.log('An image has been loaded');
+
+	        // Load the image
+	        var reader = new FileReader();
+	        reader.onload = function (readerEvent) {
+	            var image = new Image();
+	            image.onload = function (imageEvent) {
+
+	                // Resize the image
+	                var canvas = document.createElement('canvas'),
+	                    max_height = 1920,
+	                    max_width = 1080,
+	                    width = image.width,
+	                    height = image.height;
+	                if (width > height) {
+	                    if (width > max_width) {
+	                        height *= max_width / width;
+	                        width = max_width;
+	                    }
+	                } else {
+	                    if (height > max_height) {
+	                        width *= max_height / height;
+	                        height = max_height;
+	                    }
+	                }
+	                canvas.width = width;
+	                canvas.height = height;
+	                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+	                var dataUrl = canvas.toDataURL('image/jpeg');
+	                var resizedImage = dataURLToBlob(dataUrl);
+	                /*
+	                $.event.trigger({
+	                    type: "imageResized",
+	                    blob: resizedImage,
+	                    url: dataUrl
+	                });
+	                */
+	            }
+	            image.src = readerEvent.target.result;
+	        }
+	        reader.readAsDataURL(file);
+	    }
+
+	};
+
+	$("#imageSelectorModalUploadButton").click(function(){
+
+		$(this).addClass("disabled");
+		$("#imageSelectorModalUploadBar").removeClass("VisibilityHidden");
+		$("#imageSelectorModalUploadBar").attr('aria-valuenow', 10);
+
+		deselectSelected();
+		$("#imageSelectorModalUploadPreviewActual").addClass("imageSelectorPreviewActive");
+		selectedImageUrl = "Upload";
+
+		doUpload();
+
+	})
 }
+
+/* Utility function to convert a canvas to a BLOB */
+var dataURLToBlob = function(dataURL) {
+    var BASE64_MARKER = ';base64,';
+    if (dataURL.indexOf(BASE64_MARKER) == -1) {
+        var parts = dataURL.split(',');
+        var contentType = parts[0].split(':')[1];
+        var raw = parts[1];
+
+        return new Blob([raw], {type: contentType});
+    }
+
+    var parts = dataURL.split(BASE64_MARKER);
+    var contentType = parts[0].split(':')[1];
+    var raw = window.atob(parts[1]);
+    var rawLength = raw.length;
+
+    var uInt8Array = new Uint8Array(rawLength);
+
+    for (var i = 0; i < rawLength; ++i) {
+        uInt8Array[i] = raw.charCodeAt(i);
+    }
+
+    return new Blob([uInt8Array], {type: contentType});
+}
+/* End Utility function to convert a canvas to a BLOB      */

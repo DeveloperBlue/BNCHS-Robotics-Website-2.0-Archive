@@ -551,8 +551,16 @@ p.SplashHeaderText {
   padding-bottom:20px;
 }
 
+.FIRSTDetailsDiv {
+  text-align:center;
+  background-color:#8ED5E9;
+  padding-top:40px;
+  padding-bottom:40px;
+}
+
 #FirstDetails {
-  width:100%;
+  max-width:100%;
+  text-align:center;
 }
 
 .RobotListDiv {
