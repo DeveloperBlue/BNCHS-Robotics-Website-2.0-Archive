@@ -1,3 +1,7 @@
+.blueFont {
+  color:#1E6C93;
+}
+
 .teamHistoryDiv {
   padding-top:40px;
   padding-bottom:40px;
@@ -8,7 +12,20 @@
 .teamHistoryYearSelector {
   color:#000;
   margin-bottom:20px;
-  margin-left:20px;
+  margin-left:10px;
+  height:59px;
+  width:140px;
+  padding-left:20px;
+  text-align:center;
+}
+
+.about_team_btns {
+  margin:5px;
+}
+
+.about_team_btn {
+  width:140px;
+  height:60px;
 }
 
 nav.navbar.navbar-default {
@@ -48,6 +65,21 @@ p {
 .navbar-nav {
   margin-top:10px;
   margin-right:5px;
+}
+
+.footer_upload_btn {
+  height:10px;
+  font-size:12px;
+  font-weight:bold;
+  width:70px;
+  line-height:0px;
+  margin-left:10px;
+  border-radius:5px;
+}
+
+.boxy_btn {
+  height:80px;
+  line-height:65px;
 }
 
 .NavButton {
@@ -382,6 +414,7 @@ p.SplashHeaderText {
   margin:10px 10px 10px 10px;
   background-color:#DDD;
   height:16vh;
+  max-height:100px;
 }
 
 .SponsorLogo:hover {
@@ -445,8 +478,9 @@ p.SplashHeaderText {
 }
 
 .teamHistoryBox {
-  border-radius:4px;
-  border:1px solid #DDD;
+  margin-top:20px;
+  border-radius:3px;
+  border:1px solid #EEE;
   padding:10px 10px 10px 10px;
   height:auto;
   position:relative;
@@ -601,7 +635,7 @@ p.SplashHeaderText {
 }
 
 .contactLeft {
-  width:40%;
+  width:70%;
   /*float:left;*/
   text-align:right;
   padding-right:8px;
@@ -736,6 +770,87 @@ p.SplashHeaderText {
 
 .permissionDiv {
   margin-bottom:20px;
+}
+
+.login-divider {
+  margin-top:15px;
+  margin-bottom:20px;
+  height:1px;
+  background-color:#888;
+}
+
+.sign-up-p {
+  margin-top:20px;
+  color:#DDD;
+}
+
+.VisibilityHiddenAbsolute {
+  position:absolute;
+  visibility:hidden;
+}
+
+.sign-up-divider {
+  margin-top:30px;
+  margin-bottom:20px;
+  height:1px;
+  background-color:#888;
+}
+
+.sign-up-connections {
+  position:relative;
+}
+
+.sign-up-verify-fb {
+  width:70px;
+  position:absolute;
+  left:25px;
+  top:10px;
+}
+
+.sign-up-verify-discord {
+  width:70px;
+  position:absolute;
+  right:25px;
+  top:10px;
+}
+
+.forgot {
+  margin-bottom:5px;
+}
+
+.login-alt-p {
+  text-align:center;
+  color:#888;
+  font-size:12px;
+  font-family:helvetica;
+}
+
+.login-btn-block {
+  width:49%;
+  height:80px;
+  text-align:center;
+  display:block;
+}
+
+.login-btn-facebook {
+  background-color:#3b5998;
+  float:left;
+}
+
+.login-btn-discord {
+  background-color:#7289DA;
+  float:right;
+}
+
+.login-btn-facebook-icon {
+  width:40px;
+  height:40px;
+}
+
+.login-btn-discord-icon {
+  width:54px;
+  height:54px;
+  margin-top:4px;
 }
 
 .FacebookLoginHeader {
@@ -892,6 +1007,13 @@ p.SplashHeaderText {
 
 .buttonIcon {
   padding-left:10px;
+}
+
+.contactContainer {
+  text-align:center;
+  margin-top:40px;
+  margin-left:20px;
+  margin-right:20px;
 }
 
 .webmasterRobotPanel, .webmasterPeoplePanel, .webmasterContactUsPanel {
@@ -1093,10 +1215,6 @@ p.SplashHeaderText {
   overflow-y:scroll;
 }
 
-.blueFont {
-  color:#1E6C93;
-}
-
 .policyTag {
   margin-left:20px;
   margin-right:20px;
@@ -1136,7 +1254,98 @@ p.SplashHeaderText {
   margin-bottom:2px;
 }
 
+.robot-type-grid {
+  width:100%;
+  height:auto;
+  min-height:100px;
+  background-color:rgb(245, 245, 245);
+  border-radius:4px;
+}
+
+.robot-type-grid-out {
+  margin:0px;
+  padding:10px;
+}
+
+.robot-type-content {
+  padding:10px;
+}
+
 .activeSortButton {
   background-color:#888;
+}
+
+.feedDiv {
+  width:100%;
+  min-height:20px;
+  background-color:#DDD;
+  padding:5px;
+  margin-bottom:10px;
+}
+
+.feed-connections {
+  position:relative;
+  width:240px;
+  margin:0 auto;
+  margin-bottom:5px;
+}
+
+.feed-share {
+  margin-bottom:5px;
+  margin-top:5px;
+  display:inline-block;
+  width:120px;
+}
+
+.sm-lead {
+  margin-bottom:15px;
+  margin-top:10px;
+}
+
+.feed-sm {
+  width:70px;
+  height:50px;
+  display:inline-block;
+  background-color:#999;
+  margin-left:5px;
+  margin-right:5px;
+  margin-bottom:5px;
+}
+
+.feed-btn {
+  width:95%;
+  height:50px;
+  display:inline-block;
+  margin-left:5px;
+  margin-right:5px;
+  margin-bottom:5px;
+}
+
+.feed-admin-sm {
+  width:95%;
+  height:50px;
+  display:inline-block;
+  margin-left:5px;
+  margin-right:5px;
+  margin-bottom:5px;
+}
+
+.userPermissions {
+  margin-left:5px;
+  margin-right:5px;
+}
+
+.userPermission {
+  width:100%;
+  height:40px;
+  background-color:purple;
+  border-radius:5px;
+  margin-bottom:5px;
+}
+
+.userPermission-p {
+  height:100%;
+  line-height:40px;
+  color:#FFF;
 }
 

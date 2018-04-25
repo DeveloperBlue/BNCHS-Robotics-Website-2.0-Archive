@@ -110,35 +110,96 @@
             </div>
         </div>
     </nav>
-    <div class="PageHeader"><img src="assets/img/Logos/SubLogo_Blue.png" class="navbar-left MicroLogo MicroLogoOuter FixedLogo hidden-md hidden-lg hidden-xl">
-        <div class="splashContent">
-            <div class="splashContentHeader">
-                <div>
-                    <p class="SplashHeaderText">About FIRST</p>
-                </div>
+    <div class="login-dark">
+        <form method="post">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+            <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email or OSIS"></div>
+            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="checkbox"><label><input type="checkbox">Remember me</label></div>
+            <div class="form-group"><button class="btn btn-primary btn-block login-main-btn" type="submit">Log In</button></div><a href="#" class="forgot">Create an account</a><a href="#" class="forgot">Forgot your email or password?</a>
+            <div class="login-divider"></div>
+            <div>
+                <p class="login-alt-p">Already have an account and connected it to Facebook or Discord?<br></p><button class="btn btn-default login-btn-block login-btn-facebook" type="button"><img src="assets/img/Logos/facebook-logo.svg" class="login-btn-facebook-icon"></button><button class="btn btn-default login-btn-block login-btn-discord"
+                    type="button"><img src="assets/img/Logos/Discord-Logo-White.svg" class="login-btn-discord-icon"></button>
+                <div class="clearfix"></div>
             </div>
-            <div id="splashImage" class="paralax"></div>
-        </div>
+        </form>
+        <form method="post" class="VisibilityHidden">
+            <h3 class="text-center">Create an Account</h3><a href="#" class="forgot">Already have an account? Click Here.</a>
+            <div class="sign-up-divider"></div>
+            <div class="form-group"><input class="form-control" type="email" name="email" required="" placeholder="Email Address" autofocus=""></div>
+            <div class="form-group"><input class="form-control" type="text" name="password" required="" placeholder="Password"><input class="form-control" type="text" name="password-re" required="" placeholder="Re-type Password"></div>
+            <div class="sign-up-divider"></div>
+            <div class="form-group"><input class="form-control" type="text" name="firstname" required="" placeholder="First Name"><input class="form-control" type="text" name="lastname" required="" placeholder="Last Name"></div>
+            <div class="form-group"><input class="form-control" type="text" name="OSIS" required="" placeholder="Student ID" maxlength="9" minlength="9"></div>
+            <div class="sign-up-divider"></div>
+            <p class="lead text-center sign-up-p">To verify that you are a member of this team, please connect your Facebook or Discord account.</p>
+            <div class="sign-up-connections"><button class="btn btn-default login-btn-block login-btn-facebook" type="button"><img src="assets/img/OtherImages/Checkmark.png" class="sign-up-verify-fb VisibilityHidden"><img src="assets/img/Logos/facebook-logo.svg" class="login-btn-facebook-icon"></button><button class="btn btn-default login-btn-block login-btn-discord"
+                    type="button"><img src="assets/img/OtherImages/Checkmark.png" class="sign-up-verify-discord VisibilityHidden"><img src="assets/img/Logos/Discord-Logo-White.svg" class="login-btn-discord-icon"></button>
+                <div class="clearfix"></div>
+            </div>
+            <p class="text-center sign-up-p"><strong>Please connect both accounts if possible.</strong></p>
+            <div class="sign-up-divider"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block login-main-btn" type="submit">Create Account</button></div>
+        </form>
+        <form method="post" class="VisibilityHidden">
+            <h3 class="text-center">Forgot Account</h3><a href="#" class="forgot">Looking to Sign In? Click Here.</a>
+            <div class="sign-up-divider"></div>
+            <p class="lead text-center sign-up-p">Please enter your Student ID or Email address to reset your password.</p>
+            <div class="sign-up-divider"></div>
+            <p class="text-center text-success VisibilityHiddenAbsolute" id="success" style="margin:20px 10px 10px 10px;">An email was sent to email@address.com with instruction on how to reset your password!</p>
+            <p class="text-center text-danger VisibilityHiddenAbsolute" id="error" style="margin:20px 10px 10px 10px;">We weren't able to find an account with that email or Student ID. Did you enter your information correctly?</p>
+            <div class="form-group"><input class="form-control" type="text" name="OSIS" required="" placeholder="Student ID" maxlength="9" minlength="9"></div>
+            <p class="lead text-center text-muted" style="margin:0px;"><strong>OR</strong></p>
+            <div class="form-group"><input class="form-control" type="email" name="email" required="" placeholder="Email Address" autofocus=""></div>
+            <div class="sign-up-divider"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block login-main-btn" type="submit">Reset Password</button></div>
+        </form>
+        <form method="post" class="VisibilityHidden">
+            <h3 class="text-center">Reset Password</h3><a href="#" class="forgot">Looking to Sign In? Click Here.</a>
+            <div class="sign-up-divider"></div>
+            <p class="lead text-center sign-up-p">Enter a new password for the account [STUDENT ID]</p>
+            <div class="sign-up-divider"></div>
+            <p class="text-center text-success VisibilityHiddenAbsolute" id="success" style="margin:20px 10px 10px 10px;">An email was sent to email@address.com with instruction on how to reset your password!</p>
+            <p class="text-center text-danger VisibilityHiddenAbsolute" id="error" style="margin:20px 10px 10px 10px;">We weren't able to find an account with that email or Student ID. Did you enter your information correctly?</p>
+            <div class="form-group"><input class="form-control" type="text" name="password" required="" placeholder="Password" maxlength="9" minlength="9"><input class="form-control" type="text" name="password-re" required="" placeholder="Re-type Password" maxlength="9" minlength="9"></div>
+            <div
+                class="sign-up-divider"></div>
+    <div class="form-group"><button class="btn btn-primary btn-block login-main-btn" type="submit">Reset Password</button></div>
+    </form>
     </div>
-    <div class="PageContent">
-        <div class="clearSpacer"></div>
-        <div class="headerSplashDisplay">
-            <h1 class="TitleHeading TitleHeadingLeft">What is FIRST?</h1>
-        </div>
-        <div class="sectionContainer">
-            <p id="phpFill_aboutFIRST" class="text-center ParagraphContent">"<em>FIRST (</em><strong>F</strong>or&nbsp;<strong>I</strong>nspiration and&nbsp;<strong>R</strong>ecognition of&nbsp;<strong>S</strong>cience and&nbsp;<strong>T</strong>echnology) was founded in 1989 to inspire young people's interest and
-                participation in science and technology. Based in Manchester, NH, the 501(c)(3) not-for-profit public charity designs accessible, innovative programs that motivate young people to pursue education and career opportunities in science, technology,
-                engineering, and math, while building self-confidence, knowledge, and life skills."&nbsp;<br></p><img src="https://www.firstinspires.org/sites/default/files/uploads/resource_library/first-stat-graphic-for-web.JPG" id="FirstAtAGlance" class="ScalableImage">
-            <p
-                id="phpFill_aboutFIRSTMore" class="text-center ParagraphContent"><br>The mission of&nbsp;<em>FIRST</em>&nbsp;is to inspire young people to be science and technology leaders and innovators, by engaging them in exciting Mentor-based programs that build science, engineering, and technology skills, that inspire
-                innovation, and that foster well-rounded life capabilities including self-confidence, communication, and leadership.<br><br></p>
-                <div class="ButtonSetsInner"><a class="btn btn-info about_btn" role="button" href="https://www.firstinspires.org/">FIRST Website</a><a class="btn btn-info about_btn" role="button" href="https://www.firstinspires.org/alumni">Alumni &amp; Internships</a><a class="btn btn-info about_btn"
-                        role="button" href="https://www.firstinspires.org/scholarships">Scholarships</a>
-                    <div class="clearfix"></div>
+    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="FlickrModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Photos &amp; Videos</h4>
                 </div>
+                <div class="modal-body">
+                    <p><em>All of our photos can be found on Flickr at Flickr.Team5599.com!</em></p><a class="btn btn-default FlickrModalButtonBackground" role="button" href="https://www.flickr.com/photos/142731277@N02/">Proceed to Flickr</a><a class="btn btn-link"
+                        role="button" href="">Are you looking for our Instagram or Youtube?</a>
+                    <div class="smallDiv"></div>
+                    <p>If you have any photos you would like to submit, hit the button below to be redirected to Upload.Team5599.com</p>
+                </div>
+                <div class="modal-footer"><a class="btn btn-info" role="button" href="#">Submit Photos</a><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button></div>
+            </div>
         </div>
     </div>
-    <div class="FIRSTDetailsDiv"><img src="https://www.firstinspires.org/sites/default/files/uploads/resource_library/impact/FIRST-infographic-impact.jpg" id="FirstDetails"></div>
+    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="SchoolDeviceModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Hey! You're in school!</h4>
+                </div>
+                <div class="modal-body">
+                    <p><em>We noticed that you've connected to this website over a DoE IP Address.</em></p>
+                    <p><strong>When logging into the Admin Panel, you need to MAKE SURE you are in <span style="text-decoration: underline;">Incognito</span> or <span style="text-decoration: underline;">log out</span> when you are finished!</strong></p>
+                    <p><em>Leaving yourself logged in to a public computer means anyone can</em><strong><em> pretend to be YOU</em></strong><em> and can make dramatic changes that you don't authorize!</em></p><button class="btn btn-primary FlickrModalButtonBackground"
+                        type="button" data-dismiss="modal">I got it</button></div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
     <div class="PageFooter footer-clean">
         <footer>
             <div class="container">
@@ -177,21 +238,6 @@
                 </div>
             </div>
         </footer>
-    </div>
-    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="DonationModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">We're Raising Funds!</h4>
-                </div>
-                <div class="modal-body">
-                    <p><em>Support the Benjmain N. Cardozo Robotics Team for their 2018 season with a tax-deductable donation!</em></p><a class="btn btn-default FlickrModalButtonBackground" role="button" href="https://bnchs.ed.co/the-sentinels/">Make A Donation</a>
-                    <a
-                        class="btn btn-link" role="button" href="">Sponsorship Information &amp; Incentives</a>
-                </div>
-                <div class="modal-footer"><button class="btn btn-primary" type="button" data-dismiss="modal">Another Time</button></div>
-            </div>
-        </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
