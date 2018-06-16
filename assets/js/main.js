@@ -62,11 +62,17 @@ function prepareSplashImage(pageIndex){
 	var pageSplashImage = "";
 
 	if (pageIndex == "Team.html"){
-		pageSplashImage = "_DSC2007.jpg";
-	} else if (pageIndex == "Blog.html"){
-
+		pageSplashImage = "Team2017.jpg";
+	} else if (pageIndex == "FIRST.html"){
+        pageSplashImage = "FIRST.jpg";
+    } else if (pageIndex == "Robot.html"){
+        pageSplashImage = "Robot2017.jpg";
+    } else if (pageIndex == "Sponsors.html"){
+        pageSplashImage = "Teamwork.jpg";
+    } else if (pageIndex == "Contact.html"){
+        pageSplashImage = "Mentor.jpg";
 	} else {
-		pageSplashImage = "section-01.png"; 
+		pageSplashImage = "Default.png"; 
 	}
 
 	$(".paralax").css('background-image', 'url("assets/img/SplashHeaders/'+pageSplashImage+'")');

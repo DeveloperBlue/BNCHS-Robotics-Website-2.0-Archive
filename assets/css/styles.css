@@ -52,6 +52,7 @@ h1 {
 
 p {
   color:black;
+  font-family:'ABeeZee';
 }
 
 .navbar {
@@ -432,9 +433,10 @@ p.SplashHeaderText {
 }
 
 .headerSplashDisplay {
-  background-image:url(../../assets/img/SplashHeaders/section-02.jpg);
-  height:100px;
+  background-image:url(../../assets/img/SplashHeaders/Community.jpg);
   background-size:100%;
+  background-position:0 -400px;
+  height:100px;
 }
 
 .clearSpacer {
@@ -1359,5 +1361,19 @@ p.SplashHeaderText {
   height:100%;
   line-height:40px;
   color:#FFF;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color:#ebebeb;
+  background-color:transparent;
+}
+
+.wikipedia-btn {
+  width:100%;
+  background-color:transparent;
+  line-height:100px;
+  height:100%;
+  margin:0;
+  padding:0;
 }
 
