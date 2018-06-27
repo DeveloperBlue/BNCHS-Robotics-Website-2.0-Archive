@@ -156,6 +156,7 @@ div.divBlue {
   text-overflow:ellipsis;
   width:auto;
   display:inline-block;
+  font-family:'ABeeZee';
 }
 
 .paragraphSmall {
@@ -166,25 +167,30 @@ div.divBlue {
   font-size:26px;
   padding-bottom:5px;
   line-height:40px;
+  font-family:'ABeeZee';
 }
 
 .TitleHeadingSmall {
   display:inline-block;
   font-size:24px;
+  font-family:'ABeeZee';
 }
 
 .TitleHeadingRight {
   float:right;
   margin-right:40px;
+  font-family:'ABeeZee';
 }
 
 .TitleHeadingLeft {
   float:left;
   margin-left:40px;
+  font-family:'ABeeZee';
 }
 
 .TitleHeadingInverted {
   color:black !important;
+  font-family:'ABeeZee';
 }
 
 .slider-outer {
@@ -212,6 +218,13 @@ a {
 .dropdown-toggle:active, .open .dropdown-toggle {
   background:#FFF !important;
   color:#1E6C93 !important;
+}
+
+.navbar-mobile {
+  padding:0;
+  margin-top:0px;
+  margin-left:-20px;
+  margin-right:-20px;
 }
 
 .navbar {
@@ -278,6 +291,10 @@ a {
   margin-bottom:5px;
 }
 
+.about_btn-mobile {
+  width:100%;
+}
+
 .scrollX {
   overflow-x:scroll;
   padding-bottom:40px;
@@ -285,10 +302,17 @@ a {
 
 .sectionContainer {
   text-align:center;
-  margin-top:100px;
+  margin-top:80px;
   padding-left:80px;
   margin-bottom:40px;
   padding-right:80px;
+}
+
+.sponsor-container-mobile {
+  margin-top:40px;
+  padding-left:10px;
+  padding-right:10px;
+  margin-bottom:40px;
 }
 
 .ParagraphContent {
@@ -340,9 +364,14 @@ div.splashContentHeader {
   margin:0 auto;
 }
 
-img.SplashHeaderLogo {
+.SplashHeaderLogo {
   height:auto;
   width:12%;
+}
+
+.SplashHeaderLogo-mobile {
+  margin-top:20px;
+  width:24%;
 }
 
 p.SplashHeaderText {
@@ -364,11 +393,15 @@ p.SplashHeaderText {
   padding-left:5px;
 }
 
+#phpFill_aboutUs {
+  margin-top:40px;
+}
+
 .LogoFull {
   width:240px;
   float:left;
-  margin-right:30px;
-  margin-bottom:30px;
+  margin-right:40px;
+  margin-bottom:20px;
 }
 
 #SplashPageVideoFull {
@@ -412,6 +445,10 @@ p.SplashHeaderText {
   display:inline-block;
 }
 
+.SponsorContainerInner-mobile {
+  width:100%;
+}
+
 .SponsorLogoFloatLeft {
   float:left;
 }
@@ -428,15 +465,30 @@ p.SplashHeaderText {
   max-height:100px;
 }
 
+.SponsorLogo-mobile-dep {
+  height:24vw;
+  margin:5px;
+  padding:10px;
+}
+
 .SponsorLogo:hover {
   background-color:#EEE;
 }
 
 .headerSplashDisplay {
-  background-image:url(../../assets/img/SplashHeaders/Community.jpg);
-  background-size:100%;
+  background-image:url(../../assets/img/SplashHeaders/Science_Texture.png);
+  background-size:400px;
   background-position:0 -400px;
   height:100px;
+  -webkit-filter:drop-shadow(0px 8px 20px rgb(255, 108, 54));
+  filter:drop-shadow(0px 8px 20px rgb(255, 108, 54));
+}
+
+.headerSplashDisplay-ng {
+  background-image:url(../../assets/img/SplashHeaders/Science_Texture.png);
+  background-size:340px;
+  background-position:0 -400px;
+  height:50px;
 }
 
 .clearSpacer {
@@ -732,6 +784,7 @@ p.SplashHeaderText {
 .SponsorKeyButton {
   margin-left:10px;
   margin-right:10px;
+  margin-bottom:10px;
 }
 
 .PanelContent {
@@ -1201,7 +1254,7 @@ p.SplashHeaderText {
   min-height:100px;
   height:auto;
   border:1px solid #000;
-  border-radius:60px;
+  border-radius:2px;
   text-align:center;
 }
 
@@ -1275,14 +1328,25 @@ p.SplashHeaderText {
   margin:0 auto;
 }
 
+= {
+  background-color:transparent;
+}
+
 .robot-type-grid-out {
   margin:0 auto;
   padding:10px;
   max-width:1400px;
 }
 
+.robot-type-grid-out-mobile {
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left:0px;
+  padding-right:0px;
+}
+
 .robot-type-content {
-  padding:10px;
+  padding:20px;
 }
 
 .activeSortButton {
@@ -1375,5 +1439,26 @@ p.SplashHeaderText {
   height:100%;
   margin:0;
   padding:0;
+}
+
+.index-media-tabs {
+  padding-left:10px;
+  padding-right:10px;
+  padding-top:10px;
+  background-color:#1E6C93;
+  padding-bottom:10px;
+}
+
+.nav.nav-tabs {
+  padding-bottom:4px;
+}
+
+.instagram-front {
+  width:100%;
+  min-width:100px;
+  height:500px;
+  margin:0 auto;
+  text-align:center;
+  background-color:#000;
 }
 
