@@ -1,57 +1,93 @@
 <?php
+
 // Register.php
-// Read form data
 
-$email = $_POST["email"];
-$password = $_POST["password"];
-$password_re = $_POST["password-re"];
+require 'db.php';
+session_start();
 
+$_SESSION["email"] = $mysqli->escape_string($_POST["email"]);
+$_SESSION["OSIS"] = $mysqli->escape_string($_POST["OSIS"]);
 
-// Validation
-$error_message = "";
-if (strlen($password) < 6){
-	$error_message = "Password too short. Please enter at least six characters.";
-} else if ($password != $password_re){
-	$error_message = "Password mismatch. Double check your enter passwords.";
-}
+// Escale variables to protect against SQL injections
+
+$password = $mysqli->escape_string(password_hash($_POST["password"], PASSWORD_BCRYPT));
+$password_re = $mysqli->escape_string(password_hash($_POST["password_re"], PASSWORD_BCRYPT));
+$activation_key = $mysqli->escape_string( md5 ( rand(0, 1000)));
+
+$first_name = $mysqli->escape_string($_POST["first_name"]);
+$last_name = $mysqli->escape_string($_POST["last_name"]);
+
+$OSIS = $mysqli->escape_string($_POST["OSIS"]);
+$OSIS_re = $mysqli->escape_string($_POST["OSIS_re"]);
+
+$result = $mysqli->query("SELECT * FROM users WHERE osis='$osis' OR email='$email' LIMIT 1") or die($mysqli->error());
+$existing_user = mysqli_fetch_assoc($result);
 
 if ( ! filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $error_message = "Invalid email address. Please check the email you entered.";
+	echo "Invalid email address. Please check the email you entered.";
+	die();
 }
 
-// Discord/Facebook check
+if ($password != $password_re){
+	echo "Password mismatch. Please check the passwords you have entered.";
+	die();
+}
 
+if (strlen($OSIS) != 9){
+	echo "Invalid Student ID. Please double check the Student ID you have entered.";
+	die();
+}
 
-// Insert user into database
+if ($OSIS != $OSIS_re){
+	echo "Student ID mismatch. Please check that you have entered your Student ID correctly twice";
+	die();
+}
 
-$random_key = generate_random_key();
+if ($existing_user){
 
-$stm = $dbh->prepare("insert into users (email,password,activation_key,validated,first_name, last_name, osis, facebook_auth, discord_auth) " .
-                     "values ( ? , ? , ? , 0 , ?, ?, ?, 0, 0)");
+	if ($user['osis'] === $osis){
+		echo "An account with this Student ID already exists.";
+		die();
+	}
 
-$stm->bind_param("sss",$email,$password,$random_key);
-if (!$stm->execute()) {
-    // The insertion may fail if the user already exists in the database
-    $error_message = "Sorry, an account with this email already exists in the database";
+	if ($user['email'] === $email){
+		echo "An account with this email address already exists.";
+		die();
+	}
 } else {
-    // Send a confirmation email
-    mail($email,"www.Team5599.com - The Sentinels - Account activation ",
-        "Thank you for registering at www.team55999.com.
 
-        Your account is created and must be activated before you can use it.
-        To activate the account click on the following link or copy-paste it in your browser:
-        http://www.team5599.com/Forgot.html/activate.php?type=activation&activation=".$random_key);
- 
-}
+	$sql = "INSERT INTO users (email, osis, first_name, last_name, password, activation_key, facebook_auth, discord_auth)"
+		. "VALUES ('$email', '$osis', '$first_name', '$last_name', '$password', '$activation_key', 0, 0 )";
 
-function generate_random_key() {
-    $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
- 
-    $new_key = "";
-    for ($i = 0; $i < 32; $i++) {
-        $new_key .= $chars[rand(0,35)];
-    }
-    return $new_key;
+	if ($mysqli->query(sql)){
+
+		$_SESSION['logged_in'] = true;
+		$_SESSION['active'] = 0;
+		echo "A confirmation email has been sent to ".$email.", please verify your account by clicking the link in the message.";
+
+		// Send confirmation message link (verify.php)
+
+		$to = $email;
+		$subject = "Account Verification - Cardozo Robotics - Team 5599 - The Sentinels";
+		$headers = "From: accounts@team5599.com";
+		$message_body = '
+		Hello '.$first_name.',
+
+		Your account has been created at www.team5599.com.
+
+		Please click the following link to activate your account:
+
+		http://www.team5599/SignUp.html/Verify.php?osis=$'.$osis.'$key='.$activation_key;
+
+		mail( $to, $subject, $message_body, $headers);
+		header("location: Account.html");
+
+	} else {
+
+		echo "REGISTRATION FAILED!";
+		die();
+
+	}
 }
 
 ?>

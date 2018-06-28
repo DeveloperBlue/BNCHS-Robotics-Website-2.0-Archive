@@ -58,6 +58,7 @@ $(window).on("load", function(){
 	} else if (pageIndex == "Robots.html"){
 		handleRobotsPage();
 	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Account.html") || (pageIndex == "WebsiteManager.html")){
+		handleLoginPage(pageIndex);
 		checkLocation();
 	}
 
@@ -170,6 +171,12 @@ function checkLocation(){
 	// Or if the zipcode is the school's
 }
 
+function scrollToElement(element){
+	console.log("Scrolling to " + element);
+	$('html, body').animate({
+		scrollTop: $($(element).attr('href')).offset().top
+	}, 500, 'linear');
+}
 
 var updateQueryStringParam = function (key, value) {
 
@@ -263,7 +270,7 @@ function getAllUrlParams(url) {
 				obj[paramName] = paramValue;
 			}
 		}
-  	}
+	}
 
   return obj;
 }
@@ -289,6 +296,57 @@ function handleSliders(){
 		$("#tab-3-content").html('<iframe src="https://clips.twitch.tv/embed?clip=WiseSparklyWatercressWutFace" frameborder="0" allowfullscreen="true" autoplay="false" height="100%" width="100%"></iframe>');
 		pageSettings.didLoadSlides.slide_3 = true;
 	})
+
+}
+
+function handleLoginPage(pageIndex){
+
+	if (pageIndex == "SignUp.html"){
+
+		$("#account-create").click(function(e) {
+			e.preventDefault();
+			console.log("Signing Up . . .");
+			$.ajax({
+				type: "POST",
+				url: "assets/php/Register.php",
+				data: $(".form").serialize(),
+				success: function(response) {
+					if (response === "success") {
+						console.log("Success!"); // PHP will automatically redirect
+					} else {
+						alert(response);
+						$("#error").text(response);
+						scrollToElement("#error");
+					}
+				}
+			});
+		});
+
+	} else if (pageIndex == "SignIn.html"){
+
+		$("#account-sign-in").click(function(e) {
+			e.preventDefault();
+			console.log("Signing In . . .");
+			$.ajax({
+				type: "POST",
+				url: "assets/php/SignIn.php",
+				data: $(".form").serialize(),
+				success: function(response) {
+					if (response === "success") {
+						console.log("Success!"); // PHP will automatically redirect
+					} else {
+						alert(response);
+						$("#error").text(response);
+						scrollToElement("#error");
+					}
+				}
+			});
+		});
+
+		// Facebook Login
+
+		// Discord Login
+	}
 
 }
 
