@@ -141,19 +141,20 @@ function configureNavbar(pageIndex){
 		url: "assets/php/getSession.php",
 		data: "request=getSession",
 		success: function(response) {
+			console.log("Session: " + response);
 			if (response === false) {
 				// User is not signed in
-				$("#navbar-account-btn").html("\"Sign In\" <i class=\"glyphicon glyphicon-log-in socialMediaIcon\"></i>");
+				$("#navbar-account-btn").html("Sign In <i class=\"glyphicon glyphicon-log-in socialMediaIcon\"></i>");
 				$("#footer-account-btn").html($("#navbar-account-btn").html());
 				$(".access-account-btn").click(function(){
-					window.location = "www.team5599.com/SignIn.html";
+					window.location = "http://www.team5599.com/SignIn.html";
 				})
 			} else {
 				// User is signed in
-				$("#navbar-account-btn").html("\"My Account\" <i class=\"glyphicon glyphicon-user socialMediaIcon\"></i>");
+				$("#navbar-account-btn").html("My Account <i class=\"glyphicon glyphicon-user socialMediaIcon\"></i>");
 				$("#footer-account-btn").html($("#navbar-account-btn").html());
 				$(".access-account-btn").click(function(){
-					window.location = "www.team5599.com/Account.html";
+					window.location = "http://www.team5599.com/Account.html";
 				})
 			}
 		}
