@@ -1,0 +1,4 @@
+#Ignore important files
+
+#Database login
+db.php

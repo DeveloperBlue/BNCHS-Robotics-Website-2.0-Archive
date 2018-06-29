@@ -29,13 +29,15 @@ if ($result->num_rows == 0){
 
 		$_SESSION['logged_in'] = true;
 
-		header("location: Account.html");
+		header("location: http://www.team5599.com/Account.html");
 	} else {
 
 		echo "You have entered an incorrect password. Try again.";
 		die();
 		
 	}
+
+	mysqli_close($mysqli);
 }
 
 ?>

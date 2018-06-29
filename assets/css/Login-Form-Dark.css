@@ -1,5 +1,4 @@
 .login-dark {
-  height:1000px;
   background:#475d62 url(../../assets/img/star-sky.jpg);
   background-size:cover;
   position:relative;
@@ -50,6 +49,14 @@
 .login-dark form .btn-primary:hover, .login-dark form .btn-primary:active {
   background:#214a80;
   outline:none;
+}
+
+.user-has-account {
+  display:block;
+  text-align:center;
+  font-size:12px;
+  opacity:0.9;
+  text-decoration:none;
 }
 
 .login-dark form .forgot {

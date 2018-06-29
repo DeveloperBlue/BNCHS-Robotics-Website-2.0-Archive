@@ -10,60 +10,78 @@ $_SESSION["OSIS"] = $mysqli->escape_string($_POST["OSIS"]);
 
 // Escale variables to protect against SQL injections
 
-$password = $mysqli->escape_string(password_hash($_POST["password"], PASSWORD_BCRYPT));
-$password_re = $mysqli->escape_string(password_hash($_POST["password_re"], PASSWORD_BCRYPT));
+$email = $mysqli->escape_string($_POST["email"]);
+
+$password = $mysqli->escape_string($_POST["password"]);
+$password_re = $mysqli->escape_string($_POST["password-re"]);
 $activation_key = $mysqli->escape_string( md5 ( rand(0, 1000)));
 
-$first_name = $mysqli->escape_string($_POST["first_name"]);
-$last_name = $mysqli->escape_string($_POST["last_name"]);
+$first_name = $mysqli->escape_string($_POST["firstname"]);
+$last_name = $mysqli->escape_string($_POST["lastname"]);
 
 $OSIS = $mysqli->escape_string($_POST["OSIS"]);
-$OSIS_re = $mysqli->escape_string($_POST["OSIS_re"]);
+$OSIS_re = $mysqli->escape_string($_POST["OSIS-re"]);
 
-$result = $mysqli->query("SELECT * FROM users WHERE osis='$osis' OR email='$email' LIMIT 1") or die($mysqli->error());
+$result = $mysqli->query("SELECT * FROM users WHERE osis='$OSIS' OR email='$email' LIMIT 1") or die($mysqli->error());
 $existing_user = mysqli_fetch_assoc($result);
 
-if ( ! filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	echo "Invalid email address. Please check the email you entered.";
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	echo "Invalid email address. Please check the email address you have entered. '$email'";
 	die();
 }
 
-if ($password != $password_re){
-	echo "Password mismatch. Please check the passwords you have entered.";
+if ($password !== $password_re){
+	echo "Password mismatch. Please check the passwords you have entered. '$password' '$password_re'";
 	die();
 }
+
+$password = password_hash($password, PASSWORD_BCRYPT);
 
 if (strlen($OSIS) != 9){
 	echo "Invalid Student ID. Please double check the Student ID you have entered.";
 	die();
 }
 
-if ($OSIS != $OSIS_re){
+if ($OSIS !== $OSIS_re){
 	echo "Student ID mismatch. Please check that you have entered your Student ID correctly twice";
 	die();
 }
 
 if ($existing_user){
 
+	$confirmed = $user['active'];
+	$confirmed_email = $user['email'];
+
 	if ($user['osis'] === $osis){
-		echo "An account with this Student ID already exists.";
+		if ($confirmed == 0){
+			echo "An account with this Student ID already exists.  Check your email '$confirmed_email' to activate your account.";
+		} else {
+			echo "An account with this Student ID already exists.";
+		}
+		
 		die();
 	}
 
 	if ($user['email'] === $email){
-		echo "An account with this email address already exists.";
+		if ($confirmed == 0){
+			echo "An account with this email address already exists. Check your email '$confirmed_email' to activate your account.";
+		} else {
+			echo "An account with this Student ID already exists.";
+		}
 		die();
 	}
 } else {
 
-	$sql = "INSERT INTO users (email, osis, first_name, last_name, password, activation_key, facebook_auth, discord_auth)"
-		. "VALUES ('$email', '$osis', '$first_name', '$last_name', '$password', '$activation_key', 0, 0 )";
+	$sql_query = "INSERT INTO users (email, osis, password, first_name, last_name, active, activation_key, facebook_auth, discord_auth)"
+		. "VALUES ('$email', '$OSIS', '$password', '$first_name', '$last_name', 0, '$activation_key', 0, 0 )";
 
-	if ($mysqli->query(sql)){
+	if ($mysqli->query($sql_query)){
 
 		$_SESSION['logged_in'] = true;
 		$_SESSION['active'] = 0;
-		echo "A confirmation email has been sent to ".$email.", please verify your account by clicking the link in the message.";
+		// echo "A confirmation email has been sent to ".$email.", please verify your account by clicking the link in the message.";
 
 		// Send confirmation message link (verify.php)
 
@@ -77,17 +95,19 @@ if ($existing_user){
 
 		Please click the following link to activate your account:
 
-		http://www.team5599/SignUp.html/Verify.php?osis=$'.$osis.'$key='.$activation_key;
+		http://www.team5599/Verify.html?request=verify&osis='.$OSIS.'&key='.$activation_key;
 
 		mail( $to, $subject, $message_body, $headers);
-		header("location: Account.html");
+		header("location: http://www.team5599.com/Verify.html?request=notify");
 
 	} else {
 
-		echo "REGISTRATION FAILED!";
+		echo "An error has occured (" .sql_query. + ") " . mysqli_error($mysqli);
 		die();
 
 	}
+
+	mysqli_close($mysqli);
 }
 
 ?>

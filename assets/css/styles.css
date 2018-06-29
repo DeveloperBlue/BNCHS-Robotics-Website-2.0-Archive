@@ -3,24 +3,52 @@
 }
 
 .teamHistoryDiv {
-  padding-top:40px;
-  padding-bottom:40px;
+  padding-top:0px;
+  padding-bottom:10px;
   margin-left:10px;
   margin-right:10px;
 }
 
+.teamHistoryDiv-btns {
+  margin-top:20px;
+  margin-left:10px;
+  margin-right:10px;
+  margin-bottom:10px;
+}
+
 .teamHistoryYearSelector {
   color:#000;
-  margin-bottom:20px;
   margin-left:10px;
   height:59px;
   width:140px;
   padding-left:20px;
   text-align:center;
+  display:inline-block;
+}
+
+.team-members-list {
+  padding:20px;
+  margin:0 auto;
+  text-align:center;
+  max-width:1200px;
+}
+
+.team-member {
+  padding:10px;
+  padding-bottom:6px;
+  display:inline-block;
+  font-family:'Coming Soon';
+  background-color:#eee;
+  border:2px solid #eee;
+  margin:5px;
+}
+
+.team-member:hover {
+  border:2px solid #ddd;
 }
 
 .about_team_btns {
-  margin:5px;
+  margin-left:5px;
 }
 
 .about_team_btn {
@@ -331,7 +359,7 @@ div.paralax {
   z-index:-1;
   overflow:hidden;
   background-color:#1E6C93;
-  filter:blur(3px);
+  filter:blur(2px);
 }
 
 div.splashContentHalf {
@@ -580,7 +608,7 @@ p.SplashHeaderText {
 
 .PersonDisplayName {
   color:#1E6C93;
-  background-color:rgb(255,20,20);
+  /*background-color:rgb(255,20,20);*/
   margin-top:5px;
   font-size:150%;
   max-width:100%;
@@ -592,7 +620,7 @@ p.SplashHeaderText {
 
 .PersonDisplayTitles {
   color:#444;
-  background-color:rgb(20,150,1205);
+  /*background-color:rgb(20,150,1205);*/
   height:50px;
   margin-top:10px;
   margin-bottom:5px;
@@ -603,7 +631,7 @@ p.SplashHeaderText {
 
 .PersonDisplayInfo {
   color:#000;
-  background-color:rgb(20,255,20);
+  /*background-color:rgb(20,255,20);*/
   margin-top:15px;
   margin-bottom:5px;
   margin-left:10px;
@@ -614,12 +642,12 @@ p.SplashHeaderText {
 
 .PersonDisplayLinkDiv {
   height:140px;
-  width:30px;
+  width:8px;
   display:inline-block;
   float:right;
   padding-top:10px;
   border-radius:0 2px 2px 0;
-  background-color:#DDD;
+  background-color:#ddd;
 }
 
 .PersonDisplayHeadshot {
@@ -817,6 +845,18 @@ p.SplashHeaderText {
   width:20px;
 }
 
+.first-only-outline {
+  background-color:rgba(30, 108, 147, 0.9);
+  border-radius:4px;
+}
+
+.orange-bg-outline {
+  background-color:rgba(255, 165, 0, 1);
+  padding-left:16px;
+  padding-right:16px;
+  border-radius:4px;
+}
+
 .permissionsBox {
   padding:10px;
 }
@@ -879,6 +919,20 @@ p.SplashHeaderText {
   top:10px;
 }
 
+.login-height-1 {
+  height:1000px;
+}
+
+.login-dark-2 {
+  height:1400px;
+}
+
+.signing-error {
+  margin-top:10px;
+  font-size:12px;
+  margin-bottom:0px;
+}
+
 .forgot {
   margin-bottom:5px;
 }
@@ -924,14 +978,6 @@ p.SplashHeaderText {
 
 .FacebookLoginHeaderPermissions {
   margin-top:75px;
-}
-
-#toggleTeamPageButton {
-  float:right;
-  margin-right:0px;
-  width:30%;
-  min-width:160px;
-  height:100%;
 }
 
 .spaced_button {
@@ -1430,15 +1476,6 @@ p.SplashHeaderText {
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
   color:#ebebeb;
   background-color:transparent;
-}
-
-.wikipedia-btn {
-  width:100%;
-  background-color:transparent;
-  line-height:100px;
-  height:100%;
-  margin:0;
-  padding:0;
 }
 
 .index-media-tabs {

@@ -9,11 +9,11 @@
     <title>&lt; Benjamin N. Cardozo HS | Sentinels Team 5599 &gt;</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Coming+Soon">
     <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Footer-Clean.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -24,55 +24,8 @@
     <link rel="stylesheet" href="assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="assets/css/Social-Icons.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-<script> 
- window.fbAsyncInit = function() {
-
-    FB.init({
-      appId            : '138369146905135',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      cookie           : true,
-      version          : 'v2.12'
-    });
-
-    FB.getLoginStatus(function(response){
-
-      function waitForFacebookAPI(){
-
-        console.log("Waiting for the facebook API");
-
-        if (typeof facebookReady == 'function'){ 
-
-          console.log("facebookAPI Loaded")
-          facebookReady(response);
-
-        } else {
-
-          setTimeout(function(){
-              waitForFacebookAPI();
-          }, 100);
-
-        }
-
-      }
-
-      waitForFacebookAPI();
-
-      
-    });
-
-
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-</script>
+<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 </head>
 
 <body>
@@ -106,7 +59,7 @@
                                 <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
                                 <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
                                 <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
-                                <li role="presentation"><a>Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
+                                <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
                             </ul>
                         </li>
                         <li role="presentation" id="SponsorsNavButton" class="NavButton"><a href="Sponsors.html">Our Sponsors</a></li>
@@ -168,12 +121,12 @@
     <div></div>
     <div class="index-media-tabs">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab-1" id="slide-1-btn" role="tab" data-toggle="tab">Reveal Videos</a></li>
+            <li><a href="#tab-1" id="slide-1-btn" role="tab" data-toggle="tab">Reveal Videos</a></li>
             <li><a href="#tab-2" id="slide-2-btn" role="tab" data-toggle="tab">Photostream</a></li>
-            <li><a href="#tab-3" id="slide-3-btn" role="tab" data-toggle="tab">Highlights</a></li>
+            <li class="active"><a href="#tab-3" id="slide-3-btn" role="tab" data-toggle="tab">Highlights</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane active" role="tabpanel" id="tab-1">
+            <div class="tab-pane" role="tabpanel" id="tab-1">
                 <div id="tab-1-content" class="slider-outer">
                     <div class="carousel slide" data-ride="carousel" data-interval="false" id="carousel-1">
                         <div class="carousel-inner" role="listbox">
@@ -196,8 +149,19 @@
             <div class="tab-pane" role="tabpanel" id="tab-2">
                 <div id="tab-2-content" class="instagram-front"></div>
             </div>
-            <div class="tab-pane" role="tabpanel" id="tab-3">
-                <div id="tab-3-content" class="instagram-front"><iframe src="https://clips.twitch.tv/embed?clip=WiseSparklyWatercressWutFace" frameborder="0" allowfullscreen="true" height="100%" width="100%"></iframe></div>
+            <div class="tab-pane active" role="tabpanel" id="tab-3">
+                <div id="tab-3-content" class="instagram-front">
+                    <div class="carousel slide" data-ride="carousel" data-interval="false" id="carousel-1">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active"><iframe src="https://clips.twitch.tv/embed?clip=WiseSparklyWatercressWutFace" frameborder="0" allowfullscreen="true" height="500px" width="100%"></iframe></div>
+                        </div>
+                        <div><a class="left carousel-control" href="#carousel-1" role="button" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#carousel-1" role="button"
+                                data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a></div>
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -238,7 +202,7 @@
         </div>
         <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
         <div id="OurSponsors" class="divBlue">
-            <h1 class="TitleHeadingSmall TitleHeadingLeft">Special Thanks to our Sponsors!</h1>
+            <h3 class="TitleHeading TitleHeadingLeft">Special Thanks to our Sponsors!</h3>
         </div>
         <div class="sectionContainer sponsor-container">
             <div class="SponsorContainer">
@@ -281,7 +245,7 @@
                         <ul>
                             <li><a href="Calendar.html">Calendar</a></li>
                             <li><a href="http://flickr.team5599.com/">Photos &amp; Videos</a><a class="btn btn-default footer_upload_btn" role="button" href="#">Submit</a></li>
-                            <li><a href="Account.html" id="FooterLoginButton">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
+                            <li><a href="Account.html" id="footer-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 item social"><a href="https://www.facebook.com/team5599sentinels/"><i class="icon ion-social-facebook"></i></a><a href="https://twitter.com/Sentinels5599"><i class="icon ion-social-twitter"></i></a><a href="https://www.instagram.com/sentinels_5599/"><i class="icon ion-social-instagram"></i></a>

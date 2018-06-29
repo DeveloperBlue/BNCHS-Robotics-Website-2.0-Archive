@@ -8,11 +8,11 @@
     <title>Team5599Website</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Coming+Soon">
     <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Footer-Clean.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -23,55 +23,8 @@
     <link rel="stylesheet" href="assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="assets/css/Social-Icons.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-<script> 
- window.fbAsyncInit = function() {
-
-    FB.init({
-      appId            : '138369146905135',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      cookie           : true,
-      version          : 'v2.12'
-    });
-
-    FB.getLoginStatus(function(response){
-
-      function waitForFacebookAPI(){
-
-        console.log("Waiting for the facebook API");
-
-        if (typeof facebookReady == 'function'){ 
-
-          console.log("facebookAPI Loaded")
-          facebookReady(response);
-
-        } else {
-
-          setTimeout(function(){
-              waitForFacebookAPI();
-          }, 100);
-
-        }
-
-      }
-
-      waitForFacebookAPI();
-
-      
-    });
-
-
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-</script>
+<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 </head>
 
 <body>
@@ -104,7 +57,7 @@
                             <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
                             <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
                             <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
-                            <li role="presentation"><a>Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
+                            <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
                         </ul>
                     </li>
                     <li role="presentation" id="SponsorsNavButton" class="NavButton"><a href="Sponsors.html">Our Sponsors</a></li>
@@ -152,7 +105,7 @@
                         <ul>
                             <li><a href="Calendar.html">Calendar</a></li>
                             <li><a href="http://flickr.team5599.com/">Photos &amp; Videos</a><a class="btn btn-default footer_upload_btn" role="button" href="#">Submit</a></li>
-                            <li><a href="Account.html" id="FooterLoginButton">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
+                            <li><a href="Account.html" id="footer-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 item social"><a href="https://www.facebook.com/team5599sentinels/"><i class="icon ion-social-facebook"></i></a><a href="https://twitter.com/Sentinels5599"><i class="icon ion-social-twitter"></i></a><a href="https://www.instagram.com/sentinels_5599/"><i class="icon ion-social-instagram"></i></a>

@@ -106,13 +106,13 @@ function configureNavbar(pageIndex){
 
 	if (pageIndex == "Blog.html" || pageIndex == "SocialMedia.html"){
 		$("#MediaBlogNavButton").addClass("active");
-	} else if (pageIndex == "Projects.html" || pageIndex == "Calendar.html" || pageIndex == "AdminPanel.html"){
+	} else if (pageIndex == "Projects.html" || pageIndex == "Calendar.html"){
 		$("#CommunityResourcesNavButton").addClass("active");
 	} else if (pageIndex == "Sponsors.html" || pageIndex == "OurSponsors.html"){
 		$("#SponsorsNavButton").addClass("active");
 	} else if (pageIndex == "ContactUs.html"){
 		$("#ContactNavButton").addClass("active");
-	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Forgot.html") || (pageIndex == "Feed.html") || (pageIndex == "WebsiteManager.html")){
+	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Verify.html") || (pageIndex == "Account.html") || (pageIndex == "WebsiteManager.html")){
 		$("#TeamResourcesNavButton").addClass("active");
 	} else {
 		$("#IndexNavButton").addClass("active");
@@ -134,6 +134,29 @@ function configureNavbar(pageIndex){
 
 	$("#FlickrModalTrigger").click(function(){
 		$("#FlickrModal").modal('show');
+	});
+
+	$.ajax({
+		type: "POST",
+		url: "assets/php/getSession.php",
+		data: "request=getSession",
+		success: function(response) {
+			if (response === false) {
+				// User is not signed in
+				$("#navbar-account-btn").html("\"Sign In\" <i class=\"glyphicon glyphicon-log-in socialMediaIcon\"></i>");
+				$("#footer-account-btn").html($("#navbar-account-btn").html());
+				$(".access-account-btn").click(function(){
+					window.location = "www.team5599.com/SignIn.html";
+				})
+			} else {
+				// User is signed in
+				$("#navbar-account-btn").html("\"My Account\" <i class=\"glyphicon glyphicon-user socialMediaIcon\"></i>");
+				$("#footer-account-btn").html($("#navbar-account-btn").html());
+				$(".access-account-btn").click(function(){
+					window.location = "www.team5599.com/Account.html";
+				})
+			}
+		}
 	});
 
 }
@@ -173,9 +196,15 @@ function checkLocation(){
 
 function scrollToElement(element){
 	console.log("Scrolling to " + element);
+
+	var offset = $(element).offset();
+	offset.left -= 20;
+	offset.top -= 20;
+
 	$('html, body').animate({
-		scrollTop: $($(element).attr('href')).offset().top
-	}, 500, 'linear');
+		scrollTop: offset.top,
+		scrollLeft: offset.left
+	});
 }
 
 var updateQueryStringParam = function (key, value) {
@@ -306,6 +335,8 @@ function handleLoginPage(pageIndex){
 		$("#account-create").click(function(e) {
 			e.preventDefault();
 			console.log("Signing Up . . .");
+			$("#account-create").prop("disabled",true);
+			$("#error").text("");
 			$.ajax({
 				type: "POST",
 				url: "assets/php/Register.php",
@@ -314,7 +345,7 @@ function handleLoginPage(pageIndex){
 					if (response === "success") {
 						console.log("Success!"); // PHP will automatically redirect
 					} else {
-						alert(response);
+						$("#account-create").prop("disabled",false);
 						$("#error").text(response);
 						scrollToElement("#error");
 					}
@@ -327,6 +358,8 @@ function handleLoginPage(pageIndex){
 		$("#account-sign-in").click(function(e) {
 			e.preventDefault();
 			console.log("Signing In . . .");
+			$("#account-sign-in").prop("disabled",true);
+			$("#error").text("");
 			$.ajax({
 				type: "POST",
 				url: "assets/php/SignIn.php",
@@ -335,7 +368,7 @@ function handleLoginPage(pageIndex){
 					if (response === "success") {
 						console.log("Success!"); // PHP will automatically redirect
 					} else {
-						alert(response);
+						$("#account-sign-in").prop("disabled",false);
 						$("#error").text(response);
 						scrollToElement("#error");
 					}
@@ -346,7 +379,139 @@ function handleLoginPage(pageIndex){
 		// Facebook Login
 
 		// Discord Login
+	} else if (pageIndex == "Verify.html"){
+
+		var requestType = getUrlParam("request");
+
+		if ((requestType == "verify") || (requestType == "notify")){
+
+			$("#form-activate").removeClass("visibilityHidden");
+
+			if (requestType == "notify"){
+
+				console.log("Notifying user . . .");
+
+				$.ajax({
+					type: "POST",
+					url: "assets/php/Verify.php",
+					data: "request=notify",
+					success: function(response) {
+						$("#error_activate").text(response);
+					}
+
+				});
+				
+			} else {
+
+				console.log("Verifying user . . .");
+
+				$.ajax({
+					type: "POST",
+					url: "assets/php/Verify.php",
+					data: "request=verify",
+					success: function(response) {
+						if (response == "success"){
+							$("#error_activate").text("Your account has been successfully verified!");
+							$("#activate-go-to-dashboard").removeClass("VisibilityHiddenAbsolute");
+						} else {
+							$("#error_activate").text(response);
+						}
+						
+					}
+
+				});
+
+			}
+
+		} else if (requestType == "forgot"){
+
+			$("#form-forgot").removeClass("visibilityHidden");
+
+			$("#form-forgot-button").click(function(){
+
+				console.log("Sending reset request to server . . .");
+
+				$("#form-forgot-button").prop("disabled", true);
+				$("#error_forgot").addClass("VisibilityHiddenAbsolute");
+
+				$.ajax({
+					type: "POST",
+					url: "assets/php/Verify.php",
+					data: "request=forgot&" + $("#form-forgot").serialize(),
+					success: function(response) {
+						if (response.startsWith("success-")){
+							var email = response.replace("success-", "");
+							$("#form-forgot").addClass("visibilityHidden");
+							$("#form-activate").removeClass("visibilityHidden");
+							$("#error_activate").text("An email has been sent to " + email + " with instructions on how to reset your password.");
+						} else {
+							$("#error_forgot").removeClass("VisibilityHiddenAbsolute");
+							$("#error_forgot").text(response);
+							$("#form-forgot-button").prop("disabled", false);
+						}
+						
+					}
+
+				});
+
+			})
+
+		} else if (requestType == "reset"){
+
+			$("#form-reset").removeClass("visibilityHidden");
+
+			var osis = getUrlParam("osis");
+			$("reset-p-text").text("Enter a new password for the account " + osis);
+
+			$("#form-reset-button").click(function(){
+
+				$("#form-reset-button").prop("disabled", true);
+				$("#error_reset").addClass("VisibilityHiddenAbsolute");
+
+				$.ajax({
+					type: "POST",
+					url: "assets/php/Verify.php",
+					data: "request=reset&" + $("#form-reset").serialize(),
+					success: function(response) {
+						if (response == "success"){
+							$("#form-reset").addClass("visibilityHidden");
+							$("#form-activate").removeClass("visibilityHidden");
+							$("#error_activate").text("Your email was successfully reset.");
+							$("#activate-go-to-dashboard").removeClass("VisibilityHiddenAbsolute");
+						} else {
+							$("#error_reset").removeClass("VisibilityHiddenAbsolute");
+							$("#error_reset").text(response);
+							$("#form-reset-button").prop("disabled", false);
+						}
+						
+					}
+
+				});
+
+			})
+
+
+
+		}
 	}
+
+	$("#activate-go-to-dashboard").click(function(){
+
+		$.ajax({
+			type: "POST",
+			url: "assets/php/getSession.php",
+			data: "request=getSession",
+			success: function(response) {
+				if (response != false){
+					window.location = "http://www.team5599.com/Account.html";
+				} else {
+					window.location = "http://www.team5599.com/SignIn.html";
+				}
+			}
+
+		});
+
+	})
 
 }
 
@@ -367,16 +532,14 @@ function handleTeamPage() {
 			"2018" : {
 				"Leadership" : {
 
-					"FirstName LastName" : {
-						"Titles" : ["Captain", "Director"],
-						"Duration" : "startYear-endYear",
-						"AssignedOrder" : 0,
+					"Hansen Pan" : {
+						"Titles" : ["Captain", "Head of Mechanics"],
+						"Duration" : "2016-2018",
 					},
 
-					"FirstName VeryLongLongLastName2" : {
-						"Titles" : ["A title"],
-						"Duration" : "startYear-endYear",
-						"AssignedOrder" : 0,
+					"Danielle Louie" : {
+						"Titles" : ["Co-Captain", "Head of Marketing"],
+						"Duration" : "2015-2018",
 					},
 
 					"FirstName LastName3" : {
@@ -388,9 +551,18 @@ function handleTeamPage() {
 					"FirstName LastName4" : {
 						"Titles" : ["A title", "Another one"],
 						"Duration" : "startYear-endYear",
-						"AssignedOrder" : 0,
 					}
 
+				},
+				"Mentors" : {
+					"Bernard Haggerty" : {
+						"Titles" : ["Lead Mentor", "Coach"],
+						"Duration" : "2015-present",
+					},
+					"Joseph Pugliese" : {
+						"Titles" : ["Mentor"],
+						"Duration" : "2015-present",
+					}
 				}
 			}
 
@@ -419,14 +591,14 @@ function handleTeamPage() {
 		var personDisplayObject = $("#PersonDisplayBox_Template");
 
 		$("#TeamHistoryBox").empty();
+		$("#TeamHistoryList").empty();
+		$("#TeamHistoryBox_Mentors").empty();
 
 		if (leadershipJsonObject.hasOwnProperty(year)) {
 
 			var leaders = leadershipJsonObject[year].Leadership;
 
 			for (leaderName in leaders) {
-
-				console.log("Leader: " + leaderName);
 
 				var personBox = personDisplayObject.clone();
 
@@ -444,6 +616,24 @@ function handleTeamPage() {
 
 			}
 
+			var mentors = leadershipJsonObject[year].Mentors;
+
+			for (mentorName in mentors){
+
+				var personBox = personDisplayObject.clone();
+
+				var personBoxContent = $(personBox).children("#PersonDisplayContent");
+				var personBoxLinks = $(personBox).children("#PersonDisplayLinks");
+
+				$(personBoxContent).children("#PersonDisplayName").text(mentorName);
+				$(personBoxContent).children("#PersonDisplayTitles").html(mentors[mentorName].Titles.join("<br />"));
+				$(personBoxContent).children("#PersonDisplayInfo").text(mentors[mentorName].Duration);
+
+				$(personBox).attr("id", "PersonDisplayBox_"+mentorName);
+
+				$(personBox).appendTo($("#TeamHistoryBox_Mentors"));
+			}
+
 		} else {
 			console.log("We don't have any data for that year! Sorry!");
 
@@ -451,15 +641,24 @@ function handleTeamPage() {
 			$("#TeamHistoryBox").append(noDataMessage);
 
 		}
+
+		var population = ["Michael Rooplall", "Valerie Macias", "Kelin Qu", "Tanoy Sarkar", "Alice Shao", "Danielle Louie", "Hansen Pan", "Jin Chai", "Nazifa Prapti", "Jaime 'Lucius Mercier' Baek", "Jeff Chan", "Names to be pulled from Google Sheets attendance", "And sorted alphabetically"];
+
+		// Populate with all our students
+		for (member in population){
+			$("#TeamHistoryList").append("<p class=\"team-member\">" + population[member] + "</p>");
+		}
+
 	}
 
 	// Set up the years
 
 	$("#teamHistorySelector").empty();
 
+	var dateObject = new Date();
+
 	var queryYear = getUrlParam("year");
 	if (queryYear == null){
-		var dateObject = new Date();
 		queryYear = dateObject.getFullYear();
 	}
 
@@ -467,9 +666,11 @@ function handleTeamPage() {
 	baseObject.label = "History";
 	$(baseObject).appendTo($("#teamHistorySelector"));
 
-	for (var year = queryYear; year >= 2015; year--){
+	for (var year = dateObject.getFullYear(); year >= 2015; year--){
 		$(baseObject).append($("<option></option>").val(year).html("Season " + year));
 	}
+
+	$("#teamHistorySelector").val(queryYear);
 
 	// Handle
 
@@ -483,11 +684,11 @@ function handleTeamPage() {
 		var selectedYear = $("#teamHistorySelector").val();
 		if (getUrlParam("viewType") == "alumni"){
 			updateQueryStringParam("viewType","leadership");
-			$("#toggleTeamPageButton").prop("value", "Our Leadership");
+			$("#toggleTeamPageButton").text("Our Alumni");
 			loadTeamHistory(selectedYear);
 		} else {
 			updateQueryStringParam("viewType","alumni");
-			$("#toggleTeamPageButton").prop("value", "Our Alumni");
+			$("#toggleTeamPageButton").text("Our Leadership");
 			loadTeamHistory(selectedYear);
 		}
 	});
