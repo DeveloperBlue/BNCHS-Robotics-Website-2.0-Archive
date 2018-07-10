@@ -4,7 +4,7 @@
 
 require 'db.php';
 
-$request = $mysqli->escape_string($_POST["$request"];
+$request = $mysqli->escape_string($_POST["$request"]);
 
 $result;
 

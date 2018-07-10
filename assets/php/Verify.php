@@ -5,7 +5,7 @@
 require 'db.php';
 session_start();
 
-$request = $mysqli->escape_string($_POST["$request"];
+$request = $mysqli->escape_string($_POST["$request"]);
 
 if ($request=="verify"){
 
