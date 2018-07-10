@@ -80,24 +80,33 @@
     <div class="PageContent">
         <div class="RobotDisplayDivPadding">
             <div class="row">
-                <div class="col-md-3"><button class="btn btn-danger RobotDisplayButton" type="button">Barbara<span class="label label-danger RobotDisplayLabel">SeaPerch 2018</span></button><button class="btn btn-info RobotDisplayButton" type="button">Quick Silver<span class="label label-info RobotDisplayLabel">FRC 2018</span></button>
+                <div class="col-md-3" id="robot-buttons"><button class="btn btn-danger RobotDisplayButton" type="button">Barbara<span class="label label-danger RobotDisplayLabel">SeaPerch 2018</span></button><button class="btn btn-info RobotDisplayButton" type="button">Quick Silver<span class="label label-info RobotDisplayLabel">FRC 2018</span></button>
                     <button
                         class="btn btn-info RobotDisplayButton" type="button">HAL 5700<span class="label label-info RobotDisplayLabel">FRC 2017</span></button><button class="btn btn-info RobotDisplayButton" type="button">The Hound<span class="label label-info RobotDisplayLabel">FRC 2016</span></button>
                         <button
                             class="btn btn-info RobotDisplayButton" type="button">Pied Piper<span class="label label-info RobotDisplayLabel">FRC 2015</span></button>
                 </div>
                 <div class="col-md-9">
-                    <div class="RobotListDiv">
-                        <p>&lt;iFrame CAD file&gt;</p><img class="RobotImageDisplay">
-                        <h2 class="RobotTitleSubHeading">2018</h2>
-                        <h1 class="RobotTitleHeading">Robot Title</h1>
-                        <p>&lt;ROBOT TITLE&gt; was Team 5599's robot for the &lt;YEAR&gt; season. It competed in FIRST &lt;SEASON&gt;. &lt;ROBOT TITLE&gt; was capable of &lt;COMPETITION ACTIONS&gt;. This robot was named by &lt;THE TEAM/OUR MENTOR/OUR SPONSOR&gt;.</p>
+                    <div id="robot-info-main" class="RobotListDiv">
+                        <h2 id="robot-year" class="RobotTitleSubHeading">2018</h2>
+                        <h1 id="robot-title" class="RobotTitleHeading">Robot Title</h1>
+                        <div id="robot-description"></div>
+                        <div id="robot-info-reveal-main">
+                            <h3 class="RobotTitleHeading">Reveal Video</h3>
+                            <div id="robot-reveal-video-main">
+                                <div class="carousel slide" data-ride="carousel" data-interval="false" data-pause="false" id="robot-reveal-videos-carousel">
+                                    <div class="carousel-inner" role="listbox" id="robot-reveal-slides">
+                                        <div class="item active youtube-player-bg"><iframe width="100%" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/1CLYCoHTwPQ?showinfo=0&amp;rel=0" class="robot-reveal-video"></iframe></div>
+                                    </div>
+                                    <div><a class="left carousel-control" href="#robot-reveal-videos-carousel" role="button" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a><a class="right carousel-control"
+                                            href="#robot-reveal-videos-carousel" role="button" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="RobotTitleHeading">Competitions</h3>
+                        <div id="match-playlist"><a class="btn btn-info match-playlist-item" role="button" href="#">Hudson Valley Rally<i class="fa fa-film match-playlist-item-hasVideo"></i></a><button class="btn btn-default match-playlist-item" type="button">Hudson Valley Rally</button></div>
                         <h3
-                            class="RobotTitleHeading">Reveal Video</h3>
-                            <p>&lt;Reveal Video&gt;</p>
-                            <h3 class="RobotTitleHeading">Match Recordings</h3>
-                            <p>&lt;YouTube Season Playlist&gt;</p>
-                            <h3 class="RobotTitleHeading">The Blue Alliance</h3>
+                            class="RobotTitleHeading">The Blue Alliance</h3>
                             <p>&lt;Blue Alliance Match Data&gt;</p>
                     </div>
                 </div>

@@ -103,6 +103,116 @@ function checkFields(inputFields){
 
 function activateStaticContentPanels(){
 
+	//
+	$("#teamHistorySelector").empty();
+
+	var dateObject = new Date();
+
+	var queryYear = dateObject.getFullYear();
+
+	var baseObject = document.createElement("optgroup");
+	baseObject.label = "History";
+	$(baseObject).appendTo($("#teamHistorySelector"));
+
+	for (var year = dateObject.getFullYear(); year >= 2014; year--){
+		$(baseObject).append($("<option></option>").val(year).html("Season " + year));
+	}
+
+	$("#teamHistorySelector").val(queryYear);
+
+	//
+	var py0 = $("#form_People_yearJoined");
+	var py1 = $("#form_People_yearGraduated");
+
+	py0.change(function(){
+		if (py0.val() > py1.val()){
+			alert("The year this person joined the team cannot be after the year they left.");
+		}
+	})
+
+	py1.change(function(){
+		if (py0.val() > py1.val()){
+			alert("The year this person left the team cannot be before the year they joined.");
+		}
+	})
+
+	//
+	$("#btn_AddPeopleTitle").click(function(){
+
+		console.log("Adding people title?");
+
+		var titleBox = $("#personTitleBar-Template").clone();
+
+		var y0 = $(titleBox).children("#personTitleY0Input");
+		var y1 = $(titleBox).children("#personTitleY1Input");
+
+		y0.change(function(){
+
+			console.log("Year changed.");
+
+			if (y0.val() > y1.val()){
+				y0.val(y1.val());
+				alert("Your start year cannot occur after your end year!");
+			}
+
+			if (y0.val() < py0.val()){
+				alert("A person should not have a title before the year they were on the team.")
+			}
+		})
+
+		y1.change(function(){
+
+			console.log("Year changed.");
+
+			if (y0.val() > y1.val()){
+				y1.val(y0.val());
+				alert("Your end year cannot occur before your start year!");
+			}
+		})
+
+
+		$(titleBox).children("#personTitleDelete").click(function(){
+			titleBox.remove();
+		})
+
+		$(titleBox).attr("id", "");
+
+		$(titleBox).appendTo($("#personTitleFieldBox"));
+
+	})
+
+
+	//
+	var btn_changeView = $("#btn_ChangePersonView");
+	btn_changeView.click(function(){
+
+		if (btn_changeView.text() == "View Mentors"){
+			btn_changeView.text("View Leaders");
+		} else {
+			btn_changeView.text("View Mentors");
+		}
+
+		console.log("Switching view to " + btn_changeView.text());
+
+		$("#panel_PeopleOrder").empty();
+	})
+
+	//
+	$("#btn_AddRobotPlaylist").click(function(){
+
+		console.log("Adding robot competition and playlist");
+
+		var titleBox = $("#robotPlaylistBar-Template").clone();
+
+		$(titleBox).children("#robotPlaylistDelete").click(function(){
+			titleBox.remove();
+		})
+
+		$(titleBox).attr("id", "");
+
+		$(titleBox).appendTo($("#robotPlaylistFieldBox"));
+
+	})
 }
 
 function activateDynamicContentPanels(){
@@ -496,6 +606,11 @@ function activateUploadModule(){
 	    $(".imageSelectorModalImages").empty();
 
 		var directory = "/assets/img" + $("#imageSelectorModalDropdownSelected").text();
+
+		if (window.location.href.indexOf("192.168") != -1){
+			directory = $("#imageSelectorModalDropdownSelected").text();
+		}
+
 		console.log("directory: " + directory);
 		
 		$.ajax({

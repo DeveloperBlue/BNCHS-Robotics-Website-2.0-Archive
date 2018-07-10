@@ -16,6 +16,16 @@
   margin-bottom:10px;
 }
 
+.teamHistoryYearSelectorWeb {
+  color:#000;
+  height:40px;
+  width:300px;
+  margin-bottom:20px;
+  padding-left:10px;
+  text-align:center;
+  display:inline-block;
+}
+
 .teamHistoryYearSelector {
   color:#000;
   margin-left:10px;
@@ -45,6 +55,15 @@
 
 .team-member:hover {
   border:2px solid #ddd;
+}
+
+.noselect {
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
 }
 
 .about_team_btns {
@@ -363,7 +382,7 @@ div.paralax {
 }
 
 div.splashContentHalf {
-  height:auto;
+  /*height:auto;*/
 }
 
 div.splashContent {
@@ -409,6 +428,11 @@ p.SplashHeaderText {
   color:#FFFFFF;
   padding-right:40px;
   padding-left:40px;
+}
+
+.SplashHeaderText:hover {
+  background-color:rgba(30, 108, 147, 0.7);
+  border-radius:4px;
 }
 
 .PageFooter, .copyright {
@@ -712,6 +736,41 @@ p.SplashHeaderText {
   float:left;
 }
 
+#robot-info-main {
+  min-height:500px;
+}
+
+.robot-reveal-video {
+  height:100%;
+}
+
+#robot-reveal-slides {
+  height:320px;
+}
+
+.youtube-player-bg {
+  background-color:#000;
+  /*padding-top:5px;*/
+  text-align:center;
+  height:320px;
+}
+
+.match-playlist-item {
+  width:100%;
+  margin-bottom:2px;
+  padding-left:20px;
+  text-align:left;
+}
+
+.match-playlist-item-hasVideo {
+  float:right;
+}
+
+#robot-title {
+  margin-bottom:30px;
+  font-family:'Coming Soon';
+}
+
 .RobotTitleHeading, .RobotTitleSubHeading {
   color:#1E6C93;
 }
@@ -724,6 +783,11 @@ p.SplashHeaderText {
   min-height:70px;
   height:auto;
   margin-top:40px;
+}
+
+#contactInfoDiv-Template {
+  visibility:hidden;
+  position:absolute;
 }
 
 .contactLeft {
@@ -1176,6 +1240,14 @@ p.SplashHeaderText {
 .robotInfoTextArea {
   width:400px;
   height:100px;
+  margin-top:10px;
+}
+
+.robotPlaylistFieldBox {
+  background-color:#CCC;
+  height:100px;
+  width:512px;
+  overflow-y:scroll;
 }
 
 .personTitleFieldBox {
@@ -1185,11 +1257,26 @@ p.SplashHeaderText {
   overflow-y:scroll;
 }
 
-.personTitleBar {
+.robotPlaylistBar {
   width:100%;
-  height:29px;
+  height:36px;
   background-color:#666;
   margin-bottom:4px;
+  display:inline-block;
+}
+
+.personTitleBar {
+  width:100%;
+  height:36px;
+  background-color:#666;
+  margin-bottom:4px;
+  display:inline-block;
+}
+
+#robotPlaylistBar-Template {
+  visibility:hidden;
+  width:20px;
+  position:absolute;
 }
 
 #personTitleBar-Template {
@@ -1199,18 +1286,30 @@ p.SplashHeaderText {
 }
 
 .personTitleTitleInput {
-  width:285px;
-  height:22px;
-  margin-top:3px;
+  width:270px;
+  height:30px;
+  margin-top:4px;
   margin-bottom:2px;
   margin-left:3px;
+  float:left;
+}
+
+.robotPlaylistInput {
+  width:215px;
+  height:30px;
+  margin-top:4px;
+  margin-bottom:4px;
+  margin-left:4px;
+  float:left;
 }
 
 .personTitleY1Input, .personTitleY2Input, .dropdownYearInput {
-  width:60px;
-  margin-top:2px;
+  width:80px;
+  margin-top:4px;
   margin-bottom:2px;
   margin-left:3px;
+  display:inline-block;
+  height:22px;
 }
 
 .dropdownYearInput2 {
@@ -1219,8 +1318,8 @@ p.SplashHeaderText {
 }
 
 .personTitleDeleteButton {
-  width:50px;
-  height:29px;
+  width:51px;
+  height:100%;
   float:right;
   font-size:x-small;
 }
@@ -1430,6 +1529,7 @@ p.SplashHeaderText {
   width:70px;
   height:50px;
   display:inline-block;
+  line-height:35px;
   background-color:#999;
   margin-left:5px;
   margin-right:5px;
@@ -1488,6 +1588,24 @@ p.SplashHeaderText {
 
 .nav.nav-tabs {
   padding-bottom:4px;
+}
+
+#loading-title {
+  margin:20px;
+  margin-top:40px;
+  font-family:'Allerta';
+}
+
+.loading-icon {
+  width:240px;
+  height:240px;
+  text-align:center;
+  margin:20px;
+}
+
+.loading-redirect {
+  margin:20px;
+  margin-bottom:40px;
 }
 
 .instagram-front {

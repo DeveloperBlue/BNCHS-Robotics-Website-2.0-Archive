@@ -66,34 +66,37 @@
             </div>
         </div>
     </nav>
-    <div class="PageContent">
-        <div class="divBlue"></div>
-        <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
-        <div id="facebookLoginInformation" class="facebookLoginInformation">
-            <p id="facebookLoginInformationTitle">Logged in as FIRSTNAME LASTNAME</p>
-            <div class="facebookLoginInformationPhoto">
-                <div class="facebookLoginInformationPhotoInner"><img id="facebookLoginInformationPhotoActual"></div>
-            </div><a href="#" id="facebookLoginInformationWrongAccount">Sign out</a></div>
-    </div>
-    <div class="sectionContainer">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="feedDiv">
-                    <p class="lead sm-lead">Follow the team on all our Social Media!</p><button class="btn btn-default feed-sm" type="button"><i class="fa fa-facebook"></i></button><button class="btn btn-default feed-sm" type="button"><i class="icon ion-social-instagram-outline"></i></button>
-                    <button
-                        class="btn btn-default feed-sm" type="button"><i class="icon ion-social-twitter"></i></button><button class="btn btn-default feed-sm" type="button"><i class="icon ion-social-youtube"></i></button><button class="btn btn-default feed-sm" type="button"><i class="icon ion-social-rss"></i></button>
-                        <button
-                            class="btn btn-default feed-sm" type="button"><i class="fa fa-twitch"></i></button>
-                </div>
-                <div class="feedDiv">
-                    <p class="lead sm-lead">Share our Edco fundraising page!</p><a class="text-info feed-edco-link" href="https://bnchs.ed.co/the-sentinels">https://bnchs.ed.co/the-sentinels</a>
+    <div class="divBlue"></div>
+    <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
+    <div id="account-loading" class="text-center VisibilityHiddenAbsolute">
+        <h1 class="text-center text-muted" id="loading-title">Loading Your Account</h1>
+        <div><img src="assets/img/Logos/Logo765.png" class="loading-icon"></div><button class="btn btn-link loading-redirect" type="button">If nothing happens after 10 seconds, click here.</button></div>
+    <div id="account-page">
+        <div class="PageContent">
+            <div id="loginInformation" class="facebookLoginInformation">
+                <p id="accountPage-userTitle">Logged in as FIRSTNAME LASTNAME</p>
+                <div class="facebookLoginInformationPhoto">
+                    <div class="facebookLoginInformationPhotoInner"><img id="facebookLoginInformationPhotoActual"></div>
+                </div><a href="#" id="accountPage-signOut">Sign out</a></div>
+        </div>
+        <div class="sectionContainer">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="feedDiv">
+                        <p class="lead sm-lead">Follow the team on all our Social Media!</p><a class="btn btn-default feed-sm" role="button" href="https://www.facebook.com/team5599sentinels/"><i class="fa fa-facebook"></i></a><a class="btn btn-default feed-sm" role="button"
+                            href="https://www.instagram.com/sentinels_5599/"><i class="icon ion-social-instagram-outline"></i></a><a class="btn btn-default feed-sm" role="button" href="https://twitter.com/Sentinels5599"><i class="icon ion-social-twitter"></i></a>
+                        <a
+                            class="btn btn-default feed-sm" role="button" href="https://www.youtube.com/channel/UCALF3caI0F4WJfJisLFSBWQ"><i class="icon ion-social-youtube"></i></a><a class="btn btn-default feed-sm" role="button" href="http://blog.team5599.com/"><i class="icon ion-social-rss"></i></a><a class="btn btn-default feed-sm" role="button" href="https://www.twitch.tv/team5599_thesentinels"><i class="fa fa-twitch"></i></a></div>
+                    <div
+                        class="feedDiv">
+                        <p class="lead sm-lead">Share our Edco fundraising page!</p><a class="text-info feed-edco-link" href="https://bnchs.ed.co/the-sentinels">https://bnchs.ed.co/the-sentinels</a>
 <br>
 <div class="fb-share-button feed-share" data-href="https://bnchs.ed.co/the-sentinels" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbnchs.ed.co%2Fthe-sentinels&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share to Facebook</a></div>
 <br>
 <a class="twitter-share-button feed-share"
   href="https://twitter.com/intent/tweet?text=Help%20support%20the%20Cardozo%20Robotics%20team!%20https%3A%2F%2Fbnchs.ed.co%2Fthe-sentinels">
 Share to Twitter</a>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 </div>
                 <div class="feedDiv">
                     <p class="lead sm-lead">Connect your accounts for easier access</p>
@@ -104,10 +107,9 @@ Share to Twitter</a>
                     </div>
                 </div>
                 <div class="feedDiv">
-                    <p class="lead sm-lead">Your Resources</p><button class="btn btn-info feed-btn" type="button">Check <strong>Attendance Records</strong></button><button class="btn btn-primary feed-btn" type="button">Request <strong>SOLIDWORKS Download</strong></button>
+                    <p class="lead sm-lead">Your Resources</p><button class="btn btn-warning feed-btn" type="button">Check <strong>Attendance Records</strong></button><button class="btn btn-info feed-btn" type="button">Request <strong>DropBox&nbsp;Access</strong></button>
                     <button
-                        class="btn btn-primary feed-btn" type="button">Request <strong>Custom Team Email</strong></button>
-                </div>
+                        class="btn btn-info feed-btn" type="button">Request <strong>SOLIDWORKS Download</strong></button><button class="btn btn-info feed-btn" type="button">Request <strong>Custom Team Email</strong></button></div>
                 <div class="feedDiv">
                     <p class="lead sm-lead">Know your Leaders</p>
                     <p>Take some time to visit the Leadership page and understand who is in charge of what responsibilities and what mentors are available to help you!</p><a class="btn btn-link" role="button" href="Team.html">View Leadership</a></div>
@@ -118,14 +120,16 @@ Share to Twitter</a>
         </div>
         <div class="col-md-5"><iframe src="https://discordapp.com/widget?id=223151489864957953&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe><br><br>
             <div class="feedDiv">
-                <p class="lead sm-lead">Actions</p><button class="btn btn-success feed-admin-sm" type="button" id="action-announcement">Post an Announcement<i class="fa fa-facebook socialMediaIcon"></i><img src="assets/img/Logos/Discord-Logo-White.svg" id="DiscordSVG" class="fa fa-facebook"></button>
+                <p class="lead sm-lead">Actions</p><button class="btn btn-success feed-admin-sm" type="button" disabled="disabled" id="action-announcement">Post an Announcement<i class="fa fa-facebook socialMediaIcon"></i><img src="assets/img/Logos/Discord-Logo-White.svg" id="DiscordSVG" class="fa fa-facebook"></button>
                 <button
-                    class="btn btn-info feed-admin-sm" type="button" id="action-blog">Request Blog Access<i class="fa fa-rss socialMediaIcon"></i></button><button class="btn btn-info feed-admin-sm" type="button" id="action-social">Post to Social Media<i class="fa fa-facebook-f socialMediaIcon"></i><i class="fa fa-twitter socialMediaIcon"></i><i class="icon ion-social-instagram socialMediaIcon"></i></button>
+                    class="btn btn-info feed-admin-sm" type="button" disabled="disabled" id="action-blog">Post to Blog<i class="fa fa-rss socialMediaIcon"></i></button><button class="btn btn-info feed-admin-sm" type="button" disabled="disabled" id="action-social">Post to Social Media<i class="fa fa-facebook-f socialMediaIcon"></i><i class="fa fa-twitter socialMediaIcon"></i><i class="icon ion-social-instagram socialMediaIcon"></i></button>
                     <button
-                        class="btn btn-default feed-admin-sm" type="button" id="action-website">Manage Website<i class="fa fa-gears socialMediaIcon"></i></button><button class="btn btn-default feed-admin-sm" type="button" id="action-calendar">Manage Calendar<i class="fa fa-calendar socialMediaIcon"></i></button><button class="btn btn-default feed-admin-sm"
-                            type="button" id="action-accounts">View User Accounts<i class="fa fa-group socialMediaIcon"></i></button><button class="btn btn-warning feed-admin-sm" type="button" id="action-permissions">Manage Permissions<i class="fa fa-key socialMediaIcon"></i></button>
+                        class="btn btn-default feed-admin-sm" type="button" disabled="disabled" id="action-website">Manage Website<i class="fa fa-gears socialMediaIcon"></i></button><button class="btn btn-default feed-admin-sm" type="button" disabled="disabled" id="action-calendar">Manage Calendar<i class="fa fa-calendar socialMediaIcon"></i></button>
                         <button
-                            class="btn btn-info feed-admin-sm" type="button" id="action-activity">View Activity Logs<i class="fa fa-save socialMediaIcon"></i></button>
+                            class="btn btn-default feed-admin-sm" type="button" disabled="disabled" id="action-accounts">View User Accounts<i class="fa fa-group socialMediaIcon"></i></button><button class="btn btn-warning feed-admin-sm" type="button" disabled="disabled" id="action-permissions">Manage Permissions<i class="fa fa-key socialMediaIcon"></i></button>
+                            <button
+                                class="btn btn-info feed-admin-sm" type="button" disabled="disabled" id="action-activity">View Activity Logs<i class="fa fa-save socialMediaIcon"></i></button>
+                                <p style="margin-top:10px;">Missing permissions you think you should have? Contact Michael Rooplall or webmaster@team5599.com.</p>
             </div>
         </div>
     </div>
@@ -251,6 +255,7 @@ Share to Twitter</a>
                 <div class="panel-body"><span>Item body.</span></div>
             </div>
         </div>
+    </div>
     </div>
     <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
     <div class="PageFooter footer-clean">

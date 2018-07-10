@@ -68,58 +68,28 @@
             </div>
         </div>
     </nav>
-    <div class="PageContent">
+    <div id="account-loading" class="text-center VisibilityHiddenAbsolute">
+        <div class="divBlue"></div>
+        <h1 class="text-center text-muted" id="loading-title">Authenticating Administrator Access</h1>
+        <div><img src="assets/img/Logos/Logo765.png" class="loading-icon"></div><button class="btn btn-link loading-redirect" type="button">If nothing happens after 10 seconds, click here.</button></div>
+    <div id="account-page" class="PageContent">
         <div class="divBlue"></div>
         <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
-        <div id="facebookLoginInformation" class="facebookLoginInformation">
-            <p id="facebookLoginInformationTitle">Logged in as FIRSTNAME LASTNAME</p>
-            <div class="facebookLoginInformationPhoto">
-                <div class="facebookLoginInformationPhotoInner"><img id="facebookLoginInformationPhotoActual"></div>
-            </div><a href="#" id="facebookLoginInformationWrongAccount">Sign out</a></div>
-        <p class="text-center mobileWarning">You should use a computer to make changes, as using a mobile device will be extremely clunky and not fit many sections.</p>
+        <div class="PageContent">
+            <div id="loginInformation" class="facebookLoginInformation">
+                <p id="accountPage-userTitle">Logged in as FIRSTNAME LASTNAME</p>
+                <div class="facebookLoginInformationPhoto">
+                    <div class="facebookLoginInformationPhotoInner"><img id="facebookLoginInformationPhotoActual"></div>
+                </div><a href="#" id="accountPage-signOut">Sign out</a></div>
+        </div>
+        <p class="text-center">You should use a computer to make changes, as using a mobile device will be extremely clunky and not fit many sections.</p>
+        <p class="text-center mobileWarning">For security purposes, your IP address will be logged when you make changes.</p>
         <div class="panel-group" role="tablist" aria-multiselectable="true" id="accordion-1">
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab">
-                    <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-1">Home Pages</a></h4>
+                    <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-1">Contact Us Page</a></h4>
                 </div>
                 <div class="panel-collapse collapse item-1" role="tabpanel">
-                    <div class="accordian_container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4 class="BlackFont text-left">About Team (Homepage)</h4><textarea id="website_AboutTeam" class="accordian_inputbox"></textarea>
-                                <h4 class="BlackFont text-left">Homepage Video</h4>
-                                <p class="paragraphSmall">(YouTube Link)</p><input type="text" id="website_HomepageVideo" class="accordian_linkbox"></div>
-                            <div class="col-md-6">
-                                <h4 class="BlackFont text-left">About FIRST (Homepage)</h4><textarea id="website_AboutFIRST" class="accordian_inputbox"></textarea>
-                                <h4 class="BlackFont text-left">About FIRST (In Dept)</h4><textarea id="website_AboutFIRSTInDept" class="accordian_inputbox"></textarea></div>
-                        </div><button class="btn btn-danger spaced_button" type="button">Revert Changes</button><button class="btn btn-success spaced_button" type="button">Save Changes</button>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab">
-                    <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-2">Social Media</a></h4>
-                </div>
-                <div class="panel-collapse collapse item-2" role="tabpanel">
-                    <div class="accordian_container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4 class="BlackFont text-left">Facebook Page</h4><input type="text" id="website_sm_facebook" class="accordian_linkbox">
-                                <h4 class="BlackFont text-left">Twitter</h4><input type="text" id="website_sm_twitter" class="accordian_linkbox"></div>
-                            <div class="col-md-6">
-                                <h4 class="BlackFont text-left">YouTube</h4><input type="text" id="website_sm_youtube" class="accordian_linkbox">
-                                <h4 class="BlackFont text-left">Instagram</h4><input type="text" id="website_sm_instagram" class="accordian_linkbox"></div>
-                        </div>
-                    </div>
-                    <div class="webmaster_confirmDiv"><button class="btn btn-danger spaced_button" type="button">Cancel</button><button class="btn btn-success spaced_button" type="button">Save Changes</button></div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab">
-                    <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-3">Contact Us Page</a></h4>
-                </div>
-                <div class="panel-collapse collapse item-3" role="tabpanel">
                     <div class="accordian_container">
                         <div id="panel_Contacts" class="webmasterContactUsPanel"></div>
                         <div class="webmaster_configDiv"><button class="btn btn-info personButton" type="button" id="Btn_AddContact">New Contact<i class="fa fa-plus spacedIcon"></i></button><button class="btn btn-success personButton" type="submit" id="Btn_SaveContacts">Save Changes</button></div>
@@ -137,9 +107,9 @@
         </div>
         <div class="panel panel-default" id="ManageSponsors">
             <div class="panel-heading" role="tab">
-                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-4">Manage Sponsors</a></h4>
+                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-2">Manage Sponsors</a></h4>
             </div>
-            <div class="panel-collapse collapse item-4" role="tabpanel">
+            <div class="panel-collapse collapse item-2" role="tabpanel">
                 <div class="accordian_container">
                     <div id="panel_Sponsors" class="webmasterRobotPanel"></div>
                     <div class="webmaster_configDiv"><button class="btn btn-info personButton" type="button" id="Btn_AddSponsor">New Sponsor<i class="fa fa-plus spacedIcon"></i></button><button class="btn btn-success personButton" type="submit" id="Btn_SaveSponsors">Save Changes</button></div>
@@ -163,9 +133,9 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="ManagePeople">
-            <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-5">Manage Leaders/Mentors</a></h4>
+            <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-3">Manage Leaders/Mentors</a></h4>
         </div>
-        <div class="panel-collapse collapse item-5" role="tabpanel">
+        <div class="panel-collapse collapse item-3" role="tabpanel">
             <div class="accordian_container">
                 <div class="webmasterLeadershipTabs">
                     <ul class="nav nav-tabs">
@@ -190,8 +160,11 @@
                         </div>
                         <h4 class="BlackFont">Titles</h4>
                         <p>Title Name - Start Year - End Year</p>
-                        <div id="personTitleBar-Template" class="personTitleBar"><input class="form-control personTitleTitleInput" type="text"><select class="form-control dropdownYearInput BlackFont" value="2018"><option value="2018">2018</option></select><select class="form-control dropdownYearInput BlackFont"
-                                value="2018"><option value="2018">2018</option></select><button class="btn btn-danger btn-sm personTitleDeleteButton" type="reset">Delete</button></div>
+                        <div id="personTitleBar-Template" class="personTitleBar"><input class="form-control personTitleTitleInput" type="text" id="personTitleInput"><select class="form-control input-sm dropdownYearInput BlackFont" value="2018" id="personTitleY0Input"><option value="2018">2018</option></select>
+                            <select
+                                class="form-control input-sm dropdownYearInput BlackFont" value="2018" id="personTitleY1Input">
+                                <option value="2018">2018</option>
+                                </select><button class="btn btn-danger btn-sm personTitleDeleteButton" type="reset" id="personTitleDelete">Delete</button></div>
                         <div id="personTitleFieldBox" class="personTitleFieldBox"></div><button class="btn btn-info spaced_button" type="button" id="btn_AddPeopleTitle">Add Title<i class="icon ion-plus spacedIcon"></i></button>
                         <div class="clearfix"></div><br><br><button class="btn btn-danger spaced_button" type="reset" id="Btn_UsePeople">Delete Person<i class="fa fa-user-times spacedIcon"></i></button><button class="btn btn-success spaced_button"
                             type="button" id="Btn_UpdatePeople">Update Person</button>
@@ -199,13 +172,17 @@
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="tab-4"><button class="btn btn-danger left-float-button" type="button" id="btn_ReloadPeopleOrder">Reload Original</button><button class="btn btn-success left-float-button" type="button" id="btn_SavePeopleOrder">Save Order</button>
-                    <div class="clearfix"></div>
-                    <h4 class="text-left BlackFont">Change Order</h4><select id="teamHistorySelector" class="teamHistoryYearSelector"><optgroup label="History"><option value="2018" selected="">Season 2018</option><option value="2017">Season 2017</option><option value="2016">Season 2016</option><option value="2015">Season 2015</option></optgroup></select>
+                <div class="tab-pane" role="tabpanel" id="tab-4">
+                    <div><button class="btn btn-danger left-float-button" type="button" id="btn_ReloadPeopleOrder">Reload Original</button><button class="btn btn-success left-float-button" type="button" id="btn_SavePeopleOrder">Save Order</button></div>
                     <div
-                        id="panel_PeopleOrder" class="webmasterPeopleSortPanel"></div>
-            </div>
+                        class="clearfix"></div>
+                <div><button class="btn btn-info left-float-button" type="button" id="btn_ChangePersonView">View Mentors</button></div>
+                <div class="clearfix"></div>
+                <h4 class="text-left BlackFont">Change Order</h4><select id="teamHistorySelector" class="teamHistoryYearSelectorWeb"><optgroup label="History"><option value="2018" selected="">Season 2018</option><option value="2017">Season 2017</option><option value="2016">Season 2016</option><option value="2015">Season 2015</option></optgroup></select>
+                <div
+                    id="panel_PeopleOrder" class="webmasterPeopleSortPanel"></div>
         </div>
+    </div>
     </div>
     </div>
     <div class="clearfix"></div>
@@ -213,27 +190,30 @@
     </div>
     <div class="panel panel-default" id="ManageRobots">
         <div class="panel-heading" role="tab">
-            <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-6">Manage Robots</a></h4>
+            <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-4">Manage Robots</a></h4>
         </div>
-        <div class="panel-collapse collapse item-6" role="tabpanel">
+        <div class="panel-collapse collapse item-4" role="tabpanel">
             <div class="accordian_container">
                 <div id="panel_Robots" class="webmasterRobotPanel"><button class="btn btn-default testButton" type="button">Button Alpha</button><button class="btn btn-default testButton" type="button">Button Bravo</button></div>
                 <div class="webmaster_configDiv"><button class="btn btn-info personButton" type="button" id="Btn_AddRobot">New Robot<i class="fa fa-plus spacedIcon"></i></button><button class="btn btn-success personButton" type="button" id="Btn_SaveRobots">Save Changes</button></div>
                 <div
                     id="form_Robots" class="webmasterRobotInfo">
                     <form>
-                        <h4 class="BlackFont">Robot Name</h4><input class="form-control robotInfoTextField" type="text" id="form_Robot_name">
+                        <h4 class="BlackFont">Robot Name</h4><input class="form-control input-sm robotInfoTextField" type="text" id="form_Robot_name">
                         <h4 class="BlackFont">Season Year</h4><select class="form-control input-sm dropdownYearInput2 BlackFont" value="2018" id="form_Robot_seasonYear"><option value="2018">2018</option></select>
-                        <h4 class="BlackFont">Description</h4><textarea class="form-control robotInfoTextArea" id="form_Robot_description"></textarea>
-                        <h4 class="BlackFont">Videos (Reveals, Teasers, etc.)</h4>
-                        <p>(Separate with commas)</p><input class="form-control accordian_linkbox" type="text" id="form_Robot_videos">
-                        <h4 class="BlackFont">FRC Match Playlists</h4>
-                        <p>(Separate with commas)</p><input class="form-control accordian_linkbox" type="text" id="form_Robot_matchPlaylists">
-                        <h4 class="BlackFont">CAD iFrame Embed Link</h4>
-                        <p>Ignore this if you don't know what it's for.</p><input class="form-control accordian_linkbox" type="text" id="form_Robot_CADiFrame"><button class="btn btn-danger buttonBottom deleteButton" type="button" id="Btn_UseRobot">Delete Robot<i class="fa fa-remove spacedIcon"></i></button>
-                        <button
-                            class="btn btn-success buttonBottom deleteButton VisibilityHidden" type="button" id="Btn_UpdateRobot">Update Robot</button>
-                    </form>
+                        <h4 class="BlackFont">Description</h4><span><label class="radio-inline BlackFont" for="robotType"><input type="radio" name="robotType" value="FRC" checked="">FRC</label></span><span style="margin-left:10px;margin-right:10px;"><label class="radio-inline BlackFont" for="robotType"><input type="radio" name="robotType" value="SeaPerch">SeaPerch</label></span><span><label class="radio-inline BlackFont" for="robotType"><input type="radio" name="robotType" value="SeaPerch">Other</label></span>
+                        <textarea
+                            class="form-control robotInfoTextArea" id="form_Robot_description"></textarea>
+                            <h4 class="BlackFont">Videos (Reveals, Teasers, etc.)</h4>
+                            <p>(Separate links with commas)</p><input class="form-control accordian_linkbox" type="text" id="form_Robot_videos">
+                            <h4 class="BlackFont">Competitions &amp; Playlists</h4>
+                            <div id="robotPlaylistBar-Template" class="robotPlaylistBar"><input class="form-control robotPlaylistInput" type="text" placeholder="Competition" id="robotPlaylistInput-comp"><input class="form-control robotPlaylistInput" type="text" placeholder="Youtube Playlist" id="robotPlaylistInput-url">
+                                <button
+                                    class="btn btn-danger btn-sm personTitleDeleteButton" type="reset" id="robotPlaylistDelete">Delete</button>
+                            </div>
+                            <div id="robotPlaylistFieldBox" class="robotPlaylistFieldBox"></div><button class="btn btn-info spaced_button" type="button" id="btn_AddRobotPlaylist">Add Competition and Playlist<i class="icon ion-plus spacedIcon"></i></button>
+                            <div class="clearfix"></div><button class="btn btn-danger buttonBottom deleteButton" type="button" id="Btn_UseRobot">Delete Robot<i class="fa fa-remove spacedIcon"></i></button><button class="btn btn-success buttonBottom deleteButton VisibilityHidden"
+                                type="button" id="Btn_UpdateRobot">Update Robot</button></form>
                     <div class="clearfix"></div>
             </div>
         </div>
@@ -242,9 +222,9 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading" role="tab">
-            <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="true" href="#accordion-1 .item-7">Manage Page Splash Headers</a></h4>
+            <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion-1" aria-expanded="false" href="#accordion-1 .item-5">Manage Page Splash Headers</a></h4>
         </div>
-        <div class="panel-collapse collapse in item-7" role="tabpanel">
+        <div class="panel-collapse collapse item-5" role="tabpanel">
             <div class="accordian_container">
                 <h3 class="BlackFont text-left">Uploading Images</h3>
                 <p>Images MUST be in <strong>.jpg</strong> or <strong>.png</strong> format.</p>

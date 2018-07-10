@@ -29,6 +29,7 @@ const splashImageDefaults = {
 	"Robot.html" : "Robot2017.jpg",
 	"Sponsors.html" : "Teamwork.jpg",
 	"Contact.html" : "Mentor.jpg",
+
 };
 
 //////////////////////////////////////////////////////////////////
@@ -52,14 +53,19 @@ $(window).on("load", function(){
 	configureNavbar(pageIndex);
 
 	if ((pageIndex == "") || (pageIndex == "index.html")){
-		handleSliders();
+		handleSliders(pageIndex);
 	} else if (pageIndex == "Team.html"){
-		handleTeamPage();
+		handleTeamPage(pageIndex);
 	} else if (pageIndex == "Robots.html"){
-		handleRobotsPage();
-	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Account.html") || (pageIndex == "WebsiteManager.html")){
+		handleRobotsPage(pageIndex);
+	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html")) {
 		handleLoginPage(pageIndex);
 		checkLocation();
+	} else if ((pageIndex == "Account.html") || (pageIndex == "WebsiteManager.html")){
+		handleAccountPage(pageIndex);
+		checkLocation();
+	} else if (pageIndex == "Contact.html"){
+		handleContactsPage();
 	}
 
 	scaleSize();
@@ -100,13 +106,14 @@ function prepareSplashImage(pageIndex){
 	pageSettings.splashPageSet = true;
 }
 
+
 function configureNavbar(pageIndex){
 
 	pageIndex = (pageIndex != null) ? pageIndex : getPageIndex();
 
 	if (pageIndex == "Blog.html" || pageIndex == "SocialMedia.html"){
 		$("#MediaBlogNavButton").addClass("active");
-	} else if (pageIndex == "Projects.html" || pageIndex == "Calendar.html"){
+	} else if (pageIndex == "Projects.html" || pageIndex == "Calendar.html" || pageIndex == "Documents.html"){
 		$("#CommunityResourcesNavButton").addClass("active");
 	} else if (pageIndex == "Sponsors.html" || pageIndex == "OurSponsors.html"){
 		$("#SponsorsNavButton").addClass("active");
@@ -329,6 +336,39 @@ function handleSliders(){
 
 }
 
+function handleAccountPage(pageIndex){
+
+	pageIndex = (pageIndex != null) ? pageIndex : getPageIndex();
+
+	$("#account-loading").removeClass("VisibilityHiddenAbsolute");
+	$("#account-page").addClass("VisibilityHiddenAbsolute");
+
+	$.ajax({
+		type: "POST",
+		url: "assets/php/getSession.php",
+		data: "request=getSession",
+		success: function(response) {
+			console.log("Session: " + response);
+			if (response === false) {
+				// User is not signed in
+				window.location = "http://www.team5599.com/SignIn.html";
+			} else {
+				// User is signed in
+				$("#account-loading").addClass("VisibilityHiddenAbsolute");
+				$("#account-page").removeClass("VisibilityHiddenAbsolute");
+			}
+		}
+	});
+
+	$("#accountPage-userTitle").text("Logged in as FIRSTNAME-LASTNAME");
+	// $("#facebookLoginInformationPhotoActual")
+
+	$("#accountPage-signOut").click(function(){
+		console.log("You have been signed out.");
+	})
+
+}
+
 function handleLoginPage(pageIndex){
 
 	if (pageIndex == "SignUp.html"){
@@ -516,6 +556,246 @@ function handleLoginPage(pageIndex){
 
 }
 
+function handleContactsPage(){
+
+	console.log("Loading Contacts . . .");
+
+	$.ajax({
+		type: "POST",
+		url: "assets/php/getPageData.php",
+		data: "request=contactData",
+		success: function(response) {
+			console.log("Session: " + response);
+
+			var contactsObject = JSON.parse(response);
+
+			//
+			var contactContainer = $("#contactInfoList");
+
+			contactContainer.empty();
+
+			for (contact in contactObject){
+
+				var contactBox = $("#contactInfoDiv-Template").clone();
+
+				$(contactBox).children("#name").html("<strong>"+contactObject[contact].name+"</strong>");
+				$(contactBox).children("#contact").text(contactObject[contact].contact);
+
+				$(contactBox).attr("id", contactObject[content].content);
+
+				$(contactBox).appendTo(contactContainer);
+
+			}
+		}
+	});
+
+
+}
+
+function handleRobotsPage(){
+
+
+	var localData = [
+		{
+			title	: "Pied Piper",
+			season 	: "2015",
+			type 	: "FRC",
+
+			image 	: "",
+			description : ["Pied Piper was Team 5599's robot for the 2015 season, FIRST Recycle Rush. Pied Piper was capable of lifting and manuevering totes and garbage bins. The robot was named by the team's captain, Tanoy Sarkar.", "This robot helped the team win the Rookie Inspiration Award at the New York City Regional Competition and the Future Glory Award at the Brunswick Eruption Off-season competition."],
+
+			revealVideos 	: ["https://www.youtube.com/watch?v=_-0VbFqoipo"],
+
+			competitionRecordings : {
+				"NYC Regional - Rookie Inspiration Award" : "",
+				"Brunswick Eruption - Future Glory Award" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMYIkI-JpK00zzL8NadVlk37"
+			},
+
+			CADiFrame : "",
+			blueAllianceAPI : ""
+		},
+		{
+			title	: "The Hound",
+			season 	: "2016",
+			type 	: "FRC",
+
+			image 	: "",
+			description : ["The Hound was Team 5599's robot for the 2016 season, FIRST Stronghold. The Hound was capable of doing all the defenses excluding the Sally Port and Drawbridge. It was also able to shoot the high goal and low goal. It's pneumatic wheels allowed for great off-terrain manueverability, the sound of it's shooting motors was ferocious, and it's pneumatic arm could punch through sheetrock. The robot was named by the team as a whole."],
+
+			revealVideos 	: ["https://www.youtube.com/watch?v=oVSD8OBbLaM", "https://www.youtube.com/watch?v=PdjCbOFEjpI"],
+			
+			competitionRecordings : {
+				"NYC Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMbhEKMK7wOO8dr-A-fEgFII"
+			},
+
+			CADiFrame : "",
+			blueAllianceAPI : ""
+		},
+		{
+			title	: "HAL 5700",
+			season 	: "2017",
+			type 	: "FRC",
+
+			image 	: "",
+			description : ["HAL 5700 was Team 5599's robot for the 2017 season, FIRST STEAMworks. HAL 5700 was capable of receiving gears, placing them on the airships, using the return, and scaling the airship. It's omniwheels and design allowed it to manuever easily across fuel-filled fields. The robot was named by the team's lead coach, Bernard Haggerty.", "The team was a leading alliance and finalist at the Hudson Valley Rally off-season competition. The alliance placed 2nd, and consisted of Yonker's High School (Team 5123) and Carmel High School (Team 5943)."],
+
+			revealVideos 	: ["https://www.youtube.com/watch?v=1CLYCoHTwPQ"],
+			
+			competitionRecordings : {
+				"NYC Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMaGIvnHV1J-kzymZlSUV--n",
+				"Hudson Valley Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMYkxCTT5Rdrfobd3MyVrCml",
+				"Hudson Valley Rally" : ""
+			},
+
+			CADiFrame : "",
+			blueAllianceAPI : ""
+		},
+		{
+			title	: "Quick Silver",
+			season 	: "2018",
+			type 	: "FRC",
+
+			image 	: "",
+			description : ["Quick Silver was Team 5599's robot for the 2018 season, FIRST Power Up! Quick Silver was capable of easily intaking power cubes, and efficiently placing them in the scale, even on it's highest and furthest points, and switches. The robot was named by the team.", "The team played in the quarter-finals during the NYC Regional Competition on an alliance with Brooklyn Technical High School (Team 334) and Long Island City High School (Team 2579)."],
+
+			revealVideos 	: [],
+			
+			competitionRecordings : {
+				"NYC Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMYKYeob_AxzjBBfbnAJboeP",
+				"SBPLI Long Island Regional #2" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMbWWo66G_gRg1ucFTC-ZKlv",
+			},
+
+			CADiFrame : "",
+			blueAllianceAPI : ""
+		},
+		{
+			title	: "Barbara",
+			season 	: "2018",
+			type 	: "SeaPerch",
+
+			competitionRecordings : {
+				"SeaPerch 2018" : ""
+			},
+
+			image 	: "",
+			description : ["Barabara was the BNCHS Robotics Team's robot for the 2017 SeaPerch underwater robotics competition. She placed 3rd in the team's first season."],
+
+		},
+	];
+
+	// Sort table
+	localData.sort(function(a, b){
+		return a.season < b.season;
+	})
+
+	$("#robot-buttons").empty();
+
+	for (robot in localData){
+
+		var robotData = localData[robot];
+		var typeColor = ((robotData.type == "FRC") ? "info" : "danger");
+	
+		var buttonHTML = "<button id=\"" + robotData.type + "_" + robotData.title + "\" class=\"btn btn-" + typeColor + " RobotDisplayButton\" type=\"button\">" + robotData.title + "<span class=\"label label-" + typeColor + " RobotDisplayLabel\">" + robotData.type + " " + robotData.season + "</span></button>";
+	
+		$("#robot-buttons").append(buttonHTML);
+
+	}
+
+	function loadRobotData(id){
+
+		var data;
+
+		for (robot in localData){
+			if (localData[robot].type + "_" + localData[robot].title == id){
+				data = localData[robot];
+				break;
+			}
+		}
+
+		if (data == null){
+			alert("An error has occured - no robot with that type and title was found. '" + id + "'");
+			return;
+		}
+
+		$("#robot-title").text(data.title);
+		$("#robot-year").text(data.season);
+
+		$("#robot-description").empty();
+		for (description in data.description){
+			$("#robot-description").append("<p>\t" + data.description[description] + "</p>");
+		}
+
+		$("#robot-reveal-video-main").empty();
+
+		if ("revealVideos" in data){
+
+			if (data.revealVideos.length == 0){
+
+				$("#robot-reveal-video-main").append("<p class=\"text-center\">Sorry, there's no reveal video data for this year!</p>");
+
+			} else if (data.revealVideos.length == 1){
+
+				var videoHTML = "<div class=\"youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.revealVideos[0].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
+				$("#robot-reveal-video-main").append(videoHTML)
+
+			} else {
+
+				var buildCarouselHTML_prepend = '<div data-ride="carousel" data-interval="false" data-pause="false" class="carousel slide" id="robot-reveal-videos-carousel"> <div role="listbox" class="carousel-inner" id="robot-reveal-slides">';
+				var buildCarouselHTML_postpend = '</div> <div><a href="#robot-reveal-videos-carousel" role="button" data-slide="prev" class="left carousel-control"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a><a href="#robot-reveal-videos-carousel" role="button" data-slide="next" class="right carousel-control"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a></div> </div>'
+				
+				var buildCarouselHTML_content = "";
+
+				for (videoHead in data.revealVideos){
+
+					var slideHTML = "<div class=\"item " + ((buildCarouselHTML_content == "") ? "active " : "") + "youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.revealVideos[videoHead].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
+					buildCarouselHTML_content = buildCarouselHTML_content + " " + slideHTML;
+
+				}
+
+				$("#robot-reveal-video-main").append(buildCarouselHTML_prepend + buildCarouselHTML_content + buildCarouselHTML_postpend);
+
+			}
+
+			$("#robot-info-reveal-main").removeClass("VisibilityHiddenAbsolute");
+		} else {
+			$("#robot-info-reveal-main").addClass("VisibilityHiddenAbsolute");
+		}
+	
+
+		$("#match-playlist").empty();
+
+		var typeColor = ((data.type == "FRC") ? "info" : "danger");
+
+		for (competition in data.competitionRecordings){
+
+			var buttonHTML = "";
+
+			if (data.competitionRecordings[competition] != ""){
+				
+				buttonHTML = "<a class=\"btn btn-" + typeColor + " match-playlist-item\" role=\"button\" href=\"" + data.competitionRecordings[competition] + "\">" + competition + "<i class=\"fa fa-film match-playlist-item-hasVideo\"></i></a>";
+			
+			} else {
+				buttonHTML = "<button class=\"btn btn-" + typeColor + " match-playlist-item\" type=\"button\">" + competition + "</button>";
+			}
+
+			$("#match-playlist").append(buttonHTML);
+		}
+	}
+
+	$("#robot-buttons").children().each(function(){
+		$(this).click(function(){
+
+			var id = $(this).attr("id");
+			loadRobotData(id);
+			scrollToElement("#robot-info-main");
+
+		})
+	})
+
+	loadRobotData(localData[0].type + "_" + localData[0].title);
+
+}
+
 
 function handleTeamPage() {
 
@@ -539,30 +819,68 @@ function handleTeamPage() {
 					},
 
 					"Danielle Louie" : {
-						"Titles" : ["Co-Captain", "Head of Marketing"],
+						"Titles" : ["Co-Captain", "Director of Marketing"],
 						"Duration" : "2015-2018",
 					},
 
-					"FirstName LastName3" : {
-						"Titles" : ["Captain", "Director"],
-						"Duration" : "startYear-endYear",
-						"AssignedOrder" : 0,
+					"Nazifa Prapti" : {
+						"Titles" : ["Co-Head of Electronics"],
+						"Duration" : "2016-2018",
 					},
 
-					"FirstName LastName4" : {
-						"Titles" : ["A title", "Another one"],
-						"Duration" : "startYear-endYear",
-					}
+					"Max Menes" : {
+						"Titles" : ["Co-Head of Eletronics"],
+						"Duration" : "2014-2018",
+					},
+
+					"Jeff Chan" : {
+						"Titles" : ["Co-Head of Programming"],
+						"Duration" : "2016-2018",
+					},
+
+					"Ananta Sharma" : {
+						"Titles" : ["Co-Head of Programming"],
+						"Duration" : "2016-2018",
+					},
+
+					"Andrew Lin" : {
+						"Titles" : ["Head of CAD", "Board Member"],
+						"Duration" : "2016-2018",
+					},
 
 				},
 				"Mentors" : {
 					"Bernard Haggerty" : {
 						"Titles" : ["Lead Mentor", "Coach"],
-						"Duration" : "2015-present",
+						"Duration" : "2014-present",
 					},
 					"Joseph Pugliese" : {
 						"Titles" : ["Mentor"],
-						"Duration" : "2015-present",
+						"Duration" : "2014-present",
+					},
+					"Mr. C" : {
+						"Titles" : ["Mentor"],
+						"Duration" : "2016-present",
+					},
+					"Tanoy Sarkar" : {
+						"Titles" : ["Founder", "Mentor"],
+						"Duration" : "2017-present",
+					},
+					"Kelin Qu" : {
+						"Titles" : ["Founder", "Mentor"],
+						"Duration" : "2017-present",
+					},
+					"Michael Rooplall" : {
+						"Titles" : ["Mentor", "Webmaster"],
+						"Duration" : "2017-present",
+					},
+					"Jaime Baek" : {
+						"Titles" : ["Mentor"],
+						"Duration" : "2017-present",
+					},
+					"Jin Chai" : {
+						"Titles" : ["Mentor"],
+						"Duration" : "2017-present",
 					}
 				}
 			}
@@ -638,7 +956,7 @@ function handleTeamPage() {
 		} else {
 			console.log("We don't have any data for that year! Sorry!");
 
-			var noDataMessage = $("<p></p>").text("\tSorry, we don't have any data for that year!");
+			var noDataMessage = $("<p class=\"text-center\"></p>").text("\tSorry, we don't have any data for that year!");
 			$("#TeamHistoryBox").append(noDataMessage);
 
 		}
@@ -647,7 +965,7 @@ function handleTeamPage() {
 
 		// Populate with all our students
 		for (member in population){
-			$("#TeamHistoryList").append("<p class=\"team-member\">" + population[member] + "</p>");
+			$("#TeamHistoryList").append("<p class=\"team-member noselect\">" + population[member] + "</p>");
 		}
 
 	}
@@ -729,8 +1047,6 @@ function scrollUpdate(){
 			var $element = $(this);
 			// subtract some from the height b/c of the padding
 			var height = $element.height()-18;
-
-			console.log("H: " + height);
 			$(this).css('backgroundPosition', '50% ' + Math.round((height - pos) * pageSettings.paralaxVelocity) + 'px'); 
 		});
 	}
@@ -968,8 +1284,14 @@ function scaleSize(){
 
 		paralaxPadding = splashImageHeight / splashImageWidth * splashContentHeight;
 
-		$('.splashContent').css("height", splashContentHeight + "px");
-		$('.splashContentHalf').css("height", (splashContentHeight/2) + "px");
+		// $('.splashContent').css("height", splashContentHeight + "px");
+		// $('.splashContentHalf').css("height", (splashContentHeight/2) + "px");
+
+		$(".splashContent").animate({height:splashContentHeight + 'px'}, 400);
+		$(".splashContentHalf").animate({height: (splashContentHeight/2) + 'px'}, 400);
+
+		
+
 		$('.paralax').css('padding-top', paralaxPadding+"%");
 		$('.paralaxHalf').css('padding-top', (paralaxPadding/2)+"%");
 		
