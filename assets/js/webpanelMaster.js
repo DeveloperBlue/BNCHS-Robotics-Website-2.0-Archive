@@ -139,51 +139,16 @@ function activateStaticContentPanels(){
 	//
 	$("#btn_AddPeopleTitle").click(function(){
 
-		console.log("Adding people title?");
+		console.log("Adding Title to Person");
 
-		var titleBox = $("#personTitleBar-Template").clone();
-
-		var y0 = $(titleBox).children("#personTitleY0Input");
-		var y1 = $(titleBox).children("#personTitleY1Input");
-
-		y0.change(function(){
-
-			console.log("Year changed.");
-
-			if (y0.val() > y1.val()){
-				y0.val(y1.val());
-				alert("Your start year cannot occur after your end year!");
-			}
-
-			if (y0.val() < py0.val()){
-				alert("A person should not have a title before the year they were on the team.")
-			}
-		})
-
-		y1.change(function(){
-
-			console.log("Year changed.");
-
-			if (y0.val() > y1.val()){
-				y1.val(y0.val());
-				alert("Your end year cannot occur before your start year!");
-			}
-		})
-
-
-		$(titleBox).children("#personTitleDelete").click(function(){
-			titleBox.remove();
-		})
-
-		$(titleBox).attr("id", "");
-
-		$(titleBox).appendTo($("#personTitleFieldBox"));
+		createPeopleTitle();
 
 	})
 
 
 	//
 	var btn_changeView = $("#btn_ChangePersonView");
+
 	btn_changeView.click(function(){
 
 		if (btn_changeView.text() == "View Mentors"){
@@ -195,6 +160,8 @@ function activateStaticContentPanels(){
 		console.log("Switching view to " + btn_changeView.text());
 
 		$("#panel_PeopleOrder").empty();
+
+		// Load people
 	})
 
 	//
@@ -214,6 +181,60 @@ function activateStaticContentPanels(){
 
 	})
 }
+
+// Helpers
+
+function createPeopleTitle(existingData){
+
+	var titleBox = $("#personTitleBar-Template").clone();
+
+	var titleInput = $(titleBox).children("#personTitleInput");
+	var y0 = $(titleBox).children("#personTitleY0Input");
+	var y1 = $(titleBox).children("#personTitleY1Input");
+	var py0 = $("#form_People_yearJoined");
+
+	if (existingData){
+		titleInput.val(existingData.title);
+		y0.val(existingData.startYear);
+		y1.val(existingData.endYear);
+	}
+
+	y0.change(function(){
+
+		console.log("Year changed.");
+
+		if (y0.val() > y1.val()){
+			y0.val(y1.val());
+			alert("Your start year cannot occur after your end year!");
+		}
+
+		if (y0.val() < py0.val()){
+			alert("A person should not have a title before the year they were on the team.")
+		}
+	})
+
+	y1.change(function(){
+
+		console.log("Year changed.");
+
+		if (y0.val() > y1.val()){
+			y1.val(y0.val());
+			alert("Your end year cannot occur before your start year!");
+		}
+	})
+
+
+	$(titleBox).children("#personTitleDelete").click(function(){
+		titleBox.remove();
+	})
+
+	$(titleBox).attr("id", "");
+
+	$(titleBox).appendTo($("#personTitleFieldBox"));
+}
+
+
+//
 
 function activateDynamicContentPanels(){
 
@@ -262,6 +283,7 @@ function activateDynamicContentPanels(){
 					//
 					$("#form_Sponsor_name").val(itemObject.name);
 					$("#form_Sponsor_link").val(itemObject.link);
+					// Logo
 
 					break;
 				case "Robot":
@@ -280,6 +302,11 @@ function activateDynamicContentPanels(){
 					$("#form_People_yearJoined").val(itemObject.yearJoined);
 					$("#form_People_yearGraduated").val(itemObject.yearGraduated);
 					// Logo
+
+					// Titles
+					for (index in itemObject.titles){
+						createPeopleTitle(itemObject.titles[index]);
+					}
 
 					break;
 			}
@@ -448,15 +475,34 @@ function activateDynamicContentPanels(){
 				break;
 			case "Robot":
 
-
 				saveObject = {
+
 					name : $("#form_Robot_name").val(),
 					seasonYear : $("#form_Robot_seasonYear").val(),
 					description : $("#form_Robot_description").val(),
+
 					videos : $("#form_Robot_videos").val(),
-					matchPlaylists : $("#form_Robot_matchPlaylists").val(),
-					CADiFrame : $("#form_Robot_CADiFrame").val()
+					type : $("#robotType").val(),
+
+					matchPlaylists : [],
 				};
+
+				$("#robotPlaylistFieldBox").children("div").each(function(){
+
+					var compTitle = $(this).children("#robotPlaylistInput-comp");
+					var compPlaylist = $(this).children("#robotPlaylistInput-url");
+
+					if (compTitle.val().replace(/ /g, "") != ""){
+
+						var compTitleObject = {
+							title: compTitle.val().trim(),
+							playlist: compPlaylist.val().trim()
+						};
+
+						saveObject.matchPlaylists.push(compTitleObject);
+					}
+
+				})
 
 				break;
 			case "People":
@@ -466,8 +512,26 @@ function activateDynamicContentPanels(){
 					yearJoined : $("#form_People_yearJoined").val(),
 					yearGraduated : $("#form_People_yearGraduated").val(),
 					headshot : "",
-					titles : {}
+					titles : []
 				};
+
+				$("#personTitleFieldBox").children("div").each(function(){
+
+					var titleName = $(this).children("#personTitleInput");
+					var titleY0 = $(this).children("#personTitleY0Input");
+					var titleY1 = $(this).children("#personTitleY1Input");
+
+					if (titleName.val().replace(/ /g, "") != ""){
+
+						var titleObject = {
+							title : titleName.val(),
+							startYear : titleY0.val(),
+							endYear : titleY1.val()
+						}
+
+						saveObject.titles.push(titleObject);
+					}
+				})
 
 				break;
 		}
@@ -485,6 +549,18 @@ function activateDynamicContentPanels(){
 		$(this).addClass("disabled");
 
 		// Saving
+
+		$.ajax({
+			type: "POST",
+			url: "assets/php/setPageData.php",
+			data: {request : panelName, objectData : JSON.stringify(dataType[panelName].panelItems)},
+			success: function(response) {
+
+				// update
+				alert(response);
+				$(this).removeClass("disabled");
+			}
+		});
 	}
 
 
@@ -522,22 +598,50 @@ function activateDynamicContentPanels(){
 		dataType[panelName].selectedPanelButton;
 		dataType[panelName].selectedPanelMode = "";
 
-		dataType[panelName].panelItems = {};
 
+		// Load via php
 
-		// Bind functions to buttons
+		var requestFromPanelName = {
+			"Contact" 	: "contactData",
+			"Sponsor" 	: "sponsorData",
+			"Robot" 	: "robotData",
+			"People" 	: "teamData"
+		};
 
-		panelForm.addClass("panelNotActive");
+		$.ajax({
+			type: "POST",
+			url: "assets/php/getPageData.php",
+			data: {request : requestFromPanelName[panelName]},
+			success: function(response) {
 
-		panelAddButton.click(btn_addCallback);
+				console.log("LOAD RESPONSE: " + response);
 
-		panelUpdateButton.click(btn_updateCallback);
+				if (response == false){
+					alert("An error has occured. Consider reloading the page.");
+					return;
+				}
 
-		panelUseButton.click(btn_useCallback);
+				var dataObject = JSON.parse(response);
 
-		panelSaveButton.click(btn_saveCallback);
+				dataType[panelName].panelItems = dataObject;
 
-		loadPanelItems(panelName);
+				// Bind functions to buttons
+
+				panelForm.addClass("panelNotActive");
+
+				panelAddButton.click(btn_addCallback);
+
+				panelUpdateButton.click(btn_updateCallback);
+
+				panelUseButton.click(btn_useCallback);
+
+				panelSaveButton.click(btn_saveCallback);
+
+				loadPanelItems(panelName);
+			}
+		});
+
+		
 
 	}
 

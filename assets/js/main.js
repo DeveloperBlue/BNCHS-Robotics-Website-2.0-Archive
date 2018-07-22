@@ -58,11 +58,13 @@ $(window).on("load", function(){
 		handleTeamPage(pageIndex);
 	} else if (pageIndex == "Robots.html"){
 		handleRobotsPage(pageIndex);
-	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html")) {
+	} else if (pageIndex == "Documents.html"){
+		handleDocumentsPage(pageIndex);
+	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Verify.html")) {
 		handleLoginPage(pageIndex);
 		checkLocation();
 	} else if ((pageIndex == "Account.html") || (pageIndex == "WebsiteManager.html")){
-		handleAccountPage(pageIndex);
+		// handleAccountPage(pageIndex);
 		checkLocation();
 	} else if (pageIndex == "Contact.html"){
 		handleContactsPage();
@@ -70,6 +72,7 @@ $(window).on("load", function(){
 
 	scaleSize();
 })
+
 
 $(window).bind("resize", scaleSize);
 $(window).bind("scroll", scrollUpdate);
@@ -146,7 +149,7 @@ function configureNavbar(pageIndex){
 	$.ajax({
 		type: "POST",
 		url: "assets/php/getSession.php",
-		data: "request=getSession",
+		data: '{request : "getSession"}',
 		success: function(response) {
 			console.log("Session: " + response);
 			if (response === false) {
@@ -330,7 +333,10 @@ function handleSliders(){
 
 	$("#slide-3-btn").click(function(){
 		if (pageSettings.didLoadSlides.slide_3 == true) { return };
-		$("#tab-3-content").html('<iframe src="https://clips.twitch.tv/embed?clip=WiseSparklyWatercressWutFace" frameborder="0" allowfullscreen="true" autoplay="false" height="100%" width="100%"></iframe>');
+		var twitch_plug = $("#tab-3-content-twitch-highlight");
+		if (twitch_plug){
+			$("#tab-3-content-twitch-highlight").html('<iframe src="https://clips.twitch.tv/embed?clip=WiseSparklyWatercressWutFace&autoplay=false" frameborder="0" allowfullscreen="true" autoplay="false" height="500px" width="100%"></iframe>');
+		}
 		pageSettings.didLoadSlides.slide_3 = true;
 	})
 
@@ -346,7 +352,7 @@ function handleAccountPage(pageIndex){
 	$.ajax({
 		type: "POST",
 		url: "assets/php/getSession.php",
-		data: "request=getSession",
+		data: '{request : "getSession"}',
 		success: function(response) {
 			console.log("Session: " + response);
 			if (response === false) {
@@ -371,6 +377,8 @@ function handleAccountPage(pageIndex){
 
 function handleLoginPage(pageIndex){
 
+	console.log("Handling - " + pageIndex);
+
 	if (pageIndex == "SignUp.html"){
 
 		$("#account-create").click(function(e) {
@@ -385,6 +393,7 @@ function handleLoginPage(pageIndex){
 				success: function(response) {
 					if (response === "success") {
 						console.log("Success!"); // PHP will automatically redirect
+						window.location = "http://www.team5599.com/Verify.html?request=notify";
 					} else {
 						$("#account-create").prop("disabled",false);
 						$("#error").text(response);
@@ -424,9 +433,11 @@ function handleLoginPage(pageIndex){
 
 		var requestType = getUrlParam("request");
 
+		console.log("Request type - " + requestType);
+
 		if ((requestType == "verify") || (requestType == "notify")){
 
-			$("#form-activate").removeClass("visibilityHidden");
+			$("#form-activate").removeClass("VisibilityHidden");
 
 			if (requestType == "notify"){
 
@@ -435,7 +446,7 @@ function handleLoginPage(pageIndex){
 				$.ajax({
 					type: "POST",
 					url: "assets/php/Verify.php",
-					data: "request=notify",
+					data: {request : "notify"},
 					success: function(response) {
 						$("#error_activate").text(response);
 					}
@@ -446,18 +457,26 @@ function handleLoginPage(pageIndex){
 
 				console.log("Verifying user . . .");
 
+				var requestOSIS = getUrlParam("osis");
+				var requestKey = getUrlParam("key");
+
 				$.ajax({
 					type: "POST",
 					url: "assets/php/Verify.php",
-					data: "request=verify",
+					data: {request : "verify", osis: requestOSIS, key : requestKey},
 					success: function(response) {
 						if (response == "success"){
 							$("#error_activate").text("Your account has been successfully verified!");
 							$("#activate-go-to-dashboard").removeClass("VisibilityHiddenAbsolute");
 						} else {
+							console.log("Failure: " + response);
 							$("#error_activate").text(response);
 						}
 						
+					},
+					error: function (xhr, status) {
+						alert(status);
+						alert(xhr);
 					}
 
 				});
@@ -466,7 +485,7 @@ function handleLoginPage(pageIndex){
 
 		} else if (requestType == "forgot"){
 
-			$("#form-forgot").removeClass("visibilityHidden");
+			$("#form-forgot").removeClass("VisibilityHidden");
 
 			$("#form-forgot-button").click(function(){
 
@@ -482,8 +501,8 @@ function handleLoginPage(pageIndex){
 					success: function(response) {
 						if (response.startsWith("success-")){
 							var email = response.replace("success-", "");
-							$("#form-forgot").addClass("visibilityHidden");
-							$("#form-activate").removeClass("visibilityHidden");
+							$("#form-forgot").addClass("VisibilityHidden");
+							$("#form-activate").removeClass("VisibilityHidden");
 							$("#error_activate").text("An email has been sent to " + email + " with instructions on how to reset your password.");
 						} else {
 							$("#error_forgot").removeClass("VisibilityHiddenAbsolute");
@@ -499,7 +518,7 @@ function handleLoginPage(pageIndex){
 
 		} else if (requestType == "reset"){
 
-			$("#form-reset").removeClass("visibilityHidden");
+			$("#form-reset").removeClass("VisibilityHidden");
 
 			var osis = getUrlParam("osis");
 			$("reset-p-text").text("Enter a new password for the account " + osis);
@@ -515,8 +534,8 @@ function handleLoginPage(pageIndex){
 					data: "request=reset&" + $("#form-reset").serialize(),
 					success: function(response) {
 						if (response == "success"){
-							$("#form-reset").addClass("visibilityHidden");
-							$("#form-activate").removeClass("visibilityHidden");
+							$("#form-reset").addClass("VisibilityHidden");
+							$("#form-activate").removeClass("VisibilityHidden");
 							$("#error_activate").text("Your email was successfully reset.");
 							$("#activate-go-to-dashboard").removeClass("VisibilityHiddenAbsolute");
 						} else {
@@ -541,7 +560,7 @@ function handleLoginPage(pageIndex){
 		$.ajax({
 			type: "POST",
 			url: "assets/php/getSession.php",
-			data: "request=getSession",
+			data: '{request:"getSession"}',
 			success: function(response) {
 				if (response != false){
 					window.location = "http://www.team5599.com/Account.html";
@@ -560,42 +579,88 @@ function handleContactsPage(){
 
 	console.log("Loading Contacts . . .");
 
-	$.ajax({
-		type: "POST",
-		url: "assets/php/getPageData.php",
-		data: "request=contactData",
-		success: function(response) {
-			console.log("Session: " + response);
+	function buildContacts(contactObject){
 
-			var contactsObject = JSON.parse(response);
+		var contactContainer = $("#contactInfoList");
 
-			//
-			var contactContainer = $("#contactInfoList");
+		contactContainer.empty();
 
-			contactContainer.empty();
+		if (contactsObject){
 
-			for (contact in contactObject){
+			// Sort table
+
+			contactsObject.sort(function(a, b){
+				return a.order < b.order;
+			})
+
+			for (contact in contactsObject){
+
+				var contactItem = contactsObject[contact];
 
 				var contactBox = $("#contactInfoDiv-Template").clone();
 
-				$(contactBox).children("#name").html("<strong>"+contactObject[contact].name+"</strong>");
-				$(contactBox).children("#contact").text(contactObject[contact].contact);
+				$(contactBox).children("#name").html("<strong>" + contactItem.name + "</strong>");
+				$(contactBox).children("#contact").text(contactItem.contact);
 
-				$(contactBox).attr("id", contactObject[content].content);
+				$(contactBox).attr("id", contactItem.contact);
 
 				$(contactBox).appendTo(contactContainer);
 
 			}
+
+		} else {
+			$(contactContainer).append("<p>An error has occured. Consider refreshing the page?</p>");
+		}
+	}
+
+	var defaultContactData = {
+		"0" : {
+			name : "General Info & Marketing",
+			order : 0,
+			contact : "Sentinels@team5599.com"
+		},
+		"1" : {
+			name : "Danielle Louie - Director of Marketing",
+			order : 1,
+			contact : "DLouie@team5599.com"
+		},
+		"2" : {
+			name : "Bernard Haggerty - Lead Coach",
+			order : 2,
+			contact : "BHaggerty@team5599.com"
+		},
+		"3" : {
+			name : "Michael Rooplall - Webmaster",
+			order : 3,
+			contact : "MRooplall@team5599.com"
+		}
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "assets/php/getPageData.php",
+		data: {request : "contactData"},
+		success: function(response) {
+
+			console.log("RESPONSE: " + response);
+
+			buildContacts(JSON.parse(response));
+
+		},
+
+		error : function(e){
+			console.log("An error occured when fetching the ajax request. Loading default data.");
+
+			buildContacts(defaultContactData);
 		}
 	});
-
 
 }
 
 function handleRobotsPage(){
 
 
-	var localData = [
+	var defaultRobotData = [
 		{
 			title	: "Pied Piper",
 			season 	: "2015",
@@ -604,7 +669,7 @@ function handleRobotsPage(){
 			image 	: "",
 			description : ["Pied Piper was Team 5599's robot for the 2015 season, FIRST Recycle Rush. Pied Piper was capable of lifting and manuevering totes and garbage bins. The robot was named by the team's captain, Tanoy Sarkar.", "This robot helped the team win the Rookie Inspiration Award at the New York City Regional Competition and the Future Glory Award at the Brunswick Eruption Off-season competition."],
 
-			revealVideos 	: ["https://www.youtube.com/watch?v=_-0VbFqoipo"],
+			revealVideos 	: ["https://www.youtube.com/watch?v=_-0VbFqoipo", "https://www.youtube.com/watch?v=Aj1VBVc-rHo"],
 
 			competitionRecordings : {
 				"NYC Regional - Rookie Inspiration Award" : "",
@@ -622,7 +687,7 @@ function handleRobotsPage(){
 			image 	: "",
 			description : ["The Hound was Team 5599's robot for the 2016 season, FIRST Stronghold. The Hound was capable of doing all the defenses excluding the Sally Port and Drawbridge. It was also able to shoot the high goal and low goal. It's pneumatic wheels allowed for great off-terrain manueverability, the sound of it's shooting motors was ferocious, and it's pneumatic arm could punch through sheetrock. The robot was named by the team as a whole."],
 
-			revealVideos 	: ["https://www.youtube.com/watch?v=oVSD8OBbLaM", "https://www.youtube.com/watch?v=PdjCbOFEjpI"],
+			revealVideos 	: ["https://www.youtube.com/watch?v=oVSD8OBbLaM", "https://www.youtube.com/watch?v=PdjCbOFEjpI", "https://www.youtube.com/watch?v=VqOKzoHJDjA"],
 			
 			competitionRecordings : {
 				"NYC Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMbhEKMK7wOO8dr-A-fEgFII"
@@ -639,7 +704,7 @@ function handleRobotsPage(){
 			image 	: "",
 			description : ["HAL 5700 was Team 5599's robot for the 2017 season, FIRST STEAMworks. HAL 5700 was capable of receiving gears, placing them on the airships, using the return, and scaling the airship. It's omniwheels and design allowed it to manuever easily across fuel-filled fields. The robot was named by the team's lead coach, Bernard Haggerty.", "The team was a leading alliance and finalist at the Hudson Valley Rally off-season competition. The alliance placed 2nd, and consisted of Yonker's High School (Team 5123) and Carmel High School (Team 5943)."],
 
-			revealVideos 	: ["https://www.youtube.com/watch?v=1CLYCoHTwPQ"],
+			revealVideos 	: ["https://www.youtube.com/watch?v=1CLYCoHTwPQ", "https://www.youtube.com/watch?v=EMiNmJW7enI"],
 			
 			competitionRecordings : {
 				"NYC Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMaGIvnHV1J-kzymZlSUV--n",
@@ -658,7 +723,7 @@ function handleRobotsPage(){
 			image 	: "",
 			description : ["Quick Silver was Team 5599's robot for the 2018 season, FIRST Power Up! Quick Silver was capable of easily intaking power cubes, and efficiently placing them in the scale, even on it's highest and furthest points, and switches. The robot was named by the team.", "The team played in the quarter-finals during the NYC Regional Competition on an alliance with Brooklyn Technical High School (Team 334) and Long Island City High School (Team 2579)."],
 
-			revealVideos 	: [],
+			revealVideos 	: ["https://www.youtube.com/watch?v=sBPAlijR4mw"],
 			
 			competitionRecordings : {
 				"NYC Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMYKYeob_AxzjBBfbnAJboeP",
@@ -673,6 +738,8 @@ function handleRobotsPage(){
 			season 	: "2018",
 			type 	: "SeaPerch",
 
+			revealVideos : ["https://www.youtube.com/watch?v=gl3SZgLjoD0", "https://www.youtube.com/watch?v=jiGpZYibsYI"],
+
 			competitionRecordings : {
 				"SeaPerch 2018" : ""
 			},
@@ -683,116 +750,161 @@ function handleRobotsPage(){
 		},
 	];
 
-	// Sort table
-	localData.sort(function(a, b){
-		return a.season < b.season;
-	})
+	function buildRobots(localData){
 
-	$("#robot-buttons").empty();
+		// Sort table
+		localData.sort(function(a, b){
+			return a.season < b.season;
+		})
 
-	for (robot in localData){
-
-		var robotData = localData[robot];
-		var typeColor = ((robotData.type == "FRC") ? "info" : "danger");
-	
-		var buttonHTML = "<button id=\"" + robotData.type + "_" + robotData.title + "\" class=\"btn btn-" + typeColor + " RobotDisplayButton\" type=\"button\">" + robotData.title + "<span class=\"label label-" + typeColor + " RobotDisplayLabel\">" + robotData.type + " " + robotData.season + "</span></button>";
-	
-		$("#robot-buttons").append(buttonHTML);
-
-	}
-
-	function loadRobotData(id){
-
-		var data;
+		$("#robot-buttons").empty();
 
 		for (robot in localData){
-			if (localData[robot].type + "_" + localData[robot].title == id){
-				data = localData[robot];
-				break;
+
+			var robotData = localData[robot];
+			var typeColor = ((robotData.type == "FRC") ? "info" : "danger");
+		
+			var buttonHTML = "<button id=\"" + robotData.type + "_" + robotData.title + "\" class=\"btn btn-" + typeColor + " RobotDisplayButton\" type=\"button\">" + robotData.title + "<span class=\"label label-" + typeColor + " RobotDisplayLabel\">" + robotData.type + " " + robotData.season + "</span></button>";
+		
+			$("#robot-buttons").append(buttonHTML);
+
+		}
+
+		function loadRobotData(id, setParameters){
+
+			var data;
+
+			for (robot in localData){
+				if (localData[robot].type + "_" + localData[robot].title == id){
+					data = localData[robot];
+					break;
+				}
 			}
-		}
 
-		if (data == null){
-			alert("An error has occured - no robot with that type and title was found. '" + id + "'");
-			return;
-		}
+			if (data == null){
+				alert("An error has occured - no robot with that type and title was found. '" + id + "'");
+				return;
+			}
 
-		$("#robot-title").text(data.title);
-		$("#robot-year").text(data.season);
+			if (setParameters){
+				updateQueryStringParam("type", data.type);
+				updateQueryStringParam("season", data.season);
+			}
 
-		$("#robot-description").empty();
-		for (description in data.description){
-			$("#robot-description").append("<p>\t" + data.description[description] + "</p>");
-		}
+			$("#robot-title").text(data.title);
+			$("#robot-year").text(data.season);
 
-		$("#robot-reveal-video-main").empty();
+			$("#robot-description").empty();
+			for (description in data.description){
+				$("#robot-description").append("<p>\t" + data.description[description] + "</p>");
+			}
 
-		if ("revealVideos" in data){
+			$("#robot-reveal-video-main").empty();
 
-			if (data.revealVideos.length == 0){
+			if ("revealVideos" in data){
 
-				$("#robot-reveal-video-main").append("<p class=\"text-center\">Sorry, there's no reveal video data for this year!</p>");
+				if (data.revealVideos.length == 0){
 
-			} else if (data.revealVideos.length == 1){
+					$("#robot-reveal-video-main").append("<p class=\"text-center\">Sorry, there's no reveal video data for this year!</p>");
 
-				var videoHTML = "<div class=\"youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.revealVideos[0].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
-				$("#robot-reveal-video-main").append(videoHTML)
+				} else if (data.revealVideos.length == 1){
 
-			} else {
+					var videoHTML = "<div class=\"youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.revealVideos[0].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
+					$("#robot-reveal-video-main").append(videoHTML)
 
-				var buildCarouselHTML_prepend = '<div data-ride="carousel" data-interval="false" data-pause="false" class="carousel slide" id="robot-reveal-videos-carousel"> <div role="listbox" class="carousel-inner" id="robot-reveal-slides">';
-				var buildCarouselHTML_postpend = '</div> <div><a href="#robot-reveal-videos-carousel" role="button" data-slide="prev" class="left carousel-control"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a><a href="#robot-reveal-videos-carousel" role="button" data-slide="next" class="right carousel-control"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a></div> </div>'
-				
-				var buildCarouselHTML_content = "";
+				} else {
 
-				for (videoHead in data.revealVideos){
+					var buildCarouselHTML_prepend = '<div data-ride="carousel" data-interval="false" data-wrap="false" data-pause="false" class="carousel slide" id="robot-reveal-videos-carousel"> <div role="listbox" class="carousel-inner" id="robot-reveal-slides">';
+					var buildCarouselHTML_postpend = '</div> <div><a href="#robot-reveal-videos-carousel" role="button" data-slide="prev" class="left carousel-control"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a><a href="#robot-reveal-videos-carousel" role="button" data-slide="next" class="right carousel-control"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a></div> </div>'
+					
+					var buildCarouselHTML_content = "";
 
-					var slideHTML = "<div class=\"item " + ((buildCarouselHTML_content == "") ? "active " : "") + "youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.revealVideos[videoHead].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
-					buildCarouselHTML_content = buildCarouselHTML_content + " " + slideHTML;
+					for (videoHead in data.revealVideos){
+
+						var slideHTML = "<div class=\"item " + ((buildCarouselHTML_content == "") ? "active " : "") + "youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.revealVideos[videoHead].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
+						buildCarouselHTML_content = buildCarouselHTML_content + " " + slideHTML;
+
+					}
+
+					$("#robot-reveal-video-main").append(buildCarouselHTML_prepend + buildCarouselHTML_content + buildCarouselHTML_postpend);
 
 				}
 
-				$("#robot-reveal-video-main").append(buildCarouselHTML_prepend + buildCarouselHTML_content + buildCarouselHTML_postpend);
-
-			}
-
-			$("#robot-info-reveal-main").removeClass("VisibilityHiddenAbsolute");
-		} else {
-			$("#robot-info-reveal-main").addClass("VisibilityHiddenAbsolute");
-		}
-	
-
-		$("#match-playlist").empty();
-
-		var typeColor = ((data.type == "FRC") ? "info" : "danger");
-
-		for (competition in data.competitionRecordings){
-
-			var buttonHTML = "";
-
-			if (data.competitionRecordings[competition] != ""){
-				
-				buttonHTML = "<a class=\"btn btn-" + typeColor + " match-playlist-item\" role=\"button\" href=\"" + data.competitionRecordings[competition] + "\">" + competition + "<i class=\"fa fa-film match-playlist-item-hasVideo\"></i></a>";
-			
+				$("#robot-info-reveal-main").removeClass("VisibilityHiddenAbsolute");
 			} else {
-				buttonHTML = "<button class=\"btn btn-" + typeColor + " match-playlist-item\" type=\"button\">" + competition + "</button>";
+				$("#robot-info-reveal-main").addClass("VisibilityHiddenAbsolute");
 			}
+		
 
-			$("#match-playlist").append(buttonHTML);
+			$("#match-playlist").empty();
+
+			var typeColor = ((data.type == "FRC") ? "info" : "danger");
+
+			for (competition in data.competitionRecordings){
+
+				var buttonHTML = "";
+
+				if (data.competitionRecordings[competition] != ""){
+					
+					buttonHTML = "<a class=\"btn btn-" + typeColor + " match-playlist-item\" role=\"button\" href=\"" + data.competitionRecordings[competition] + "\">" + competition + "<i class=\"fa fa-film match-playlist-item-hasVideo\"></i></a>";
+				
+				} else {
+
+					buttonHTML = "<p class=\"match-playlist-item-isFake btn-color-" + typeColor + "\">" + competition + "</p>"
+					// buttonHTML = "<button class=\"btn btn-" + typeColor + " match-playlist-item\" type=\"button\">" + competition + "</button>";
+				}
+
+				$("#match-playlist").append(buttonHTML);
+			}
 		}
+
+		$("#robot-buttons").children().each(function(){
+			$(this).click(function(){
+
+				var id = $(this).attr("id");
+				loadRobotData(id, true);
+				scrollToElement("#robot-info-main");
+
+			})
+		})
+
+		var robotLoadQuery = localData[0].type + "_" + localData[0].title;
+
+		var robotData_season = getUrlParam("season");
+		var robotData_type = getUrlParam("type");
+
+		if ((robotData_season != null) && (robotData_type != null)) {
+			for (robot in localData){
+				if ((localData[robot].type.toLowerCase() == robotData_type) && (localData[robot].season == robotData_season)){
+					robotLoadQuery = localData[robot].type + "_" + localData[robot].title;
+					break;
+				}
+			}
+		}
+
+		loadRobotData(robotLoadQuery);
+
 	}
 
-	$("#robot-buttons").children().each(function(){
-		$(this).click(function(){
+	$.ajax({
+		type: "POST",
+		url: "assets/php/getPageData.php",
+		data: {request : "robotData"},
+		success: function(response) {
 
-			var id = $(this).attr("id");
-			loadRobotData(id);
-			scrollToElement("#robot-info-main");
+			console.log("RESPONSE: " + response);
 
-		})
-	})
+			buildRobots(JSON.parse(response));
 
-	loadRobotData(localData[0].type + "_" + localData[0].title);
+		},
+
+		error : function(e){
+			console.log("An error occured when fetching the ajax request. Loading default data.");
+
+			buildRobots(defaultRobotData);
+			$("#robot-buttons").append("<p>An error occured when loading the Robots page. A cached version of this page is currently being displayed and is at risk of being not up to date.</p>");
+		}
+	});
 
 }
 
@@ -806,106 +918,75 @@ function handleTeamPage() {
 		} else {
 			console.log("Loading Leadership Data for the " + year + " Season");
 		}
-		
 
-		var leadershipJsonObject = {
+		var defaultPeopleData = {
+			"012345" : {
+				name : "Name",
+				yearJoined : "2015",
+				yearGraduated : "2016",
+				headshot : "",
+				titles : {
+					"012345" : {
+						title : "Title",
+						startYear : "2015",
+						endYear : "2018"
+					}
+				}
+			}
+		}
+		function convertYear(yearGiven){
+			if (yearGiven.toLowerCase() == "present"){
+				return new Date().getFullYear();
+			}
+			return yearGiven;
+		}
 
-			"2018" : {
-				"Leadership" : {
+		function getRelevantPeopleForYear(year){
 
-					"Hansen Pan" : {
-						"Titles" : ["Captain", "Head of Mechanics"],
-						"Duration" : "2016-2018",
-					},
+			var data = {
+				leadership : [],
+				roster : {},
+				mentors : []
+			}
 
-					"Danielle Louie" : {
-						"Titles" : ["Co-Captain", "Director of Marketing"],
-						"Duration" : "2015-2018",
-					},
+			var collectionOfPeople = {}; // AJAX Request of people
 
-					"Nazifa Prapti" : {
-						"Titles" : ["Co-Head of Electronics"],
-						"Duration" : "2016-2018",
-					},
+			for (personID in collectionOfPeople){
+				var personData = collectionOfPeople[personID];
+				if ((convertYear(personData.yearJoined) <= year) && (convertYear(personData.yearGraduated) >= year)){
+					
 
-					"Max Menes" : {
-						"Titles" : ["Co-Head of Eletronics"],
-						"Duration" : "2014-2018",
-					},
+					var relevantTitles = [];
 
-					"Jeff Chan" : {
-						"Titles" : ["Co-Head of Programming"],
-						"Duration" : "2016-2018",
-					},
+					for (titleID in personData.titles){
+						if ((convertYear(personData.titles[titleID].startYear) <= year) && (convertYear(personData.titles[titleID].endYear) >= year)){
+							relevantTitles.push(personData.titles[titleID]);
+						}
+					}
 
-					"Ananta Sharma" : {
-						"Titles" : ["Co-Head of Programming"],
-						"Duration" : "2016-2018",
-					},
+					personData.relevantTitles = relevantTitles;
 
-					"Andrew Lin" : {
-						"Titles" : ["Head of CAD", "Board Member"],
-						"Duration" : "2016-2018",
-					},
+					data.leadership.push(personData);
 
-				},
-				"Mentors" : {
-					"Bernard Haggerty" : {
-						"Titles" : ["Lead Mentor", "Coach"],
-						"Duration" : "2014-present",
-					},
-					"Joseph Pugliese" : {
-						"Titles" : ["Mentor"],
-						"Duration" : "2014-present",
-					},
-					"Mr. C" : {
-						"Titles" : ["Mentor"],
-						"Duration" : "2016-present",
-					},
-					"Tanoy Sarkar" : {
-						"Titles" : ["Founder", "Mentor"],
-						"Duration" : "2017-present",
-					},
-					"Kelin Qu" : {
-						"Titles" : ["Founder", "Mentor"],
-						"Duration" : "2017-present",
-					},
-					"Michael Rooplall" : {
-						"Titles" : ["Mentor", "Webmaster"],
-						"Duration" : "2017-present",
-					},
-					"Jaime Baek" : {
-						"Titles" : ["Mentor"],
-						"Duration" : "2017-present",
-					},
-					"Jin Chai" : {
-						"Titles" : ["Mentor"],
-						"Duration" : "2017-present",
+				} else {
+					for (titleID in personData.titles){
+						var titleData = personData.titles[titleID];
+						if ( ((titleData.title.toLowerCase().inclues("mentor")) || (titleData.title.toLowerCase().includes("coach"))) && (convertYear(titleData.startYear) <= year) && (convertYear(titleData.endYear) >= year) ) {
+							personData.relevantTitles = [personData.titles[titleID]];
+							data.mentors.push(personData);
+							break;
+						}
 					}
 				}
 			}
 
-		}
+			return data;
 
-		/*
-	
-		var applicablePeoples = [];
-
-		// Get Applicable People
-
-		// Build cases for searching for mentors, when dates == "present", etc. Haggerty, etc.
-
-		for (person in PersonObjects){
-			if (lookingForAlumni && (PersonObjects[person].yearGraduating < queryYear)){
-				applicablePeoples.push(PersonObjects[person]);
-			} else if (!lookingForAlumni && queryYear >= PersonObjects[person].yearJoined && queryYear <= PersonObjects[person].yearGraduating) {
-				applicablePeoples.push(PersonObjects[person]);
-			}
 		}
 
 		// Use javascript sorting algorithim to compare person object with unique hash codes to a different draggable "orderable" list.
 
-		*/
+		var teamData = getRelevantPeopleForYear(year);
 
 		var personDisplayObject = $("#PersonDisplayBox_Template");
 
@@ -913,59 +994,80 @@ function handleTeamPage() {
 		$("#TeamHistoryList").empty();
 		$("#TeamHistoryBox_Mentors").empty();
 
-		if (leadershipJsonObject.hasOwnProperty(year)) {
 
-			var leaders = leadershipJsonObject[year].Leadership;
+		if (teamData.leadership.length > 0){
 
-			for (leaderName in leaders) {
+			// Sort the table
+
+			for (index in teamData.leadership){
 
 				var personBox = personDisplayObject.clone();
 
 				var personBoxContent = $(personBox).children("#PersonDisplayContent");
 				var personBoxLinks = $(personBox).children("#PersonDisplayLinks");
 
-				$(personBoxContent).children("#PersonDisplayName").text(leaderName);
-				$(personBoxContent).children("#PersonDisplayTitles").html(leaders[leaderName].Titles.join("<br />"));
-				$(personBoxContent).children("#PersonDisplayInfo").text(leaders[leaderName].Duration);
+				var titleText = []; // Join with <br>
 
-				$(personBox).attr("id", "PersonDisplayBox_"+leaderName);
+				for (titleIndex in teamData.leadership[index].relevantTitles){
+					titleText.push(teamData.leadership[index].relevantTitles[titleIndex].title + " (" + teamData.leadership[index].relevantTitles[titleIndex].startYear + "-" + teamData.leadership[index].relevantTitles[titleIndex].endYear + ")");
+				}
+
+				$(personBoxContent).children("#PersonDisplayName").text(teamData.leadership[index].name);
+				$(personBoxContent).children("#PersonDisplayTitles").html(titleText.join("<br>"));
+				$(personBoxContent).children("#PersonDisplayInfo").text(teamData.leadership[index].yearJoined + "-" + teamData.leadership[index].yearGraduating);
+
+				$(personBox).attr("id", "PersonDisplayBox_"+index);
 
 				$(personBox).appendTo($("#TeamHistoryBox"));
-				
 
 			}
 
-			var mentors = leadershipJsonObject[year].Mentors;
+		} else {
+			$("#TeamHistoryBox").append("<p class=\"text-center\">Sorry, we don't have any leadership data for that time period.</p>");
+		}
 
-			for (mentorName in mentors){
+
+		if (teamData.roster != {}){
+
+			for (memberIndex in teamData.roster.members){
+				var memberName = teamData.roster.members[memberIndex];
+				if (teamData.roster.flipFirstName){
+					memberName = memberName.split(" ").reverse().join(" ");
+				}
+				$("#TeamHistoryList").append("<p class=\"text-center team-member no-select\">" + memberName + "</p>");
+			}
+
+		} else {
+			$("#TeamHistoryList").append("<p class=\"text-center\">Sorry, we don't have any attendance data for that time period.</p>");
+		}
+
+		if (teamData.mentors.length > 0){
+
+			for (index in teamData.mentors){
 
 				var personBox = personDisplayObject.clone();
 
 				var personBoxContent = $(personBox).children("#PersonDisplayContent");
 				var personBoxLinks = $(personBox).children("#PersonDisplayLinks");
 
-				$(personBoxContent).children("#PersonDisplayName").text(mentorName);
-				$(personBoxContent).children("#PersonDisplayTitles").html(mentors[mentorName].Titles.join("<br />"));
-				$(personBoxContent).children("#PersonDisplayInfo").text(mentors[mentorName].Duration);
+				var titleText;
+
+				for (titleIndex in teamData.mentors[index].relevantTitles){
+					titleText.push(teamData.mentors[index].relevantTitles[titleIndex].title + " (" + teamData.mentors[index].relevantTitles[titleIndex].startYear + "-" + teamData.mentors[index].relevantTitles[titleIndex].endYear + ")");
+				}
+
+				$(personBoxContent).children("#PersonDisplayName").text(teamData.mentors[index].name);
+				$(personBoxContent).children("#PersonDisplayTitles").html(titleText.join("<br>"));
+				$(personBoxContent).children("#PersonDisplayInfo").text(teamData.mentors[index]);
 
 				$(personBox).attr("id", "PersonDisplayBox_"+mentorName);
 
 				$(personBox).appendTo($("#TeamHistoryBox_Mentors"));
+
 			}
 
 		} else {
-			console.log("We don't have any data for that year! Sorry!");
-
-			var noDataMessage = $("<p class=\"text-center\"></p>").text("\tSorry, we don't have any data for that year!");
-			$("#TeamHistoryBox").append(noDataMessage);
-
-		}
-
-		var population = ["Michael Rooplall", "Valerie Macias", "Kelin Qu", "Tanoy Sarkar", "Alice Shao", "Danielle Louie", "Hansen Pan", "Jin Chai", "Nazifa Prapti", "Jaime 'Lucius Mercier' Baek", "Jeff Chan", "Names to be pulled from Google Sheets attendance", "And sorted alphabetically"];
-
-		// Populate with all our students
-		for (member in population){
-			$("#TeamHistoryList").append("<p class=\"team-member noselect\">" + population[member] + "</p>");
+			$("#TeamHistoryBox_Mentors").append("<p class=\"text-center\">Sorry, we don't have any mentor data for that time period.</p>");
 		}
 
 	}
@@ -1020,6 +1122,20 @@ function handleTeamPage() {
 
 	loadTeamHistory($("#teamHistorySelector").val());
 
+}
+
+function handleDocumentsPage(pageIndex){
+
+	$(".colorDisplayButton").click(function(){
+
+		var $temp = $("<input>");
+		$("body").append($temp);
+		$temp.val($(this).text()).select();
+		document.execCommand("copy");
+		$temp.remove();
+
+		alert("Coppied " + $(this).text() + " to clipboard.");
+	})
 }
 
 //////////////////////////////////////////////////////////////////
@@ -1172,16 +1288,19 @@ function scaleSize(){
 		$('.SponsorContainerInner').removeClass("SponsorContainerInner-mobile");
 	}
 
+	
 	if (windowWidth < 770){
-		$('.navbar').removeClass("navbar-fixed-top");
-		$('.navbar').addClass("navbar-static-top");
+		//$('.navbar').removeClass("navbar-fixed-top");
+		//$('.navbar').addClass("navbar-static-top");
+		$('.splashContentHeader').addClass("splashContent-pushMobile");
 		$('.navbar-nav').addClass("navbar-mobile");
+		$('.MicroLogo').addClass("MicroLogo-sm");
+		$('.MicroLogo').removeClass("MicroLogo");
 	} else {
 		$('.navbar').addClass("navbar-fixed-top");
 		$('.navbar').removeClass("navbar-static-top");
 		$('.navbar-nav').removeClass("navbar-mobile");
 	}
-
 
 
 	if ($(".navbar-toggle").is(":visible")){
@@ -1289,8 +1408,6 @@ function scaleSize(){
 
 		$(".splashContent").animate({height:splashContentHeight + 'px'}, 400);
 		$(".splashContentHalf").animate({height: (splashContentHeight/2) + 'px'}, 400);
-
-		
 
 		$('.paralax').css('padding-top', paralaxPadding+"%");
 		$('.paralaxHalf').css('padding-top', (paralaxPadding/2)+"%");

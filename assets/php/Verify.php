@@ -5,14 +5,14 @@
 require 'db.php';
 session_start();
 
-$request = $mysqli->escape_string($_POST["$request"]);
+$request = $mysqli->escape_string($_POST["request"]);
 
 if ($request=="verify"){
 
-	if (isset($_GET['osis']) && !empty($_GET['osis']) AND isset($_GET['key']) && !empty($_GET['key'])){
+	if (isset($_POST['osis']) && !empty($_POST['osis']) AND isset($_POST['key']) && !empty($_POST['key'])){
 
-		$osis = $mysqli->escape_string($_GET['osis']);
-		$hash = $mysqli->escape_string($_GET['key']);
+		$osis = $mysqli->escape_string($_POST['osis']);
+		$hash = $mysqli->escape_string($_POST['key']);
 
 		// Select user with matching email who hasn't activated their account yet
 		$result = $mysqli->query("SELECT * FROM users WHERE osis='$osis'");
@@ -20,7 +20,7 @@ if ($request=="verify"){
 		if ($results->num_rows == 0){
 
 			// Invalid OSIS
-			echo "The account you are trying to activate does not exist. Invalid OSIS.";
+			echo "The account you are trying to activate does not exist. Invalid OSIS. " . $osis;
 			die();
 
 		} else {
@@ -38,7 +38,7 @@ if ($request=="verify"){
 			$_SESSION['active'] = 1;
 
 			echo "success";
-			// header("location: http://www.team5599.com/Account.html");
+			header("location: http://www.team5599.com/Account.html");
 		}
 
 	} else {
@@ -86,10 +86,10 @@ if ($request=="verify"){
 
 } else if ($request == "reset"){
 
-	if (isset($_GET['osis']) && !empty($_GET['osis']) AND isset($_GET['key']) && !empty($_GET['key'])){
+	if (isset($_POST['osis']) && !empty($_POST['osis']) AND isset($_POST['key']) && !empty($_POST['key'])){
 
-		$osis = $mysqli->escape_string($_GET['osis']);
-		$hash = $mysqli->escape_string($_GET['key']);
+		$osis = $mysqli->escape_string($_POST['osis']);
+		$hash = $mysqli->escape_string($_POST['key']);
 
 		// Select user with matching email who hasn't activated their account yet
 		$result = $mysqli->query("SELECT * FROM users WHERE osis='$osis'");

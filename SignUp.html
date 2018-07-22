@@ -8,6 +8,7 @@
     <title>Team5599Website</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
@@ -28,44 +29,6 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand hidden-sm hidden-xs" href="index.html"><strong>&lt; Cardozo Robotics | Team 5599 &gt;</strong><img src="assets/img/Logos/SubLogo_Blue.png" data-bs-hover-animate="tada" class="navbar-left MicroLogo MicroLogoInner"></a><button class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="index.html">About Us</a></li>
-                            <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
-                            <li role="presentation"><a href="Team.html">Our Leadership</a></li>
-                            <li role="presentation"><a href="Robots.html">Our Robots</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown NavButton" id="CommunityResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe socialMediaIcon"></i>Community<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="http://blog.team5599.com/" target="_blank" id="navbarBlogButton">Our Blog </a></li>
-                            <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
-                            <li
-                                role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
-                    <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
-                    </ul>
-                    </li>
-                    <li class="dropdown NavButton" id="TeamResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Team&nbsp;Resources<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
-                            <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
-                            <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
-                            <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
-                        </ul>
-                    </li>
-                    <li role="presentation" id="SponsorsNavButton" class="NavButton"><a href="Sponsors.html">Our Sponsors</a></li>
-                    <li role="presentation" id="ContactNavButton" class="NavButton"><a href="Contact.html">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div class="login-dark login-dark-2">
         <form class="form">
             <h3 class="text-center">Create an Account</h3><a href="SignIn.html" class="user-has-account">Already have an account? Click Here.</a>
@@ -160,16 +123,55 @@
             </div>
         </footer>
     </div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="assets/img/Logos/SubLogo_Blue.png" data-bs-hover-animate="tada" class="navbar-left MicroLogo MicroLogoInner"><p class="text-nowrap hidden-sm hidden-xs" style="color:white;margin-top:10px;font-weight:bold;">&lt; Cardozo Robotics | Team 5599 &gt;</p></a>
+                <button
+                    class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="index.html">About Us</a></li>
+                            <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
+                            <li role="presentation"><a href="Team.html">Our Leadership</a></li>
+                            <li role="presentation"><a href="Robots.html">Our Robots</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown NavButton" id="CommunityResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe socialMediaIcon"></i>Community<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="http://blog.team5599.com/" target="_blank" id="navbarBlogButton">Our Blog </a></li>
+                            <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
+                            <li
+                                role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
+                    <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
+                    </ul>
+                    </li>
+                    <li class="dropdown NavButton" id="TeamResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Team&nbsp;Resources<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
+                            <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
+                            <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
+                            <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" id="SponsorsNavButton" class="NavButton"><a href="Sponsors.html">Our Sponsors</a></li>
+                    <li role="presentation" id="ContactNavButton" class="NavButton"><a href="Contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/bs-animation.js"></script>
-    <script src="assets/js/html5sortable.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
     <script src="assets/js/ImageSelectorModal.js"></script>
     <script src="assets/js/Simple-Slider.js"></script>
-    <script src="assets/js/webpanelMaster.js"></script>
+    <script src="assets/js/Webpanel/html5sortable.js"></script>
+    <script src="assets/js/Webpanel/webpanelMaster.js"></script>
 </body>
 
 </html>

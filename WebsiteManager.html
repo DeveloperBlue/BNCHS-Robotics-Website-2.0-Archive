@@ -8,6 +8,7 @@
     <title>Team5599Website</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
@@ -25,49 +26,11 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
 <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-<script src="html5sortable.js"></script>
-<script src="webpanelMaster.js"></script>
+<script src="Webpanel/html5sortable.js"></script>
+<script src="Webpanel/webpanelMaster.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand hidden-sm hidden-xs" href="index.html"><strong>&lt; Cardozo Robotics | Team 5599 &gt;</strong><img src="assets/img/Logos/SubLogo_Blue.png" data-bs-hover-animate="tada" class="navbar-left MicroLogo MicroLogoInner"></a><button class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="index.html">About Us</a></li>
-                            <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
-                            <li role="presentation"><a href="Team.html">Our Leadership</a></li>
-                            <li role="presentation"><a href="Robots.html">Our Robots</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown NavButton" id="CommunityResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe socialMediaIcon"></i>Community<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="http://blog.team5599.com/" target="_blank" id="navbarBlogButton">Our Blog </a></li>
-                            <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
-                            <li
-                                role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
-                    <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
-                    </ul>
-                    </li>
-                    <li class="dropdown NavButton" id="TeamResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Team&nbsp;Resources<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
-                            <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
-                            <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
-                            <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
-                        </ul>
-                    </li>
-                    <li role="presentation" id="SponsorsNavButton" class="NavButton"><a href="Sponsors.html">Our Sponsors</a></li>
-                    <li role="presentation" id="ContactNavButton" class="NavButton"><a href="Contact.html">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div id="account-loading" class="text-center VisibilityHiddenAbsolute">
         <div class="divBlue"></div>
         <h1 class="text-center text-muted" id="loading-title">Authenticating Administrator Access</h1>
@@ -96,8 +59,8 @@
                         <div
                             id="form_Contacts" class="webmasterRobotInfo">
                             <form>
-                                <h4 class="BlackFont">Contact Name</h4><input class="form-control input-sm robotInfoTextField" type="text" required="" id="form_Contact_name">
-                                <h4 class="BlackFont">Contact Email/Phone</h4><input class="form-control input-sm accordian_linkbox" type="text" required="" id="form_Contact_information">
+                                <h4 class="BlackFont">Contact Name</h4><input class="form-control input-sm robotInfoTextField gray-outline" type="text" required="" placeholder="Name - Title" id="form_Contact_name">
+                                <h4 class="BlackFont">Contact Email/Phone</h4><input class="form-control input-sm accordian_linkbox gray-outline" type="text" required="" placeholder="Email or Phone" id="form_Contact_information">
                                 <div class="clearfix"></div><button class="btn btn-success float-right deleteButton" type="button" id="Btn_UseContact">Add Contact<i class="fa fa-plus spacedIcon"></i></button><button class="btn btn-success float-right deleteButton VisibilityHidden"
                                     type="button" id="Btn_UpdateContact">Update Changes</button></form>
                     </div>
@@ -116,8 +79,8 @@
                     <div
                         id="form_Sponsors" class="webmasterRobotInfo">
                         <form>
-                            <h4 class="BlackFont">Sponsor Name</h4><input class="form-control robotInfoTextField" type="text" required="" id="form_Sponsor_name">
-                            <h4 class="BlackFont">Sponsor Link</h4><input class="form-control accordian_linkbox" type="text" required="" id="form_Sponsor_link">
+                            <h4 class="BlackFont">Sponsor Name</h4><input class="form-control robotInfoTextField gray-outline" type="text" required="" id="form_Sponsor_name">
+                            <h4 class="BlackFont">Sponsor Link</h4><input class="form-control accordian_linkbox gray-outline" type="text" required="" id="form_Sponsor_link">
                             <h4 class="BlackFont">Sponsor Logo</h4>
                             <div class="clearfix"></div>
                             <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button" id="form_Sponsor_Logo">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
@@ -149,9 +112,9 @@
                             <div
                                 id="form_People" class="webmasterPeopleInfoPanel">
                                 <form>
-                                    <h4 class="BlackFont">Full Name</h4><input class="form-control input-sm robotInfoTextField" type="text" required="" id="form_People_name">
-                                    <h5 class="BlackFont">Year Person Joined Team</h5><select class="form-control input-sm dropdownYearInput2 BlackFont" value="2018" id="form_People_yearJoined"><option value="2018">2018</option></select>
-                                    <h5 class="BlackFont">Year of Graduation/Left Team</h5><select class="form-control input-sm dropdownYearInput2 BlackFont" value="2018" id="form_People_yearGraduated"><option value="2018">2018</option></select>
+                                    <h4 class="BlackFont">Full Name</h4><input class="form-control input-sm robotInfoTextField gray-outline" type="text" required="" placeholder="FirstName LastName" id="form_People_name">
+                                    <h5 class="BlackFont">Year Person Joined Team</h5><select class="form-control input-sm dropdownYearInput1 BlackFont gray-outline" value="2018" id="form_People_yearJoined"><option value="2018">2018</option></select>
+                                    <h5 class="BlackFont">Year of Graduation/Left Team</h5><select class="form-control input-sm dropdownYearInput2 BlackFont gray-outline" value="2018" id="form_People_yearGraduated"><option value="2018">2018</option></select>
                                     <h4 class="BlackFont">Headshot</h4>
                                     <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
                                         <div
@@ -159,33 +122,33 @@
                                     <div class="clearfix"></div>
                         </div>
                         <h4 class="BlackFont">Titles</h4>
-                        <p>Title Name - Start Year - End Year</p>
-                        <div id="personTitleBar-Template" class="personTitleBar"><input class="form-control personTitleTitleInput" type="text" id="personTitleInput"><select class="form-control input-sm dropdownYearInput BlackFont" value="2018" id="personTitleY0Input"><option value="2018">2018</option></select>
-                            <select
-                                class="form-control input-sm dropdownYearInput BlackFont" value="2018" id="personTitleY1Input">
-                                <option value="2018">2018</option>
-                                </select><button class="btn btn-danger btn-sm personTitleDeleteButton" type="reset" id="personTitleDelete">Delete</button></div>
-                        <div id="personTitleFieldBox" class="personTitleFieldBox"></div><button class="btn btn-info spaced_button" type="button" id="btn_AddPeopleTitle">Add Title<i class="icon ion-plus spacedIcon"></i></button>
+                        <div id="personTitleBar-Template" class="personTitleBar">
+                            <p id="personTitleInput" class="personTitleTitleInput">Paragraph</p><button class="btn btn-danger btn-sm personTitleButton" type="button" id="personTitleDelete"><i class="fas fa-trash personTitleButtonIcon"></i></button><button class="btn btn-info btn-sm personTitleButton" type="button"
+                                id="personTitleEdit"><i class="fas fa-edit personTitleButtonIcon"></i></button></div>
+                        <div id="personTitleFieldBox" class="personTitleFieldBox gray-outline"></div><button class="btn btn-info spaced_button" type="button" id="btn_AddPeopleTitle">Add Title<i class="icon ion-plus spacedIcon"></i></button>
                         <div class="clearfix"></div><br><br><button class="btn btn-danger spaced_button" type="reset" id="Btn_UsePeople">Delete Person<i class="fa fa-user-times spacedIcon"></i></button><button class="btn btn-success spaced_button"
                             type="button" id="Btn_UpdatePeople">Update Person</button>
                         <div class="clearfix"></div>
                         </form>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="tab-4">
-                    <div><button class="btn btn-danger left-float-button" type="button" id="btn_ReloadPeopleOrder">Reload Original</button><button class="btn btn-success left-float-button" type="button" id="btn_SavePeopleOrder">Save Order</button></div>
-                    <div
-                        class="clearfix"></div>
-                <div><button class="btn btn-info left-float-button" type="button" id="btn_ChangePersonView">View Mentors</button></div>
-                <div class="clearfix"></div>
-                <h4 class="text-left BlackFont">Change Order</h4><select id="teamHistorySelector" class="teamHistoryYearSelectorWeb"><optgroup label="History"><option value="2018" selected="">Season 2018</option><option value="2017">Season 2017</option><option value="2016">Season 2016</option><option value="2015">Season 2015</option></optgroup></select>
-                <div
-                    id="panel_PeopleOrder" class="webmasterPeopleSortPanel"></div>
+                    <h3 class="text-center BlackFont">Change Order</h3>
+                    <div class="row">
+                        <div class="col-md-6"><select id="teamHistorySelector" class="teamHistoryYearSelectorWeb"><optgroup label="History"><option value="2018" selected="">Season 2018</option><option value="2017">Season 2017</option><option value="2016">Season 2016</option><option value="2015">Season 2015</option></optgroup></select>
+                            <div
+                                id="panel_PeopleOrder" class="webmasterPeopleSortPanel"></div>
+                    </div>
+                    <div class="col-md-6"><button class="btn btn-danger left-float-button" type="button" id="btn_ReloadPeopleOrder">Reload Original</button><button class="btn btn-success left-float-button" type="button" id="btn_SavePeopleOrder">Save Order</button><button class="btn btn-info left-float-button"
+                            type="button" id="btn_ChangePersonView">View Mentors</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     </div>
-    </div>
-    <div class="clearfix"></div>
     </div>
     </div>
     <div class="panel panel-default" id="ManageRobots">
@@ -199,23 +162,24 @@
                 <div
                     id="form_Robots" class="webmasterRobotInfo">
                     <form>
-                        <h4 class="BlackFont">Robot Name</h4><input class="form-control input-sm robotInfoTextField" type="text" id="form_Robot_name">
-                        <h4 class="BlackFont">Season Year</h4><select class="form-control input-sm dropdownYearInput2 BlackFont" value="2018" id="form_Robot_seasonYear"><option value="2018">2018</option></select>
+                        <h4 class="BlackFont">Robot Name</h4><input class="form-control input-sm robotInfoTextField gray-outline" type="text" placeholder="Robot Name" id="form_Robot_name">
+                        <h4 class="BlackFont">Season Year</h4><select class="form-control input-sm dropdownYearInput1 BlackFont gray-outline" value="2018" id="form_Robot_seasonYear"><option value="2018">2018</option></select>
                         <h4 class="BlackFont">Description</h4><span><label class="radio-inline BlackFont" for="robotType"><input type="radio" name="robotType" value="FRC" checked="">FRC</label></span><span style="margin-left:10px;margin-right:10px;"><label class="radio-inline BlackFont" for="robotType"><input type="radio" name="robotType" value="SeaPerch">SeaPerch</label></span><span><label class="radio-inline BlackFont" for="robotType"><input type="radio" name="robotType" value="SeaPerch">Other</label></span>
                         <textarea
-                            class="form-control robotInfoTextArea" id="form_Robot_description"></textarea>
+                            class="form-control input-sm robotInfoTextArea gray-outline" placeholder="Provide a brief description of the robot. This can include tasks, statistics, and other information." id="form_Robot_description"></textarea>
                             <h4 class="BlackFont">Videos (Reveals, Teasers, etc.)</h4>
-                            <p>(Separate links with commas)</p><input class="form-control accordian_linkbox" type="text" id="form_Robot_videos">
+                            <p>(Separate links with commas)</p><input class="form-control accordian_linkbox gray-outline" type="text" placeholder="YouTube Links" id="form_Robot_videos">
                             <h4 class="BlackFont">Competitions &amp; Playlists</h4>
                             <div id="robotPlaylistBar-Template" class="robotPlaylistBar"><input class="form-control robotPlaylistInput" type="text" placeholder="Competition" id="robotPlaylistInput-comp"><input class="form-control robotPlaylistInput" type="text" placeholder="Youtube Playlist" id="robotPlaylistInput-url">
                                 <button
                                     class="btn btn-danger btn-sm personTitleDeleteButton" type="reset" id="robotPlaylistDelete">Delete</button>
                             </div>
-                            <div id="robotPlaylistFieldBox" class="robotPlaylistFieldBox"></div><button class="btn btn-info spaced_button" type="button" id="btn_AddRobotPlaylist">Add Competition and Playlist<i class="icon ion-plus spacedIcon"></i></button>
+                            <div id="robotPlaylistFieldBox" class="robotPlaylistFieldBox gray-outline"></div><button class="btn btn-info spaced_button" type="button" id="btn_AddRobotPlaylist">Add Competition and Playlist<i class="icon ion-plus spacedIcon"></i></button>
                             <div class="clearfix"></div><button class="btn btn-danger buttonBottom deleteButton" type="button" id="Btn_UseRobot">Delete Robot<i class="fa fa-remove spacedIcon"></i></button><button class="btn btn-success buttonBottom deleteButton VisibilityHidden"
                                 type="button" id="Btn_UpdateRobot">Update Robot</button></form>
                     <div class="clearfix"></div>
             </div>
+            <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -228,7 +192,7 @@
             <div class="accordian_container">
                 <h3 class="BlackFont text-left">Uploading Images</h3>
                 <p>Images MUST be in <strong>.jpg</strong> or <strong>.png</strong> format.</p>
-                <p>Any images uploaded greater than 1920x1080p will be compressed.</p>
+                <p>Any images uploaded larger than 1920x1080 will be downscaled and compressed.</p>
                 <div class="row">
                     <div class="col-md-6">
                         <h4 class="BlackFont text-left">Home Page</h4>
@@ -406,16 +370,78 @@
             </div>
         </div>
     </div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="assets/img/Logos/SubLogo_Blue.png" data-bs-hover-animate="tada" class="navbar-left MicroLogo MicroLogoInner"><p class="text-nowrap hidden-sm hidden-xs" style="color:white;margin-top:10px;font-weight:bold;">&lt; Cardozo Robotics | Team 5599 &gt;</p></a>
+                <button
+                    class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="index.html">About Us</a></li>
+                            <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
+                            <li role="presentation"><a href="Team.html">Our Leadership</a></li>
+                            <li role="presentation"><a href="Robots.html">Our Robots</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown NavButton" id="CommunityResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe socialMediaIcon"></i>Community<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="http://blog.team5599.com/" target="_blank" id="navbarBlogButton">Our Blog </a></li>
+                            <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
+                            <li
+                                role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
+                    <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
+                    </ul>
+                    </li>
+                    <li class="dropdown NavButton" id="TeamResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Team&nbsp;Resources<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
+                            <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
+                            <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
+                            <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" id="SponsorsNavButton" class="NavButton"><a href="Sponsors.html">Our Sponsors</a></li>
+                    <li role="presentation" id="ContactNavButton" class="NavButton"><a href="Contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="PersonTitleModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="personTitleModalHeading">Add a Title</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="lead" id="modalTitlePersonDisplay">FIRSTNAME LASTNAME</p><select class="input-lg BlackFont" id="modalTitleInputDropdown"><option value="Captain" selected="">Captain</option><option value="Co-Captain">Co-Captain</option><option value="Head">Head of . . .</option><option value="Director">Director of . . .</option><option value="Coach">Coach</option><option value="Mentor">Mentor</option><option value="Custom">Custom</option></select>
+                    <input
+                        class="input-lg" type="text" disabled="" placeholder="Select a Title . . ." id="modalTitleInputString">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="modalTitleText">Season Began</p><select class="input-sm dropdownYearInput BlackFont" value="2018" id="personTitleY0Input"><option value="2018">2018</option></select></div>
+                            <div class="col-md-6">
+                                <p class="modalTitleText">Season Ended</p><select class="input-sm dropdownYearInput BlackFont" value="2018" id="personTitleY1Input"><option value="2018">2018</option></select></div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <p class="personTitleModalIDTracker">ID:&nbsp;</p>
+                    <p id="personTitleModalIDTracker" class="personTitleModalIDTracker">#HASHVALUE</p><button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button><button class="btn btn-success" type="button" id="personTitleModalConfirm">Confirm</button></div>
+            </div>
+        </div>
+    </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/bs-animation.js"></script>
-    <script src="assets/js/html5sortable.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
     <script src="assets/js/ImageSelectorModal.js"></script>
     <script src="assets/js/Simple-Slider.js"></script>
-    <script src="assets/js/webpanelMaster.js"></script>
+    <script src="assets/js/Webpanel/html5sortable.js"></script>
+    <script src="assets/js/Webpanel/webpanelMaster.js"></script>
 </body>
 
 </html>

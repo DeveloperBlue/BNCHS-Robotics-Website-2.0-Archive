@@ -8,6 +8,7 @@
     <title>Team5599Website</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
@@ -29,11 +30,12 @@
 
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand hidden-sm hidden-xs" href="index.html"><strong>&lt; Cardozo Robotics | Team 5599 &gt;</strong><img src="assets/img/Logos/SubLogo_Blue.png" data-bs-hover-animate="tada" class="navbar-left MicroLogo MicroLogoInner"></a><button class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
+        <div class="container">
+            <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="assets/img/Logos/SubLogo_Blue.png" data-bs-hover-animate="tada" class="navbar-left MicroLogo MicroLogoInner"><p class="text-nowrap hidden-sm hidden-xs" style="color:white;margin-top:10px;font-weight:bold;">&lt; Cardozo Robotics | Team 5599 &gt;</p></a>
+                <button
+                    class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -66,7 +68,7 @@
             </div>
         </div>
     </nav>
-    <div class="PageHeader"><img src="assets/img/Logos/SubLogo_Blue.png" class="navbar-left MicroLogo MicroLogoOuter FixedLogo hidden-md hidden-lg hidden-xl">
+    <div class="PageHeader">
         <div class="splashContent splashContentHalf">
             <div class="splashContentHeader splashContentHeaderHalf">
                 <div>
@@ -94,8 +96,8 @@
             <div class="contact-clean">
                 <form method="post">
                     <h2 class="text-center">Contact Us</h2>
-                    <div class="form-group has-success has-feedback"><input class="form-control" type="text" name="name" placeholder="Name"><i class="form-control-feedback glyphicon glyphicon-ok" aria-hidden="true"></i></div>
-                    <div class="form-group has-error has-feedback"><input class="form-control" type="email" name="email" placeholder="Email"><i class="form-control-feedback glyphicon glyphicon-remove" aria-hidden="true"></i>
+                    <div class="form-group has-success has-feedback"><input class="form-control" type="text" name="name" placeholder="Name" autocomplete="on"><i class="form-control-feedback glyphicon glyphicon-ok" aria-hidden="true"></i></div>
+                    <div class="form-group has-error has-feedback"><input class="form-control" type="email" name="email" placeholder="Email" autocomplete="on"><i class="form-control-feedback glyphicon glyphicon-remove" aria-hidden="true"></i>
                         <p class="help-block">Please enter a valid email address.</p>
                     </div>
                     <div class="form-group"><textarea class="form-control" rows="14" name="message" placeholder="Message"></textarea></div>
@@ -176,12 +178,12 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/bs-animation.js"></script>
-    <script src="assets/js/html5sortable.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
     <script src="assets/js/ImageSelectorModal.js"></script>
     <script src="assets/js/Simple-Slider.js"></script>
-    <script src="assets/js/webpanelMaster.js"></script>
+    <script src="assets/js/Webpanel/html5sortable.js"></script>
+    <script src="assets/js/Webpanel/webpanelMaster.js"></script>
 </body>
 
 </html>

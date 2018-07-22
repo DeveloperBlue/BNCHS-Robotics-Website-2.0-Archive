@@ -2,10 +2,16 @@
 // Database Connection Settings
 
 $host = "localhost";
-$user = "team5592_system";
+$username = "team5592_system";
 $password = "databasekey5599";
-$db = "users";
-$mysqli = new mysqli($host, $user, $password, $db) or die ($mysqli->error);
+$db = "team5592_database";
 
+// Create connection
+$mysqli = new mysqli($host, $username, $password, $db);
+
+// Check connection
+if ($mysqli->connect_error) {
+	die("Connection failed: " . $mysqli->connect_error);
+}
 
 ?>

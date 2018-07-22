@@ -95,9 +95,12 @@ if ($existing_user){
 
 		Please click the following link to activate your account:
 
-		http://www.team5599/Verify.html?request=verify&osis='.$OSIS.'&key='.$activation_key;
+		http://www.team5599.com/Verify.html?request=verify&osis='.$OSIS.'&key='.$activation_key;
 
 		mail( $to, $subject, $message_body, $headers);
+
+		echo "success";
+
 		header("location: http://www.team5599.com/Verify.html?request=notify");
 
 	} else {

@@ -5,7 +5,7 @@
 require 'db.php';
 session_start();
 
-$request = $mysqli->escape_string($_POST["$request"];
+$request = $mysqli->escape_string($_POST["request"]);
 
 $session = $_SESSION['logged_in'];
 
@@ -44,11 +44,12 @@ if ($request == "getSession"){
 			}
 
 			echo "401";
-			die()
+			die();
+		}
 
 	} else {
 		echo "403";
-		die()
+		die();
 	}
 
 } else if ($request == "endSession"){
