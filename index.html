@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Coming+Soon">
+    <link rel="stylesheet" href="assets/css/Construction-Banner.css">
     <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Footer-Clean.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
     <link rel="stylesheet" href="assets/css/ImageSelectorModal.css">
     <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
     <link rel="stylesheet" href="assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="assets/css/Social-Icons.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -43,7 +45,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation"><a href="index.html">About Us</a></li>
                                 <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
-                                <li role="presentation"><a href="Team.html">Our Leadership</a></li>
+                                <li role="presentation"><a href="Team.html">Our Team</a></li>
                                 <li role="presentation"><a href="Robots.html">Our Robots</a></li>
                             </ul>
                         </li>
@@ -53,14 +55,14 @@
                                 <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
                                 <li
                                     role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
-                        <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
+                        <li role="presentation"><a href="Resources.html">Documents &amp; Resources</a></li>
                         </ul>
                         </li>
                         <li class="dropdown NavButton" id="TeamResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Team&nbsp;Resources<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
                                 <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
-                                <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
+                                <li role="presentation"><a href="Resources.html">Documents &amp; Resources</a></li>
                                 <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
                             </ul>
                         </li>
@@ -124,25 +126,25 @@
     </div>
     <div class="index-media-tabs">
         <ul class="nav nav-tabs">
-            <li><a href="#tab-1" id="slide-1-btn" role="tab" data-toggle="tab">Reveal Videos</a></li>
+            <li class="active"><a href="#tab-1" id="slide-1-btn" role="tab" data-toggle="tab">Reveal Videos</a></li>
             <li><a href="#tab-2" id="slide-2-btn" role="tab" data-toggle="tab">Photostream</a></li>
-            <li class="active"><a href="#tab-3" id="slide-3-btn" role="tab" data-toggle="tab">Highlights</a></li>
+            <li><a href="#tab-3" id="slide-3-btn" role="tab" data-toggle="tab">Highlights</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane" role="tabpanel" id="tab-1">
+            <div class="tab-pane active" role="tabpanel" id="tab-1">
                 <div id="tab-1-content" class="slider-outer">
                     <div class="carousel slide" data-ride="carousel" data-interval="false" id="carousel-1">
                         <div class="carousel-inner" role="listbox">
-                            <div class="item active"><iframe width="560" height="315" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/1CLYCoHTwPQ" id="SplashPageVideoFull" class="iFrame"></iframe></div>
-                            <div class="item"><iframe width="560" height="315" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/PdjCbOFEjpI" id="SplashPageVideoFull" class="iFrame"></iframe></div>
+                            <div class="item"><iframe width="560" height="315" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/1CLYCoHTwPQ" id="SplashPageVideoFull" class="iFrame"></iframe></div>
+                            <div class="item active"><iframe width="560" height="315" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/PdjCbOFEjpI" id="SplashPageVideoFull" class="iFrame"></iframe></div>
                             <div class="item"><iframe width="560" height="315" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/oVSD8OBbLaM" id="SplashPageVideoFull" class="iFrame"></iframe></div>
                             <div class="item"><iframe width="560" height="315" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/_-0VbFqoipo" id="SplashPageVideoFull" class="iFrame"></iframe></div>
                         </div>
                         <div><a class="left carousel-control" href="#carousel-1" role="button" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#carousel-1" role="button"
                                 data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a></div>
                         <ol class="carousel-indicators">
-                            <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-1" data-slide-to="1"></li>
+                            <li data-target="#carousel-1" data-slide-to="0"></li>
+                            <li data-target="#carousel-1" data-slide-to="1" class="active"></li>
                             <li data-target="#carousel-1" data-slide-to="2"></li>
                             <li data-target="#carousel-1" data-slide-to="3"></li>
                         </ol>
@@ -152,7 +154,7 @@
             <div class="tab-pane" role="tabpanel" id="tab-2">
                 <div id="tab-2-content" class="instagram-front"></div>
             </div>
-            <div class="tab-pane active" role="tabpanel" id="tab-3">
+            <div class="tab-pane" role="tabpanel" id="tab-3">
                 <div id="tab-3-content" class="instagram-front">
                     <div class="carousel slide" data-ride="carousel" data-interval="false" id="carousel-1">
                         <div class="carousel-inner" role="listbox">
@@ -203,6 +205,20 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="newsletter-subscribe">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Subscribe to our Newsletter</h2>
+                <p class="text-center">We maintain a blog and email newsletter! Subscribe to us for updates on the team, information from FIRST, news on upcoming competitions, and many other events like fundraising and summer programs.</p>
+            </div>
+            <form class="form-inline" method="post">
+                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Your Email" id="newsletter-email"></div>
+                <div class="form-group"><button class="btn btn-primary" type="button" id="newsletter-subscribe-btn">Subscribe </button></div>
+            </form>
+        </div>
+    </div>
+    <div>
         <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
         <div id="OurSponsors" class="divBlue">
             <div class="width-cap">
@@ -242,7 +258,7 @@
                             <li><a href="http://blog.team5599.com">Our Blog</a></li>
                             <li><a href="SocialMedia.html">Social Media</a></li>
                             <li><a href="Projects.html">Code, Projects, &amp; Demos</a></li>
-                            <li><a href="Projects.html">Documents &amp; Tutorials</a></li>
+                            <li><a href="Resources.html">Documents &amp; Resources</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 col-sm-4 item">
@@ -256,7 +272,7 @@
                     <div class="col-md-3 item social"><a href="https://www.facebook.com/team5599sentinels/"><i class="icon ion-social-facebook"></i></a><a href="https://twitter.com/Sentinels5599"><i class="icon ion-social-twitter"></i></a><a href="https://www.instagram.com/sentinels_5599/"><i class="icon ion-social-instagram"></i></a>
                         <a
                             href="https://www.youtube.com/channel/UCALF3caI0F4WJfJisLFSBWQ"><i class="fa fa-youtube-play"></i></a>
-                            <p class="copyright">Team 5599 | The Sentinels</p>
+                            <p class="copyright">Copyright BNCHS Sentinels | Michael Rooplall ©&nbsp;2018</p>
                     </div>
                 </div>
             </div>

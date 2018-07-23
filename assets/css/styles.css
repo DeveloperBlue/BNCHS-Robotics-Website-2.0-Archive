@@ -811,10 +811,15 @@ p.SplashHeaderText {
   float:right;
 }
 
+#contactInfoList {
+  padding-top:10px;
+  margin-bottom:20px;
+}
+
 .contactSingleDiv {
   min-height:70px;
   height:auto;
-  margin-top:40px;
+  margin-top:20px;
 }
 
 #contactInfoDiv-Template {

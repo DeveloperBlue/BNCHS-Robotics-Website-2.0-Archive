@@ -1,6 +1,6 @@
 .newsletter-subscribe {
   color:#313437;
-  background-color:#fff;
+  background-color:#f1f7fc;
   padding:50px 0;
 }
 
@@ -30,12 +30,16 @@
 }
 
 .newsletter-subscribe form {
-  justify-content:center;
+  text-align:center;
+}
+
+.newsletter-subscribe-contact-container {
+  min-height:600px;
 }
 
 .newsletter-subscribe form .form-control {
-  background:#eff1f4;
-  border:none;
+  background:#fff;
+  border:1px solid #d4d4d4;
   border-radius:3px;
   box-shadow:none;
   outline:none;
@@ -44,6 +48,10 @@
   height:45px;
   margin-right:10px;
   min-width:250px;
+}
+
+.newsletter-subscribe-bg {
+  background-color:#f1f7fc;
 }
 
 .newsletter-subscribe form .btn {
@@ -72,5 +80,17 @@
   background-color:#055ada !important;
   color:#fff;
   outline:none !important;
+}
+
+.newsletter-subscribe-inner {
+  max-width:480px;
+  width:90%;
+  margin:0 auto;
+  background-color:#fff;
+  padding:40px;
+  margin-top:100px;
+  border-radius:4px;
+  color:#505e6c;
+  box-shadow:1px 1px 5px rgba(0,0,0,0.1);
 }
 

@@ -58,8 +58,8 @@ $(window).on("load", function(){
 		handleTeamPage(pageIndex);
 	} else if (pageIndex == "Robots.html"){
 		handleRobotsPage(pageIndex);
-	} else if (pageIndex == "Documents.html"){
-		handleDocumentsPage(pageIndex);
+	} else if (pageIndex == "Resources.html"){
+		handleResourcesPage(pageIndex);
 	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Verify.html")) {
 		handleLoginPage(pageIndex);
 		checkLocation();
@@ -70,8 +70,19 @@ $(window).on("load", function(){
 		handleContactsPage();
 	}
 
+	if ((pageIndex == "index.html") || (pageIndex == "Contact.html") || (pageIndex == "SocialMedia.html")){
+		handleNewsfeedContainer();
+	}
+
 	scaleSize();
 })
+
+function handleNewsfeedContainer(){
+
+	$("#newsletter-subscribe-btn").click(function(){
+		alert("Thank you for showing interest in the BNCHS Robotics Team! Sadly, our Newsletter system is currently under development. Please come back at a later date and try again!");
+	})
+}
 
 
 $(window).bind("resize", scaleSize);
@@ -116,11 +127,11 @@ function configureNavbar(pageIndex){
 
 	if (pageIndex == "Blog.html" || pageIndex == "SocialMedia.html"){
 		$("#MediaBlogNavButton").addClass("active");
-	} else if (pageIndex == "Projects.html" || pageIndex == "Calendar.html" || pageIndex == "Documents.html"){
+	} else if (pageIndex == "Projects.html" || pageIndex == "Calendar.html" || pageIndex == "Resources.html"){
 		$("#CommunityResourcesNavButton").addClass("active");
 	} else if (pageIndex == "Sponsors.html" || pageIndex == "OurSponsors.html"){
 		$("#SponsorsNavButton").addClass("active");
-	} else if (pageIndex == "ContactUs.html"){
+	} else if (pageIndex == "Contact.html"){
 		$("#ContactNavButton").addClass("active");
 	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Verify.html") || (pageIndex == "Account.html") || (pageIndex == "WebsiteManager.html")){
 		$("#TeamResourcesNavButton").addClass("active");
@@ -167,6 +178,11 @@ function configureNavbar(pageIndex){
 					window.location = "http://www.team5599.com/Account.html";
 				})
 			}
+		},
+		error : function(){
+			$(".access-account-btn").click(function(){
+				window.location = "http://www.team5599.com/SignIn.html";
+			})
 		}
 	});
 
@@ -407,21 +423,44 @@ function handleLoginPage(pageIndex){
 
 		$("#account-sign-in").click(function(e) {
 			e.preventDefault();
+
+			console.log($("#input-username").val() + " USERNAME");
+
+			if ($("#input-username").val().replace(/ /g, "") == ""){
+				// No username
+				$("#error").text("Please enter a username and password");
+				$("#input-username").focus();
+				return;
+			} else if ($("#input-password").val().replace(/ /g, "") == ""){
+				// No password
+				$("#error").text("Please enter a username and password");
+				$("#input-password").focus();
+				return;
+
+			}
+
 			console.log("Signing In . . .");
+
 			$("#account-sign-in").prop("disabled",true);
 			$("#error").text("");
+
 			$.ajax({
 				type: "POST",
 				url: "assets/php/SignIn.php",
 				data: $(".form").serialize(),
 				success: function(response) {
 					if (response === "success") {
-						console.log("Success!"); // PHP will automatically redirect
+						console.log("Success!\nPHP Script should redirect to Accounts page."); // PHP will automatically redirect
 					} else {
 						$("#account-sign-in").prop("disabled",false);
 						$("#error").text(response);
 						scrollToElement("#error");
 					}
+				},
+				error : function(){
+					$("#account-sign-in").prop("disabled",false);
+					$("#error").text("An error has occured. The database may be down. Please try again or check back at a later time.");
+					scrollToElement("#error");
 				}
 			});
 		});
@@ -579,18 +618,19 @@ function handleContactsPage(){
 
 	console.log("Loading Contacts . . .");
 
-	function buildContacts(contactObject){
+	function buildContacts(contactsObject){
 
 		var contactContainer = $("#contactInfoList");
 
 		contactContainer.empty();
 
-		if (contactsObject){
+		if ((contactsObject != null) && (Object.keys(contactsObject).length > 0)){
+
+			contactsObject = Object.values(contactsObject);
 
 			// Sort table
-
 			contactsObject.sort(function(a, b){
-				return a.order < b.order;
+				return a.order > b.order;
 			})
 
 			for (contact in contactsObject){
@@ -609,7 +649,7 @@ function handleContactsPage(){
 			}
 
 		} else {
-			$(contactContainer).append("<p>An error has occured. Consider refreshing the page?</p>");
+			$("#contactInfoList").append("<p>An error has occured. Consider refreshing the page?</p>");
 		}
 	}
 
@@ -652,6 +692,9 @@ function handleContactsPage(){
 			console.log("An error occured when fetching the ajax request. Loading default data.");
 
 			buildContacts(defaultContactData);
+
+			$("#contactInfoList").append("<p>You are viewing a cached version of the contacts page, last updated in July, 2018. If you continue to see this message, please contact webmaster@team5599.com.<p>");
+
 		}
 	});
 
@@ -902,7 +945,7 @@ function handleRobotsPage(){
 			console.log("An error occured when fetching the ajax request. Loading default data.");
 
 			buildRobots(defaultRobotData);
-			$("#robot-buttons").append("<p>An error occured when loading the Robots page. A cached version of this page is currently being displayed and is at risk of being not up to date.</p>");
+			$("#robot-buttons").append("<p class=\"text-center\" style=\"margin-top:20px\">An error occured when loading the Robots page. A cached version of this page is currently being displayed and is at risk of being not up to date.</p>");
 		}
 	});
 
@@ -910,6 +953,194 @@ function handleRobotsPage(){
 
 
 function handleTeamPage() {
+
+	// Loads following cached data when database fails to load
+	var defaultPeopleData = {
+		"000000" : {
+			name : "Hansen Pan",
+			yearJoined : "2016",
+			yearGraduated : "2018",
+			headshot : "",
+			titles : {
+				"Captain" : {
+					title : "Captain",
+					startYear : "2017",
+					endYear : "2018"
+				},
+				"Head of Mechanics" : {
+					title : "Head of Mechanics",
+					startYear : "2017",
+					endYear : "2018"
+				}
+			}
+		},
+		"000001" : {
+			name : "Danielle Louie",
+			yearJoined : "2016",
+			yearGraduated : "2019",
+			headshot : "",
+			titles : {
+				"Vice Captain" : {
+					title : "Captain",
+					startYear : "2017",
+					endYear : "present"
+				},
+				"Director of Marketing" : {
+					title : "Director of Marketing",
+					startYear : "2017",
+					endYear : "present"
+				}
+			}
+		},
+		"000002" : {
+			name : "Nazifa Prapti",
+			yearJoined : "2017",
+			yearGraduated : "2020",
+			headshot : "",
+			titles : {
+				"Co-Head of Electronics" : {
+					title : "Co-Head of Electronics",
+					startYear : "2017",
+					endYear : "present"
+				}
+			}
+		},
+		"000003" : {
+			name : "Max Menes",
+			yearJoined : "2015",
+			yearGraduated : "2019",
+			headshot : "",
+			titles : {
+				"Co-Head of Electronics" : {
+					title : "Co-Head of Electronics",
+					startYear : "2017",
+					endYear : "present"
+				}
+			}
+		},
+		"000004" : {
+			name : "Jeff Chan",
+			yearJoined : "2017",
+			yearGraduated : "2019",
+			headshot : "",
+			titles : {
+				"Co-Head of Programming" : {
+					title : "Co-Head of Programming",
+					startYear : "2017",
+					endYear : "present"
+				}
+			}
+		},
+		"000005" : {
+			name : "Ananta Sharma",
+			yearJoined : "2017",
+			yearGraduated : "2020",
+			headshot : "",
+			titles : {
+				"Co-Head of Programming" : {
+					title : "Co-Head of Programming",
+					startYear : "2017",
+					endYear : "present"
+				}
+			}
+		},
+		"000006" : {
+			name : "Andrew \"Happy\" Lin",
+			yearJoined : "2017",
+			yearGraduated : "2020",
+			headshot : "",
+			titles : {
+				"Board Member" : {
+					title : "Board Member",
+					startYear : "2017",
+					endYear : "present"
+				}
+			}
+		},
+		"000007" : {
+			name : "Tanoy Sarkar",
+			yearJoined : "2014",
+			yearGraduated : "2016",
+			headshot : "",
+			titles : {
+				"Founder" : {
+					title : "Founder",
+					startYear : "2014",
+					endYear : "present"
+				},
+				"Captain" : {
+					title : "Captain",
+					startYear : "2014",
+					endYear : "2016"
+				},
+				"Mentor" : {
+					title : "Mentor",
+					startYear : "2016",
+					endYear : "present"
+				},
+			}
+		},
+		"000008" : {
+			name : "Kelin Qu",
+			yearJoined : "2014",
+			yearGraduated : "2017",
+			headshot : "",
+			titles : {
+				"Captain" : {
+					title : "Captain",
+					startYear : "2017",
+					endYear : "2018"
+				},
+				"Head of Electronics" : {
+					title : "Haed of Electronics",
+					startYear : "2014",
+					endYear : "2017"
+				},
+				"Head of Pneumatics" : {
+					title : "Haed of Electronics",
+					startYear : "2014",
+					endYear : "2017"
+				},
+				"Mentor" : {
+					title : "Mentor",
+					startYear : "2017",
+					endYear : "present"
+				},
+			}
+		},
+		"000009" : {
+			name : "Michael Rooplall",
+			yearJoined : "2016",
+			yearGraduated : "2017",
+			headshot : "",
+			titles : {
+				"Head of Programming" : {
+					title : "Haed of Programming",
+					startYear : "2016",
+					endYear : "2017"
+				},
+				"Webmaster" : {
+					title : "Webmaster",
+					startYear : "2016",
+					endYear : "present"
+				},
+				"Mentor" : {
+					title : "Mentor",
+					startYear : "2017",
+					endYear : "present"
+				},
+			}
+		}
+	}
+
+	var peopleCache = {};
+
+	function convertYear(yearGiven){
+		if (yearGiven.toLowerCase() == "present"){
+			return new Date().getFullYear();
+		}
+		return yearGiven;
+	}
 
 	function loadTeamHistory(year){
 
@@ -919,37 +1150,35 @@ function handleTeamPage() {
 			console.log("Loading Leadership Data for the " + year + " Season");
 		}
 
-		var defaultPeopleData = {
-			"012345" : {
-				name : "Name",
-				yearJoined : "2015",
-				yearGraduated : "2016",
-				headshot : "",
-				titles : {
-					"012345" : {
-						title : "Title",
-						startYear : "2015",
-						endYear : "2018"
+		function getRelevantPeopleForYear(year, callback){
+
+			if (peopleCache[year] != null){
+				callback(peopleCache[year]);
+			} else {
+
+				$.ajax({
+					type: "POST",
+					url: "assets/php/getPageData.php",
+					data: {request : "getPeopleData"},
+					success: function(response) {
+						callback(sortRelevantPeople(year, JSON.parse(response)));
+					},
+					error : function(){
+						console.log("An error occured when fetching team data.");
+						callback(sortRelevantPeople(year, defaultPeopleData), true);
 					}
-				}
+				});
 			}
-		}
-		function convertYear(yearGiven){
-			if (yearGiven.toLowerCase() == "present"){
-				return new Date().getFullYear();
-			}
-			return yearGiven;
+
 		}
 
-		function getRelevantPeopleForYear(year){
+		function sortRelevantPeople(year, collectionOfPeople){
 
 			var data = {
 				leadership : [],
 				roster : {},
 				mentors : []
 			}
-
-			var collectionOfPeople = {}; // AJAX Request of people
 
 			for (personID in collectionOfPeople){
 				var personData = collectionOfPeople[personID];
@@ -971,7 +1200,7 @@ function handleTeamPage() {
 				} else {
 					for (titleID in personData.titles){
 						var titleData = personData.titles[titleID];
-						if ( ((titleData.title.toLowerCase().inclues("mentor")) || (titleData.title.toLowerCase().includes("coach"))) && (convertYear(titleData.startYear) <= year) && (convertYear(titleData.endYear) >= year) ) {
+						if ( ((titleData.title.toLowerCase().includes("mentor")) || (titleData.title.toLowerCase().includes("coach"))) && (convertYear(titleData.startYear) <= year) && (convertYear(titleData.endYear) >= year) ) {
 							personData.relevantTitles = [personData.titles[titleID]];
 							data.mentors.push(personData);
 							break;
@@ -980,95 +1209,103 @@ function handleTeamPage() {
 				}
 			}
 
+			peopleCache[year] = data;
 			return data;
 
 		}
 
 		// Use javascript sorting algorithim to compare person object with unique hash codes to a different draggable "orderable" list.
 
-		var teamData = getRelevantPeopleForYear(year);
+		getRelevantPeopleForYear(year, function(teamData, isDatabaseError){
 
-		var personDisplayObject = $("#PersonDisplayBox_Template");
+			var personDisplayObject = $("#PersonDisplayBox_Template");
 
-		$("#TeamHistoryBox").empty();
-		$("#TeamHistoryList").empty();
-		$("#TeamHistoryBox_Mentors").empty();
+			$("#TeamHistoryBox").empty();
+			$("#TeamHistoryList").empty();
+			$("#TeamHistoryBox_Mentors").empty();
 
 
-		if (teamData.leadership.length > 0){
+			if (("leadership" in teamData) && (teamData.leadership.length > 0)){
 
-			// Sort the table
+				// Sort the table
 
-			for (index in teamData.leadership){
+				for (index in teamData.leadership){
 
-				var personBox = personDisplayObject.clone();
+					var personBox = personDisplayObject.clone();
 
-				var personBoxContent = $(personBox).children("#PersonDisplayContent");
-				var personBoxLinks = $(personBox).children("#PersonDisplayLinks");
+					var personBoxContent = $(personBox).children("#PersonDisplayContent");
+					var personBoxLinks = $(personBox).children("#PersonDisplayLinks");
 
-				var titleText = []; // Join with <br>
+					var titleText = []; // Join with <br>
 
-				for (titleIndex in teamData.leadership[index].relevantTitles){
-					titleText.push(teamData.leadership[index].relevantTitles[titleIndex].title + " (" + teamData.leadership[index].relevantTitles[titleIndex].startYear + "-" + teamData.leadership[index].relevantTitles[titleIndex].endYear + ")");
+					for (titleIndex in teamData.leadership[index].relevantTitles){
+						titleText.push(teamData.leadership[index].relevantTitles[titleIndex].title + " (" + teamData.leadership[index].relevantTitles[titleIndex].startYear + "-" + teamData.leadership[index].relevantTitles[titleIndex].endYear + ")");
+					}
+
+					$(personBoxContent).children("#PersonDisplayName").text(teamData.leadership[index].name);
+					$(personBoxContent).children("#PersonDisplayTitles").html(titleText.join("<br>"));
+					$(personBoxContent).children("#PersonDisplayInfo").text(teamData.leadership[index].yearJoined + "-" + teamData.leadership[index].yearGraduated);
+
+					$(personBox).attr("id", "PersonDisplayBox_"+index);
+
+					$(personBox).appendTo($("#TeamHistoryBox"));
+
 				}
 
-				$(personBoxContent).children("#PersonDisplayName").text(teamData.leadership[index].name);
-				$(personBoxContent).children("#PersonDisplayTitles").html(titleText.join("<br>"));
-				$(personBoxContent).children("#PersonDisplayInfo").text(teamData.leadership[index].yearJoined + "-" + teamData.leadership[index].yearGraduating);
-
-				$(personBox).attr("id", "PersonDisplayBox_"+index);
-
-				$(personBox).appendTo($("#TeamHistoryBox"));
-
+			} else {
+				$("#TeamHistoryBox").append("<p class=\"text-center\">Sorry, we don't have any leadership data for that time period.</p>");
 			}
 
-		} else {
-			$("#TeamHistoryBox").append("<p class=\"text-center\">Sorry, we don't have any leadership data for that time period.</p>");
-		}
 
+			if (("roster" in teamData) && (Object.keys(teamData.roster).length > 0)){
 
-		if (teamData.roster != {}){
-
-			for (memberIndex in teamData.roster.members){
-				var memberName = teamData.roster.members[memberIndex];
-				if (teamData.roster.flipFirstName){
-					memberName = memberName.split(" ").reverse().join(" ");
-				}
-				$("#TeamHistoryList").append("<p class=\"text-center team-member no-select\">" + memberName + "</p>");
-			}
-
-		} else {
-			$("#TeamHistoryList").append("<p class=\"text-center\">Sorry, we don't have any attendance data for that time period.</p>");
-		}
-
-		if (teamData.mentors.length > 0){
-
-			for (index in teamData.mentors){
-
-				var personBox = personDisplayObject.clone();
-
-				var personBoxContent = $(personBox).children("#PersonDisplayContent");
-				var personBoxLinks = $(personBox).children("#PersonDisplayLinks");
-
-				var titleText;
-
-				for (titleIndex in teamData.mentors[index].relevantTitles){
-					titleText.push(teamData.mentors[index].relevantTitles[titleIndex].title + " (" + teamData.mentors[index].relevantTitles[titleIndex].startYear + "-" + teamData.mentors[index].relevantTitles[titleIndex].endYear + ")");
+				for (memberIndex in teamData.roster.members){
+					var memberName = teamData.roster.members[memberIndex];
+					if (teamData.roster.flipFirstName){
+						memberName = memberName.split(" ").reverse().join(" ");
+					}
+					$("#TeamHistoryList").append("<p class=\"text-center team-member no-select\">" + memberName + "</p>");
 				}
 
-				$(personBoxContent).children("#PersonDisplayName").text(teamData.mentors[index].name);
-				$(personBoxContent).children("#PersonDisplayTitles").html(titleText.join("<br>"));
-				$(personBoxContent).children("#PersonDisplayInfo").text(teamData.mentors[index]);
-
-				$(personBox).attr("id", "PersonDisplayBox_"+mentorName);
-
-				$(personBox).appendTo($("#TeamHistoryBox_Mentors"));
-
+			} else {
+				$("#TeamHistoryList").append("<p class=\"text-center\">Sorry, we don't have any attendance data for that time period.</p>");
 			}
 
-		} else {
-			$("#TeamHistoryBox_Mentors").append("<p class=\"text-center\">Sorry, we don't have any mentor data for that time period.</p>");
-		}
+			if (("mentors" in teamData) && (teamData.mentors.length > 0)){
+
+				for (index in teamData.mentors){
+
+					var personBox = personDisplayObject.clone();
+
+					var personBoxContent = $(personBox).children("#PersonDisplayContent");
+					var personBoxLinks = $(personBox).children("#PersonDisplayLinks");
+
+					var titleText;
+
+					for (titleIndex in teamData.mentors[index].relevantTitles){
+						titleText.push(teamData.mentors[index].relevantTitles[titleIndex].title + " (" + teamData.mentors[index].relevantTitles[titleIndex].startYear + "-" + teamData.mentors[index].relevantTitles[titleIndex].endYear + ")");
+					}
+
+					$(personBoxContent).children("#PersonDisplayName").text(teamData.mentors[index].name);
+					$(personBoxContent).children("#PersonDisplayTitles").html(titleText.join("<br>"));
+					$(personBoxContent).children("#PersonDisplayInfo").text(teamData.mentors[index]);
+
+					$(personBox).attr("id", "PersonDisplayBox_" + teamData.mentors[index].name);
+
+					$(personBox).appendTo($("#TeamHistoryBox_Mentors"));
+
+				}
+
+			} else {
+				$("#TeamHistoryBox_Mentors").append("<p class=\"text-center\">Sorry, we don't have any mentor data for that time period.</p>");
+			}
+
+			if (isDatabaseError){
+				$("#TeamHistoryBox").prepend("<h5 class=\"text-center\" style=\"margin-bottom:40px;color:#000;\">If this issue persists, please contant webmaster@team5599.com</h5>");
+				$("#TeamHistoryBox").prepend("<h4 class=\"text-center\" style=\"margin-bottom:10px;color:red;\">An error occured with the database. You are viewing cached content, so information may not be accurate. Please try again or check back at a later time.</h4>");
+			}
+
+		});
 
 	}
 
@@ -1124,7 +1361,7 @@ function handleTeamPage() {
 
 }
 
-function handleDocumentsPage(pageIndex){
+function handleResourcesPage(pageIndex){
 
 	$(".colorDisplayButton").click(function(){
 
@@ -1414,8 +1651,10 @@ function scaleSize(){
 		
 		var splashContentHeaderLogoPush = Math.round((splashContentHeight*2/3) - ($('.splashContentHeader').height())/2);
 		var splashContentHeaderLogoPushHalf = Math.round(((splashContentHeight/2)*2/3) - ($('.splashContentHeader').height())/2);
+
 		$('.splashContentHeader').css('top', splashContentHeaderLogoPush + "px");
 		$('.splashContentHeaderHalf').css('top', splashContentHeaderLogoPushHalf + "px");
+		
 
 		scrollUpdate();
 	}

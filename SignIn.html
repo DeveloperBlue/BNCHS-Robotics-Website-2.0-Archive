@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Team5599Website</title>
+    <title>&lt; Benjamin N. Cardozo HS | Sentinels Team 5599 &gt;</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Coming+Soon">
+    <link rel="stylesheet" href="assets/css/Construction-Banner.css">
     <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Footer-Clean.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
     <link rel="stylesheet" href="assets/css/ImageSelectorModal.css">
     <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
     <link rel="stylesheet" href="assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="assets/css/Social-Icons.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -29,12 +31,16 @@
 </head>
 
 <body>
+    <div class="construction-banner">
+        <p class="construction-text">Sorry! This page is currently under maintenance!</p>
+        <p class="text-nowrap construction-sub-text">Please come back at a later time to use this feature.</p>
+    </div>
     <div class="login-dark login-height-1">
         <form class="form">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-            <div class="form-group"><input class="form-control" type="text" name="user" placeholder="Email or OSIS"></div>
-            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="form-group"><input class="form-control" type="text" name="user" placeholder="Email or OSIS" id="input-username"></div>
+            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" id="input-password"></div>
             <div class="checkbox"><label for="remember-device"><input type="checkbox">Keep me signed in on this device</label></div>
             <p class="text-center text-danger signing-error" id="error"></p>
             <div class="form-group"><button class="btn btn-primary btn-block login-main-btn" type="button" id="account-sign-in">Log In</button></div><a href="SignUp.html" class="forgot">Create an account</a><a href="Forgot.html" class="forgot">Forgot your email or password?</a>
@@ -98,7 +104,7 @@
                             <li><a href="http://blog.team5599.com">Our Blog</a></li>
                             <li><a href="SocialMedia.html">Social Media</a></li>
                             <li><a href="Projects.html">Code, Projects, &amp; Demos</a></li>
-                            <li><a href="Projects.html">Documents &amp; Tutorials</a></li>
+                            <li><a href="Resources.html">Documents &amp; Resources</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 col-sm-4 item">
@@ -112,7 +118,7 @@
                     <div class="col-md-3 item social"><a href="https://www.facebook.com/team5599sentinels/"><i class="icon ion-social-facebook"></i></a><a href="https://twitter.com/Sentinels5599"><i class="icon ion-social-twitter"></i></a><a href="https://www.instagram.com/sentinels_5599/"><i class="icon ion-social-instagram"></i></a>
                         <a
                             href="https://www.youtube.com/channel/UCALF3caI0F4WJfJisLFSBWQ"><i class="fa fa-youtube-play"></i></a>
-                            <p class="copyright">Team 5599 | The Sentinels</p>
+                            <p class="copyright">Copyright BNCHS Sentinels | Michael Rooplall ©&nbsp;2018</p>
                     </div>
                 </div>
             </div>
@@ -130,7 +136,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li role="presentation"><a href="index.html">About Us</a></li>
                             <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
-                            <li role="presentation"><a href="Team.html">Our Leadership</a></li>
+                            <li role="presentation"><a href="Team.html">Our Team</a></li>
                             <li role="presentation"><a href="Robots.html">Our Robots</a></li>
                         </ul>
                     </li>
@@ -140,14 +146,14 @@
                             <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
                             <li
                                 role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
-                    <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
+                    <li role="presentation"><a href="Resources.html">Documents &amp; Resources</a></li>
                     </ul>
                     </li>
                     <li class="dropdown NavButton" id="TeamResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Team&nbsp;Resources<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
                             <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
-                            <li role="presentation"><a href="Documents.html">Documents &amp; Tutorials</a></li>
+                            <li role="presentation"><a href="Resources.html">Documents &amp; Resources</a></li>
                             <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
                         </ul>
                     </li>
