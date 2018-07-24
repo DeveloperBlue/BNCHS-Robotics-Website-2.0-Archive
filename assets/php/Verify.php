@@ -20,7 +20,7 @@ if ($request=="verify"){
 		if ($results->num_rows == 0){
 
 			// Invalid OSIS
-			echo '{status : 400, message: "The account you are trying to activate does not exist. Invalid OSIS of ' . $osis . '"}';
+			echo '{"status" : 400, "message": "The account you are trying to activate does not exist. Invalid OSIS of ' . $osis . '"}';
 			die();
 
 		} else {
@@ -29,7 +29,7 @@ if ($request=="verify"){
 
 			if ($user['activation_key'] != '$key'){
 				// Invalid Key
-				echo '{status : 400, message: "Invalid activation key. Please contact webmaster@team5599.com with your OSIS."}';
+				echo '{"status" : 400, "message": "Invalid activation key. Please contact webmaster@team5599.com with your OSIS."}';
 				die();
 			}
 
@@ -37,12 +37,12 @@ if ($request=="verify"){
 			$mysqli->query("UPDATE users SET active='1' WHERE osis='$osis'") or die($mysqli->error);
 			$_SESSION['active'] = 1;
 
-			echo '{status : 200, message: "success"}';
+			echo '{"status" : 200, "message": "success"}';
 			header("location: http://www.team5599.com/Account.html");
 		}
 
 	} else {
-		echo '{status : 400, message: "Invalid parameters provided for account verification. Contact webmaster@team5599.com immediately."}';
+		echo '{"status" : 400, "message": "Invalid parameters provided for account verification. Contact webmaster@team5599.com immediately."}';
 		die();
 	}
 
@@ -74,12 +74,12 @@ if ($request=="verify"){
 		http://www.team5599/Verify.html?request=reset&osis='.$OSIS.'&key='.$activation_key;
 
 		mail( $to, $subject, $message_body, $headers);
-		echo '{status : 400, message: "'.$email.'"}';
+		echo '{"status" : 400, "message": "'.$email.'"}';
 		exit();
 
 
 	} else {
-		echo '{status : 400, message: "Failed to find an account with that Student ID or email address. Please check the information you have entered."}';
+		echo '{"status" : 400, "message": "Failed to find an account with that Student ID or email address. Please check the information you have entered."}';
 		die();
 	}
 
@@ -98,7 +98,7 @@ if ($request=="verify"){
 		if ($results->num_rows == 0){
 
 			// Invalid OSIS
-			echo '{status : 400, message: "The account you are trying to activate does not exist. Invalid OSIS."}';
+			echo '{"status" : 400, "message": "The account you are trying to activate does not exist. Invalid OSIS."}';
 			die();
 
 		} else {
@@ -107,7 +107,7 @@ if ($request=="verify"){
 			$password_re = $mysqli->escape_string($_POST["password-re"]);
 
 			if ($password !== $password_re){
-				echo '{status : 400, message: "Password mismatch. Please check the passwords you have entered."}';
+				echo '{"status" : 400, "message": "Password mismatch. Please check the passwords you have entered."}';
 				die();
 			}
 
@@ -117,7 +117,7 @@ if ($request=="verify"){
 
 			if ($user['activation_key'] != '$key'){
 				// Invalid Key
-				echo '{status : 400, message: "Invalid reset key. Please contact webmaster@team5599.com with your OSIS."}';
+				echo '{"status" : 400, "message": "Invalid reset key. Please contact webmaster@team5599.com with your OSIS."}';
 				die();
 			}
 
@@ -125,12 +125,12 @@ if ($request=="verify"){
 			$mysqli->query("UPDATE users SET password='$password' WHERE osis='$osis' AND activation_key='$key'") or die($mysqli->error);
 			$_SESSION['active'] = 1;
 
-			echo '{status : 200, message: "success"}';
+			echo '{"status" : 200, "message": "success"}';
 			// header("location: http://www.team5599.com/Account.html");
 		}
 
 	} else {
-		echo '{status : 400, message: "Invalid parameters provided for account verification. Contact webmaster@team5599.com immediately."}';
+		echo '{"status" : 400, "message": "Invalid parameters provided for account verification. Contact webmaster@team5599.com immediately."}';
 		die();
 	}
 
@@ -141,18 +141,18 @@ if ($request=="verify"){
 		$email = $_SESSION["email"];
 		$osis = $_SESSION["OSIS"];
 
-		echo '{status : 200, message: "An email was sent to ' . $email . '. Please open the email and click the activation link for the account ' .osis. '."}';
+		echo '{"status" : 200, "message": "An email was sent to ' . $email . '. Please open the email and click the activation link for the account ' .osis. '."}';
 		die();
 	}
 
 	$msg = $_SESSION["message"];
 
 	if ($msg){
-		echo '{status: 400, message: "' . $msg . '"}';
+		echo '{"status": 400, "message": "' . $msg . '"}';
 		die();
 	}
 
-	echo '{status : 400, message: "An error has occured at Verify.php for NOTIFY."}';
+	echo '{"status" : 400, "message": "An error has occured at Verify.php for NOTIFY."}';
 	exit();
 }
 

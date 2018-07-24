@@ -12,11 +12,11 @@ $session = $_SESSION['logged_in'];
 if ($request == "getSession"){
 
 	if ($session == true){
-		echo '{status: 200, message : "' + $_SESSION['osis'] + '"}';
+		echo '{"status": 200, "message": "' . $_SESSION['osis'] . '"}';
 		die();
 	}
 
-	echo '{status: 401, message: "User is not logged in."}';
+	echo '{"status": 401, "message": "User is not logged in."}';
 
 } else if ($request == "isConfirmed"){
 
@@ -28,7 +28,7 @@ if ($request == "getSession"){
 
 		if ($result->num_rows == 0){
 			// User doesn't exist . . .
-			echo '{status:404, message:"Invalid OSIS. A user with that OSIS does not exist."}';
+			echo '{"status":404, "message":"Invalid OSIS. A user with that OSIS does not exist."}';
 			die();
 
 		} else {
@@ -39,16 +39,16 @@ if ($request == "getSession"){
 			$active = $user['active'];
 
 			if (($active != 0) && ($active != null)){
-				echo '{status:200, message: "Success."}';
+				echo '{"status":200, "message": "Success."}';
 				die();
 			}
 
-			echo '{status:401}';
+			echo '{"status":401}';
 			die();
 		}
 
 	} else {
-		echo '{status:403}';
+		echo '{"status":403}';
 		die();
 	}
 
@@ -56,7 +56,7 @@ if ($request == "getSession"){
 
 	session_destroy();
 
-	echo '{status:200}';
+	echo '{"status":200}';
 	header("location: http://www.team5599.com/SignIn.html");
 	exit();
 

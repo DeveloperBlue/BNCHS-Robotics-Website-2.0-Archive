@@ -9,7 +9,7 @@ $request = $_POST["request"];
 
 $databaseByRequest = [
 	"robotData" => "robots",
-	"teamData" => "leadership",
+	"teamData" => "leaders",
 	"sponsorData" => "sponsors",
 	"contactData" => "contacts",
 	"splashPageData" => "",
@@ -18,7 +18,7 @@ $databaseByRequest = [
 
 if (array_key_exists($request, $databaseByRequest) == false){
 
-	echo '{status: 400, message : "Invalid Request -> ' . $request . '"}';
+	echo '{"status": 400, "message" : "Invalid Request -> ' . $request . '"}';
 
 	exit();
 
@@ -35,12 +35,12 @@ if ($result->num_rows > 0) {
 		$data[] = $r;
 	}
 
-	echo '{status: 200, message : "' . json_encode( $data ) . '"}';
+	echo '{"status": 200, "message" : ' . json_encode( $data ) . '}';
 	exit();
 
 } else {
 
-	echo '{status: 200, message : "0 results for request ' . $request . '"}';
+	echo '{"status": 200, "message" : "0 results for request ' . $request . '"}';
 	exit();
 }
 

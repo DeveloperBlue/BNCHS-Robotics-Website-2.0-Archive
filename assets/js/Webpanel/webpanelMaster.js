@@ -76,7 +76,7 @@ function ajaxResponseToJSON(response){
 	if (!("status" in data)){
 		data.status = 404;
 		data.message = "Invalid JSON response from Server\n" + response;
-		console.alert(data.message);
+		console.warn(data.message);
 	}
 
 	if (!("message" in data)){
@@ -439,11 +439,14 @@ function activateStaticContentPanels(){
 
 // Helpers
 
-function convertYear(givenYear){
-	if (givenYear.toLowerCase() == "present"){
+function convertYear(yearGiven){
+	
+	if (yearGiven == null){ return 0 };
+
+	if (yearGiven.toLowerCase() == "present"){
 		return new Date().getFullYear();
 	}
-	return givenYear;
+	return yearGiven;
 }
 
 function updateTitleModalLocks(){

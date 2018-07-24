@@ -12,7 +12,7 @@ $result = $mysqli->query("SELECT * FROM users WHERE email='$username' OR osis='$
 
 if ($result->num_rows == 0){
 	// User doesn't exist . . .
-	echo '{status: 400, message:"An account with that OSIS/Email does not exist!"}';
+	echo '{"status": 400, "message":"An account with that OSIS/Email does not exist!"}';
 	die();
 
 } else {
@@ -29,11 +29,11 @@ if ($result->num_rows == 0){
 
 		$_SESSION['logged_in'] = true;
 
-		echo '{status: 200}';
+		echo '{"status": 200}';
 		header("location: http://www.team5599.com/Account.html");
 	} else {
 
-		echo '{status: 400, message: "You have entered an incorrect password. Please try again."}';
+		echo '{"status": 400, "message": "You have entered an incorrect password. Please try again."}';
 		die();
 		
 	}

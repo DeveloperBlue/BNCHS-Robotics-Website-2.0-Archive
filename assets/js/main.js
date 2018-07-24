@@ -91,17 +91,26 @@ $(window).bind("scroll", scrollUpdate);
 //////////////////////////////////////////////////////////////////
 
 function ajaxResponseToJSON(response){
+
+	console.log("Incoming Payload:");
+	console.log(response);
+
 	var data;
+
 	try {
 		data = JSON.parse(response);
+		console.log(data);
 	} catch (e) {
-		data = {status: 404, message: "Invalid response from server.\n" + response}
+		console.warn("Invalid response from server:");
+		console.warn(response);
+		data = {status: 404, message: "Invalid response from server."}
 	}
 	
 	if (!("status" in data)){
 		data.status = 404;
-		data.message = "Invalid JSON response from Server\n" + response;
-		console.alert(data.message);
+		data.message = "Invalid JSON response from Server";
+		console.warn("Invalid response from server:");
+		console.warn(response);
 	}
 
 	if (!("message" in data)){
@@ -226,7 +235,7 @@ function configureNavbar(pageIndex){
 		},
 		error : function(){
 			// Error occured, could not contact server. Take to SignIn page and let's try that again.
-			console.alert("Could not connect to server. Account button will redirect to Sign In page.");
+			console.warn("Could not connect to server. Account button will redirect to Sign In page.");
 			$(".access-account-btn").click(function(){
 				window.location = "http://www.team5599.com/SignIn.html";
 			})
@@ -463,13 +472,13 @@ function handleAccountPage(pageIndex){
 				$("#account-page").removeClass("VisibilityHiddenAbsolute");
 			} else {
 				// User is not signed in
-				console.alert("User is not signed in. Redirecting . . .");
+				console.warn("User is not signed in. Redirecting . . .");
 				window.location = "http://www.team5599.com/SignIn.html";
 			}
 
 		},
 		error : function(){
-			console.alert("Could not authenticate over server. User is not considered signed in.");
+			console.warn("Could not authenticate over server. User is not considered signed in.");
 		}
 	});
 
@@ -495,7 +504,7 @@ function handleAccountPage(pageIndex){
 				}
 			},
 			error : function(){
-				console.alert("Could not authenticate over server. User is not able to log out.");
+				console.warn("Could not authenticate over server. User is not able to log out.");
 				window.location = "http://www.team5599.com/SignIn.html";
 			}
 		});
@@ -650,7 +659,7 @@ function handleLoginPage(pageIndex){
 							$("#error_activate").text("Your account has been successfully verified!");
 							$("#activate-go-to-dashboard").removeClass("VisibilityHiddenAbsolute");
 						} else {
-							console.alert("Failure: " + data.message);
+							console.warn("Failure: " + data.message);
 							$("#error_activate").text(data.message);
 						}
 						
@@ -759,7 +768,7 @@ function handleLoginPage(pageIndex){
 				}
 			},
 			error : function(){
-				console.alert("Could not authenticate over server. User is not considered signed in.");
+				console.warn("Could not authenticate over server. User is not considered signed in.");
 				window.location = "http://www.team5599.com/SignIn.html";
 			}
 
@@ -842,9 +851,9 @@ function handleContactsPage(){
 			var data = ajaxResponseToJSON(response);
 
 			if (data.status == 200){
-				buildContacts(JSON.parse(data.message));
+				buildContacts(data.message);
 			} else {
-				console.alert("Database parse failure.\n" + response);
+				console.warn("Database parse failure.\n" + response);
 				buildContacts(defaultContactData);
 				$("#contactInfoList").append("<p>You are viewing a cached version of the contacts page, last updated in July, 2018. If you continue to see this message, please contact webmaster@team5599.com.<p>");
 
@@ -871,16 +880,16 @@ function handleRobotsPage(){
 
 	var defaultRobotData = [
 		{
-			title	: "Pied Piper",
+			name	: "Pied Piper",
 			season 	: "2015",
 			type 	: "FRC",
 
 			image 	: "",
 			description : ["Pied Piper was Team 5599's robot for the 2015 season, FIRST Recycle Rush. Pied Piper was capable of lifting and manuevering totes and garbage bins. The robot was named by the team's captain, Tanoy Sarkar.", "This robot helped the team win the Rookie Inspiration Award at the New York City Regional Competition and the Future Glory Award at the Brunswick Eruption Off-season competition."],
 
-			revealVideos 	: ["https://www.youtube.com/watch?v=_-0VbFqoipo", "https://www.youtube.com/watch?v=Aj1VBVc-rHo"],
+			videos 	: ["https://www.youtube.com/watch?v=_-0VbFqoipo", "https://www.youtube.com/watch?v=Aj1VBVc-rHo"],
 
-			competitionRecordings : {
+			competitions : {
 				"NYC Regional - Rookie Inspiration Award" : "",
 				"Brunswick Eruption - Future Glory Award" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMYIkI-JpK00zzL8NadVlk37"
 			},
@@ -889,16 +898,16 @@ function handleRobotsPage(){
 			blueAllianceAPI : ""
 		},
 		{
-			title	: "The Hound",
+			name	: "The Hound",
 			season 	: "2016",
 			type 	: "FRC",
 
 			image 	: "",
 			description : ["The Hound was Team 5599's robot for the 2016 season, FIRST Stronghold. The Hound was capable of doing all the defenses excluding the Sally Port and Drawbridge. It was also able to shoot the high goal and low goal. It's pneumatic wheels allowed for great off-terrain manueverability, the sound of it's shooting motors was ferocious, and it's pneumatic arm could punch through sheetrock. The robot was named by the team as a whole."],
 
-			revealVideos 	: ["https://www.youtube.com/watch?v=oVSD8OBbLaM", "https://www.youtube.com/watch?v=PdjCbOFEjpI", "https://www.youtube.com/watch?v=VqOKzoHJDjA"],
+			videos 	: ["https://www.youtube.com/watch?v=oVSD8OBbLaM", "https://www.youtube.com/watch?v=PdjCbOFEjpI", "https://www.youtube.com/watch?v=VqOKzoHJDjA"],
 			
-			competitionRecordings : {
+			competitions : {
 				"NYC Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMbhEKMK7wOO8dr-A-fEgFII"
 			},
 
@@ -906,16 +915,16 @@ function handleRobotsPage(){
 			blueAllianceAPI : ""
 		},
 		{
-			title	: "HAL 5700",
+			name	: "HAL 5700",
 			season 	: "2017",
 			type 	: "FRC",
 
 			image 	: "",
 			description : ["HAL 5700 was Team 5599's robot for the 2017 season, FIRST STEAMworks. HAL 5700 was capable of receiving gears, placing them on the airships, using the return, and scaling the airship. It's omniwheels and design allowed it to manuever easily across fuel-filled fields. The robot was named by the team's lead coach, Bernard Haggerty.", "The team was a leading alliance and finalist at the Hudson Valley Rally off-season competition. The alliance placed 2nd, and consisted of Yonker's High School (Team 5123) and Carmel High School (Team 5943)."],
 
-			revealVideos 	: ["https://www.youtube.com/watch?v=1CLYCoHTwPQ", "https://www.youtube.com/watch?v=EMiNmJW7enI"],
+			videos 	: ["https://www.youtube.com/watch?v=1CLYCoHTwPQ", "https://www.youtube.com/watch?v=EMiNmJW7enI"],
 			
-			competitionRecordings : {
+			competitions : {
 				"NYC Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMaGIvnHV1J-kzymZlSUV--n",
 				"Hudson Valley Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMYkxCTT5Rdrfobd3MyVrCml",
 				"Hudson Valley Rally" : ""
@@ -925,16 +934,16 @@ function handleRobotsPage(){
 			blueAllianceAPI : ""
 		},
 		{
-			title	: "Quick Silver",
+			name	: "Quick Silver",
 			season 	: "2018",
 			type 	: "FRC",
 
 			image 	: "",
 			description : ["Quick Silver was Team 5599's robot for the 2018 season, FIRST Power Up! Quick Silver was capable of easily intaking power cubes, and efficiently placing them in the scale, even on it's highest and furthest points, and switches. The robot was named by the team.", "The team played in the quarter-finals during the NYC Regional Competition on an alliance with Brooklyn Technical High School (Team 334) and Long Island City High School (Team 2579)."],
 
-			revealVideos 	: ["https://www.youtube.com/watch?v=sBPAlijR4mw"],
+			videos 	: ["https://www.youtube.com/watch?v=sBPAlijR4mw"],
 			
-			competitionRecordings : {
+			competitions : {
 				"NYC Regional" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMYKYeob_AxzjBBfbnAJboeP",
 				"SBPLI Long Island Regional #2" : "https://www.youtube.com/playlist?list=PLPPk4cjYYdMbWWo66G_gRg1ucFTC-ZKlv",
 			},
@@ -943,13 +952,13 @@ function handleRobotsPage(){
 			blueAllianceAPI : ""
 		},
 		{
-			title	: "Barbara",
+			name	: "Barbara",
 			season 	: "2018",
 			type 	: "SeaPerch",
 
-			revealVideos : ["https://www.youtube.com/watch?v=gl3SZgLjoD0", "https://www.youtube.com/watch?v=jiGpZYibsYI"],
+			videos : ["https://www.youtube.com/watch?v=gl3SZgLjoD0", "https://www.youtube.com/watch?v=jiGpZYibsYI"],
 
-			competitionRecordings : {
+			competitions : {
 				"SeaPerch 2018" : ""
 			},
 
@@ -973,7 +982,7 @@ function handleRobotsPage(){
 			var robotData = localData[robot];
 			var typeColor = ((robotData.type == "FRC") ? "info" : "danger");
 		
-			var buttonHTML = "<button id=\"" + robotData.type + "_" + robotData.title + "\" class=\"btn btn-" + typeColor + " RobotDisplayButton\" type=\"button\">" + robotData.title + "<span class=\"label label-" + typeColor + " RobotDisplayLabel\">" + robotData.type + " " + robotData.season + "</span></button>";
+			var buttonHTML = "<button id=\"" + robotData.type + "_" + robotData.name + "\" class=\"btn btn-" + typeColor + " RobotDisplayButton\" type=\"button\">" + robotData.name + "<span class=\"label label-" + typeColor + " RobotDisplayLabel\">" + robotData.type + " " + robotData.season + "</span></button>";
 		
 			$("#robot-buttons").append(buttonHTML);
 
@@ -984,7 +993,7 @@ function handleRobotsPage(){
 			var data;
 
 			for (robot in localData){
-				if (localData[robot].type + "_" + localData[robot].title == id){
+				if (localData[robot].type + "_" + localData[robot].name == id){
 					data = localData[robot];
 					break;
 				}
@@ -1000,25 +1009,36 @@ function handleRobotsPage(){
 				updateQueryStringParam("season", data.season);
 			}
 
-			$("#robot-title").text(data.title);
+			$("#robot-title").text(data.name);
 			$("#robot-year").text(data.season);
 
 			$("#robot-description").empty();
+
+			console.log(data);
+
+			if (typeof data.description == "string"){
+				data.description = [data.description];
+			}
+
 			for (description in data.description){
 				$("#robot-description").append("<p>\t" + data.description[description] + "</p>");
 			}
 
 			$("#robot-reveal-video-main").empty();
 
-			if ("revealVideos" in data){
+			if ("videos" in data){
 
-				if (data.revealVideos.length == 0){
+				if (typeof data.videos == "string"){
+					data.videos = [data.videos];
+				}
+
+				if (data.videos.length == 0){
 
 					$("#robot-reveal-video-main").append("<p class=\"text-center\">Sorry, there's no reveal video data for this year!</p>");
 
-				} else if (data.revealVideos.length == 1){
+				} else if (data.videos.length == 1){
 
-					var videoHTML = "<div class=\"youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.revealVideos[0].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
+					var videoHTML = "<div class=\"youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.videos[0].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
 					$("#robot-reveal-video-main").append(videoHTML)
 
 				} else {
@@ -1028,9 +1048,9 @@ function handleRobotsPage(){
 					
 					var buildCarouselHTML_content = "";
 
-					for (videoHead in data.revealVideos){
+					for (videoHead in data.videos){
 
-						var slideHTML = "<div class=\"item " + ((buildCarouselHTML_content == "") ? "active " : "") + "youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.revealVideos[videoHead].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
+						var slideHTML = "<div class=\"item " + ((buildCarouselHTML_content == "") ? "active " : "") + "youtube-player-bg\"><iframe allowfullscreen frameborder=\"0\" src=\"https://www.youtube.com/embed/" + data.videos[videoHead].split("=")[1] + "?showinfo=0&amp;rel=0\" width=\"100%\" class=\"robot-reveal-video\"></iframe></div>";
 						buildCarouselHTML_content = buildCarouselHTML_content + " " + slideHTML;
 
 					}
@@ -1049,13 +1069,17 @@ function handleRobotsPage(){
 
 			var typeColor = ((data.type == "FRC") ? "info" : "danger");
 
-			for (competition in data.competitionRecordings){
+			if (typeof data.competitions == "string"){
+				data.competitions = JSON.parse(data.competitions);
+			}
+
+			for (competition in data.competitions){
 
 				var buttonHTML = "";
 
-				if (data.competitionRecordings[competition] != ""){
+				if (data.competitions[competition] != ""){
 					
-					buttonHTML = "<a class=\"btn btn-" + typeColor + " match-playlist-item\" role=\"button\" href=\"" + data.competitionRecordings[competition] + "\">" + competition + "<i class=\"fa fa-film match-playlist-item-hasVideo\"></i></a>";
+					buttonHTML = "<a class=\"btn btn-" + typeColor + " match-playlist-item\" role=\"button\" href=\"" + data.competitions[competition] + "\">" + competition + "<i class=\"fa fa-film match-playlist-item-hasVideo\"></i></a>";
 				
 				} else {
 
@@ -1077,7 +1101,7 @@ function handleRobotsPage(){
 			})
 		})
 
-		var robotLoadQuery = localData[0].type + "_" + localData[0].title;
+		var robotLoadQuery = localData[0].type + "_" + localData[0].name;
 
 		var robotData_season = getUrlParam("season");
 		var robotData_type = getUrlParam("type");
@@ -1085,7 +1109,7 @@ function handleRobotsPage(){
 		if ((robotData_season != null) && (robotData_type != null)) {
 			for (robot in localData){
 				if ((localData[robot].type.toLowerCase() == robotData_type) && (localData[robot].season == robotData_season)){
-					robotLoadQuery = localData[robot].type + "_" + localData[robot].title;
+					robotLoadQuery = localData[robot].type + "_" + localData[robot].name;
 					break;
 				}
 			}
@@ -1104,9 +1128,12 @@ function handleRobotsPage(){
 			var data = ajaxResponseToJSON(response);
 
 			if (data.status == 200){
-				buildRobots(JSON.parse(data.message));
+				console.log("Building Robots Page from AJAX response");
+				buildRobots(data.message);
 			} else {
-				console.alert("Database parse failure.\n" + response);
+				console.warn("Typeof " + (typeof data));
+				console.warn("Status:" + data.status + " | type " + (typeof data.status));
+				console.warn("Database parse failure.\n" + response);
 				buildRobots(defaultRobotData);
 				$("#robot-buttons").append("<p class=\"text-center\" style=\"margin-top:20px\">An error occured when loading the Robots page. A cached version of this page is currently being displayed and is at risk of being not up to date.</p>");
 
@@ -1311,6 +1338,9 @@ function handleTeamPage() {
 	var peopleCache = {};
 
 	function convertYear(yearGiven){
+
+		if (yearGiven == null){ return 0 };
+
 		if (yearGiven.toLowerCase() == "present"){
 			return new Date().getFullYear();
 		}
@@ -1334,14 +1364,14 @@ function handleTeamPage() {
 				$.ajax({
 					type: "POST",
 					url: "assets/php/getPageData.php",
-					data: {request : "getPeopleData"},
+					data: {request : "teamData"},
 					success: function(response) {
 
 						var data = ajaxResponseToJSON(response);
 						if (data.status == 200){
-							callback(sortRelevantPeople(year, JSON.parse(data.message)));
+							callback(sortRelevantPeople(year, data.message));
 						} else {
-							console.alert("Database parse failure.\n" + response);
+							console.warn("Database parse failure.\n" + response);
 							callback(sortRelevantPeople(year, defaultPeopleData), true);
 						}
 						
@@ -1360,10 +1390,12 @@ function handleTeamPage() {
 			var data = {
 				leadership : [],
 				roster : {},
-				mentors : []
+				mentors : [],
+				order_json : {},
 			}
 
 			for (personID in collectionOfPeople){
+
 				var personData = collectionOfPeople[personID];
 				if ((convertYear(personData.yearJoined) <= year) && (convertYear(personData.yearGraduated) >= year)){
 					
@@ -1392,6 +1424,106 @@ function handleTeamPage() {
 				}
 			}
 
+			if ("JSON_ORDER" in collectionOfPeople){
+				data.order_json = collectionOfPeople["JSON_ORDER"];
+			}
+
+			peopleCache[year] = data;
+
+			// Sort the data
+			function bruteSortData(unsortedData, sortType){
+				var titlePointers = {
+					"leadership" : {
+						"Captain" : 0,
+						"Co-Captain" : 1,
+						"Vice-Captain" : 1,
+						"Director" : 2,
+						"Head" : 2
+					},
+					"mentors" : {
+						"Lead-Coach" : 0,
+						"Coach" : 1,
+						"Lead-Mentor" : 0,
+						"Mentor" : 2,
+						"Volunteer" : 3
+					}
+				}
+
+				function getSortPosition(personObject){
+
+					var assignedValue = 999;
+
+					for (titleIndex in personObject.titles){
+
+						var title = personObject.titles[titleIndex];
+
+						for (pointer in titlePointers[sortType]){
+							if (title.replace(/ /g, "-").toLowerCase().startsWith(pointer.toLowerCase())){
+								if ((assignedValue == 999) || (titlePointers[sortType][pointer] < assignedValue)){
+									assignedValue = titlePointers[sortType][pointer];
+								}
+							}
+						}
+
+					}
+
+					return assignedValue;
+				}
+
+				unsortedData[sortType] = unsortedData[sortType].sort(function(a, b){
+
+					var posA = getSortPosition(a);
+					var posB = getSortPosition(b);
+
+					return (posA < posB);
+
+				})
+
+				return unsortedData;
+			}
+
+			var orderTables = data.order_json[year + ""];
+			if (orderTables){
+
+				function getSortPosition(id, tableType){
+					if (id in orderTables[tableType]){
+						return orderTables[tableType][id];
+					} else {
+						return 999;
+					}
+				}
+
+				if ("leadership" in orderTables){
+
+					data.leadership.sort(function(a, b){
+						var aPos = getSortPosition(a.id, "leadership");
+						var bPos = getSortPosition(b.id, "leadership");
+						return (aPos < bPos);
+					});
+
+				} else {
+					// brute sort
+					data = bruteSortData(data, "leadership");
+				}
+
+				if ("mentors" in orderTables){
+
+					data.leadership.sort(function(a, b){
+						var aPos = getSortPosition(a.id, "mentors");
+						var bPos = getSortPosition(b.id, "mentors");
+						return (aPos < bPos);
+					});
+
+				} else {
+					// brute sort
+					data = bruteSortData(teamData, "mentors");
+				}
+
+			} else {
+				data = bruteSortData(data, "leadership");
+				data = bruteSortData(data, "mentors");
+			}
+
 			peopleCache[year] = data;
 			return data;
 
@@ -1410,8 +1542,7 @@ function handleTeamPage() {
 
 			if (("leadership" in teamData) && (teamData.leadership.length > 0)){
 
-				// Sort the table
-
+				// Serve data
 				for (index in teamData.leadership){
 
 					var personBox = personDisplayObject.clone();
