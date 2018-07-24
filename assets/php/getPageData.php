@@ -7,36 +7,24 @@ require 'db.php';
 // $request = $mysqli->escape_string($_POST["request"]);
 $request = $_POST["request"];
 
-$query;
+$databaseByRequest = [
+	"robotData" => "robots",
+	"teamData" => "leadership",
+	"sponsorData" => "sponsors",
+	"contactData" => "contacts",
+	"splashPageData" => "",
+	"logData" => "logs",
+];
 
-if ($request == "robotData"){
+if (array_key_exists($request, $databaseByRequest) == false){
 
-	$query = "SELECT * FROM robots";
+	echo '{status: 400, message : "Invalid Request -> ' . $request . '"}';
 
-} else if ($request == "teamData"){
+	exit();
 
-	$query = "SELECT * FROM leaders";
-
-} else if ($request == "sponsorData"){
-
-	$query = "SELECT * FROM sponsors";
-
-} else if ($request == "contactData"){
-
-	$query = "SELECT * FROM contacts";
-
-} else if ($request == "splashPageData"){
-
-	// $query = "SELECT * FROM logs";
-
-} else if ($request == "logData"){
-
-	$query = "SELECT * FROM logs";
-
-} else {
-
-	echo "Invalid Request -> '" . $request . "'";
 }
+
+$query = "SELECT * FROM " . $databaseByRequest[$request];
 
 $result = $mysqli->query($query) or die(mysqli_error($mysqli));
 
@@ -47,11 +35,13 @@ if ($result->num_rows > 0) {
 		$data[] = $r;
 	}
 
-	echo json_encode( $data );
+	echo '{status: 200, message : "' . json_encode( $data ) . '"}';
+	exit();
 
 } else {
 
-	echo "0 results for request '" . $request . "'";
+	echo '{status: 200, message : "0 results for request ' . $request . '"}';
+	exit();
 }
 
 ?>

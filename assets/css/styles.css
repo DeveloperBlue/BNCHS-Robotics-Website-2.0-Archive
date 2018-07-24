@@ -1559,7 +1559,7 @@ p.SplashHeaderText {
   width:100%;
   min-height:20px;
   background-color:#DDD;
-  padding:5px;
+  padding:10px;
   margin-bottom:10px;
 }
 
@@ -1594,20 +1594,16 @@ p.SplashHeaderText {
 }
 
 .feed-btn {
-  width:95%;
+  width:100%;
   height:50px;
   display:inline-block;
-  margin-left:5px;
-  margin-right:5px;
   margin-bottom:5px;
 }
 
 .feed-admin-sm {
-  width:95%;
+  width:100%;
   height:50px;
   display:inline-block;
-  margin-left:5px;
-  margin-right:5px;
   margin-bottom:5px;
 }
 

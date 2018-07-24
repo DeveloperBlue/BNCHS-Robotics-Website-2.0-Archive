@@ -1,7 +1,8 @@
-
-// const facebookPageId = "495373137323994";
+// Main.js
 
 let pageSettings = {
+
+	// Various page settings for the Javascript to respond better dynamically.
 
 	paralaxVelocity : 0.5,
 
@@ -14,12 +15,17 @@ let pageSettings = {
 		queue : {}
 	},
 
+	// Index page slides
+	// An issue occurs when the slides within tabs are hidden and have to load iFrames from Flickr and Twitch.
+	// Therefore, we load them once when the tabs are actually activated.
 	didLoadSlides : {
 		slide_2 : false,
 		slide_3 : false,
 	},
 };
 
+
+// Default splash photo headers
 const splashImageDefaults = {
 
 	"Default" : "Default.png",
@@ -46,6 +52,7 @@ $(document).ready(function(){
 
 });
 
+// Call different threads depending on what page we're on
 $(window).on("load", function(){
 
 	const pageIndex = getPageIndex();
@@ -70,19 +77,10 @@ $(window).on("load", function(){
 		handleContactsPage();
 	}
 
-	if ((pageIndex == "index.html") || (pageIndex == "Contact.html") || (pageIndex == "SocialMedia.html")){
-		handleNewsfeedContainer();
-	}
+	handleNewsfeedContainer();
 
 	scaleSize();
 })
-
-function handleNewsfeedContainer(){
-
-	$("#newsletter-subscribe-btn").click(function(){
-		alert("Thank you for showing interest in the BNCHS Robotics Team! Sadly, our Newsletter system is currently under development. Please come back at a later date and try again!");
-	})
-}
 
 
 $(window).bind("resize", scaleSize);
@@ -92,11 +90,49 @@ $(window).bind("scroll", scrollUpdate);
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 
+function ajaxResponseToJSON(response){
+	var data;
+	try {
+		data = JSON.parse(response);
+	} catch (e) {
+		data = {status: 404, message: "Invalid response from server.\n" + response}
+	}
+	
+	if (!("status" in data)){
+		data.status = 404;
+		data.message = "Invalid JSON response from Server\n" + response;
+		console.alert(data.message);
+	}
+
+	if (!("message" in data)){
+		if (data.status == 200){
+			data.message = "success";
+		} else {
+			data.message = "No message provided with error of status code " + data.status;
+		}
+	}
+	
+	return data;
+}
+
+
 function getPageIndex(){
-	return window.location.pathname.split("/").pop();
+	
+	// When updating the .htaccess file to remove the .html append, we have to correct in the Javascript for functions that request and compare the page name.
+
+	var pageIndex = window.location.pathname.split("/").pop();
+	if ((pageIndex.endsWith(".html")) || (pageIndex == "")){
+		return pageIndex;
+	} else {
+		return pageIndex + ".html";
+	}
+
+	// https://stackoverflow.com/questions/16919526/how-to-link-to-pages-without-the-html-extension
 }
 
 function prepareSplashImage(pageIndex){
+
+	// Loads the header splash image depending on what page we're on.
 
 	pageIndex = (pageIndex != null) ? pageIndex : getPageIndex();
 
@@ -122,6 +158,8 @@ function prepareSplashImage(pageIndex){
 
 
 function configureNavbar(pageIndex){
+
+	// Sets up the navbar, highlighting which page we're page we're currently on and adding event to certain buttons.
 
 	pageIndex = (pageIndex != null) ? pageIndex : getPageIndex();
 
@@ -153,33 +191,42 @@ function configureNavbar(pageIndex){
 		}
 	});
 
+	// Redirection to the Flickr website
 	$("#FlickrModalTrigger").click(function(){
 		$("#FlickrModal").modal('show');
 	});
 
+	// Are we logged in?
 	$.ajax({
 		type: "POST",
 		url: "assets/php/getSession.php",
 		data: '{request : "getSession"}',
 		success: function(response) {
-			console.log("Session: " + response);
-			if (response === false) {
-				// User is not signed in
-				$("#navbar-account-btn").html("Sign In <i class=\"glyphicon glyphicon-log-in socialMediaIcon\"></i>");
-				$("#footer-account-btn").html($("#navbar-account-btn").html());
-				$(".access-account-btn").click(function(){
-					window.location = "http://www.team5599.com/SignIn.html";
-				})
-			} else {
+
+			var data = ajaxResponseToJSON(response);
+
+			if (data.status == 200){
 				// User is signed in
 				$("#navbar-account-btn").html("My Account <i class=\"glyphicon glyphicon-user socialMediaIcon\"></i>");
 				$("#footer-account-btn").html($("#navbar-account-btn").html());
 				$(".access-account-btn").click(function(){
 					window.location = "http://www.team5599.com/Account.html";
 				})
+			} else {
+
+				// User is not signed in
+				$("#navbar-account-btn").html("Sign In <i class=\"glyphicon glyphicon-log-in socialMediaIcon\"></i>");
+				$("#footer-account-btn").html($("#navbar-account-btn").html());
+				$(".access-account-btn").click(function(){
+					window.location = "http://www.team5599.com/SignIn.html";
+				})
+
 			}
+
 		},
 		error : function(){
+			// Error occured, could not contact server. Take to SignIn page and let's try that again.
+			console.alert("Could not connect to server. Account button will redirect to Sign In page.");
 			$(".access-account-btn").click(function(){
 				window.location = "http://www.team5599.com/SignIn.html";
 			})
@@ -192,7 +239,10 @@ function configureNavbar(pageIndex){
 //////////////////////////////////////////////////////////////////
 
 function httpGetAsync(theUrl, callback) {
-	var xmlHttp = new XMLHttpRequest();
+
+	// Make HTTP calls
+
+	const xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
 			callback(xmlHttp.responseText);
@@ -200,11 +250,22 @@ function httpGetAsync(theUrl, callback) {
 	}
 	xmlHttp.open("GET", theUrl, true); // true for asynchronous 
 	xmlHttp.send(null);
+
 }
 
 function checkLocation(){
-	var httpQuery = "https://freegeoip.net/json/";
-	var schoolIP = "165.155.213.225";
+
+	// Alert the user that they are on a school device, and remind them to sign out!
+
+	//
+	// TO DO:
+	//
+	// * Automate sign out if using a school computer when the session ends. (Maybe a timed event? Save the new Date() when the user last loaded a page/signed in?)
+	// * Move API Key somewhere more secure. Entire function needs to be moved to an AJAX PHP request.
+	//
+
+	const httpQuery = "http://api.ipstack.com/check?access_key=63741f25a6939301049094a1c7be1010";
+	const schoolIP = "165.155.213.225";
 
 	httpGetAsync(httpQuery, function(response){
 		var jsonResponse = JSON.parse(response);
@@ -222,11 +283,13 @@ function checkLocation(){
 }
 
 function scrollToElement(element){
+
+	// Neat method to animate scrolling to an element.
 	console.log("Scrolling to " + element);
 
 	var offset = $(element).offset();
 	offset.left -= 20;
-	offset.top -= 20;
+	offset.top -= 30;
 
 	$('html, body').animate({
 		scrollTop: offset.top,
@@ -235,6 +298,8 @@ function scrollToElement(element){
 }
 
 var updateQueryStringParam = function (key, value) {
+
+	// Add parameters to the omnibox url.
 
 	var baseUrl = [location.protocol, '//', location.host, location.pathname].join(''),
 		urlQueryString = document.location.search,
@@ -266,10 +331,13 @@ var updateQueryStringParam = function (key, value) {
 
 
 function getUrlParam(param, customUrl){
+	// Read a parameter from the omnibox url.
 	return getAllUrlParams(customUrl)[param];
 }
 
 function getAllUrlParams(url) {
+
+	// Get all parameters in the omnibox url.
 
 	// get query string from url (optional) or window
 	var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
@@ -334,8 +402,13 @@ function getAllUrlParams(url) {
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 
+// Specific Page Handling
 
 function handleSliders(){
+
+	// Sliders on the index page.
+	// Dynamically inject HTML for Flickr and Twitch
+	// Prevents weird scaling when the tab is hidden and Twitch's annoying auto-play.
 
 	$("#slide-2-btn").click(function(){
 		if (pageSettings.didLoadSlides.slide_2 == true) { return };
@@ -358,7 +431,19 @@ function handleSliders(){
 
 }
 
+function handleNewsfeedContainer(){
+
+	// Subscribing to the email newsleeter on various pages. (Index, Social Media, and Contact)
+
+	$("#newsletter-subscribe-btn").click(function(){
+		alert("Thank you for showing interest in the BNCHS Robotics Team! Sadly, our Newsletter system is currently under development. Please come back at a later date and try again!");
+	})
+
+}
+
 function handleAccountPage(pageIndex){
+
+	// Manage the User's Account page
 
 	pageIndex = (pageIndex != null) ? pageIndex : getPageIndex();
 
@@ -370,15 +455,21 @@ function handleAccountPage(pageIndex){
 		url: "assets/php/getSession.php",
 		data: '{request : "getSession"}',
 		success: function(response) {
-			console.log("Session: " + response);
-			if (response === false) {
-				// User is not signed in
-				window.location = "http://www.team5599.com/SignIn.html";
-			} else {
+			var data = ajaxResponseToJSON(response);
+
+			if (data.status == 200){
 				// User is signed in
 				$("#account-loading").addClass("VisibilityHiddenAbsolute");
 				$("#account-page").removeClass("VisibilityHiddenAbsolute");
+			} else {
+				// User is not signed in
+				console.alert("User is not signed in. Redirecting . . .");
+				window.location = "http://www.team5599.com/SignIn.html";
 			}
+
+		},
+		error : function(){
+			console.alert("Could not authenticate over server. User is not considered signed in.");
 		}
 	});
 
@@ -386,12 +477,36 @@ function handleAccountPage(pageIndex){
 	// $("#facebookLoginInformationPhotoActual")
 
 	$("#accountPage-signOut").click(function(){
-		console.log("You have been signed out.");
+
+		$.ajax({
+			type: "POST",
+			url: "assets/php/getSession.php",
+			data: '{request : "log_out"}',
+			success: function(response) {
+				var data = ajaxResponseToJSON(response);
+
+				if (data.status == 200){
+					// User is signed out
+					console.log("You have been signed out.");
+					window.location = "http://www.team5599.com/SignIn.html";
+				} else {
+					alert("Something went wrong signing you out.\n" + data.message);
+					window.location = "http://www.team5599.com/SignIn.html";
+				}
+			},
+			error : function(){
+				console.alert("Could not authenticate over server. User is not able to log out.");
+				window.location = "http://www.team5599.com/SignIn.html";
+			}
+		});
+
 	})
 
 }
 
 function handleLoginPage(pageIndex){
+
+	// Handle signing in, signing up, verifying, and forgetting your password. Parts of this might need to be moved to separate files or at least functions.
 
 	console.log("Handling - " + pageIndex);
 
@@ -407,14 +522,23 @@ function handleLoginPage(pageIndex){
 				url: "assets/php/Register.php",
 				data: $(".form").serialize(),
 				success: function(response) {
-					if (response === "success") {
-						console.log("Success!"); // PHP will automatically redirect
+
+					var data = ajaxResponseToJSON(response);
+
+					if (data.status == 200){
+						console.log("Successfully created user account!"); // PHP will automatically redirect
 						window.location = "http://www.team5599.com/Verify.html?request=notify";
 					} else {
 						$("#account-create").prop("disabled",false);
-						$("#error").text(response);
+						$("#error").text(data.message);
 						scrollToElement("#error");
 					}
+	
+				},
+				error : function(){
+					$("#account-create").prop("disabled",false);
+					$("#error").text("There was an issue connecting to the database. Please try again. If this issue persists, contact webmaster@team5599.com and try again at a later time.");
+					scrollToElement("#error");
 				}
 			});
 		});
@@ -449,13 +573,17 @@ function handleLoginPage(pageIndex){
 				url: "assets/php/SignIn.php",
 				data: $(".form").serialize(),
 				success: function(response) {
-					if (response === "success") {
-						console.log("Success!\nPHP Script should redirect to Accounts page."); // PHP will automatically redirect
+
+					var data = ajaxResponseToJSON(response);
+
+					if (data.status == 200){
+						console.log("Successful Sign In!\nServer should redirect to Accounts page momentarily."); // PHP will automatically redirect
 					} else {
 						$("#account-sign-in").prop("disabled",false);
-						$("#error").text(response);
+						$("#error").text(data.message);
 						scrollToElement("#error");
 					}
+
 				},
 				error : function(){
 					$("#account-sign-in").prop("disabled",false);
@@ -487,7 +615,18 @@ function handleLoginPage(pageIndex){
 					url: "assets/php/Verify.php",
 					data: {request : "notify"},
 					success: function(response) {
-						$("#error_activate").text(response);
+
+						var data = ajaxResponseToJSON(response);
+
+						if (data.status == 200){
+							$("#error_activate").text("Success! You will be redirected momentarily to your Account page.");
+						} else {
+							$("#error_activate").text(data.message);
+						}
+
+					},
+					error : function(){
+						$("#error_activate").text("Unable to connect to server. Please try again, or contact webmaster@team5599.com if the issue persists.");
 					}
 
 				});
@@ -504,18 +643,20 @@ function handleLoginPage(pageIndex){
 					url: "assets/php/Verify.php",
 					data: {request : "verify", osis: requestOSIS, key : requestKey},
 					success: function(response) {
-						if (response == "success"){
+
+						var data = ajaxResponseToJSON(response);
+
+						if (data.status == 200){
 							$("#error_activate").text("Your account has been successfully verified!");
 							$("#activate-go-to-dashboard").removeClass("VisibilityHiddenAbsolute");
 						} else {
-							console.log("Failure: " + response);
-							$("#error_activate").text(response);
+							console.alert("Failure: " + data.message);
+							$("#error_activate").text(data.message);
 						}
 						
 					},
 					error: function (xhr, status) {
-						alert(status);
-						alert(xhr);
+						$("#error_activate").text("Unable to connect to server. Please try again, or contact webmaster@team5599.com if the issue persists.");
 					}
 
 				});
@@ -538,14 +679,17 @@ function handleLoginPage(pageIndex){
 					url: "assets/php/Verify.php",
 					data: "request=forgot&" + $("#form-forgot").serialize(),
 					success: function(response) {
-						if (response.startsWith("success-")){
-							var email = response.replace("success-", "");
+
+						var data = ajaxResponseToJSON(response);
+
+						if (data.status == 200){
+							var email = data.message;
 							$("#form-forgot").addClass("VisibilityHidden");
 							$("#form-activate").removeClass("VisibilityHidden");
 							$("#error_activate").text("An email has been sent to " + email + " with instructions on how to reset your password.");
 						} else {
 							$("#error_forgot").removeClass("VisibilityHiddenAbsolute");
-							$("#error_forgot").text(response);
+							$("#error_forgot").text(data.message);
 							$("#form-forgot-button").prop("disabled", false);
 						}
 						
@@ -572,14 +716,17 @@ function handleLoginPage(pageIndex){
 					url: "assets/php/Verify.php",
 					data: "request=reset&" + $("#form-reset").serialize(),
 					success: function(response) {
-						if (response == "success"){
+
+						var data = ajaxResponseToJSON(response);
+
+						if (data.status == 200){
 							$("#form-reset").addClass("VisibilityHidden");
 							$("#form-activate").removeClass("VisibilityHidden");
 							$("#error_activate").text("Your email was successfully reset.");
 							$("#activate-go-to-dashboard").removeClass("VisibilityHiddenAbsolute");
 						} else {
 							$("#error_reset").removeClass("VisibilityHiddenAbsolute");
-							$("#error_reset").text(response);
+							$("#error_reset").text(data.response);
 							$("#form-reset-button").prop("disabled", false);
 						}
 						
@@ -594,6 +741,7 @@ function handleLoginPage(pageIndex){
 		}
 	}
 
+	// Go to Dashboard button
 	$("#activate-go-to-dashboard").click(function(){
 
 		$.ajax({
@@ -601,11 +749,18 @@ function handleLoginPage(pageIndex){
 			url: "assets/php/getSession.php",
 			data: '{request:"getSession"}',
 			success: function(response) {
-				if (response != false){
+
+				var data = ajaxResponseToJSON(response)
+
+				if (data.status == 200){
 					window.location = "http://www.team5599.com/Account.html";
 				} else {
 					window.location = "http://www.team5599.com/SignIn.html";
 				}
+			},
+			error : function(){
+				console.alert("Could not authenticate over server. User is not considered signed in.");
+				window.location = "http://www.team5599.com/SignIn.html";
 			}
 
 		});
@@ -615,6 +770,8 @@ function handleLoginPage(pageIndex){
 }
 
 function handleContactsPage(){
+
+	// Dyanmically loads contact objects from the SQL server
 
 	console.log("Loading Contacts . . .");
 
@@ -682,9 +839,17 @@ function handleContactsPage(){
 		data: {request : "contactData"},
 		success: function(response) {
 
-			console.log("RESPONSE: " + response);
+			var data = ajaxResponseToJSON(response);
 
-			buildContacts(JSON.parse(response));
+			if (data.status == 200){
+				buildContacts(JSON.parse(data.message));
+			} else {
+				console.alert("Database parse failure.\n" + response);
+				buildContacts(defaultContactData);
+				$("#contactInfoList").append("<p>You are viewing a cached version of the contacts page, last updated in July, 2018. If you continue to see this message, please contact webmaster@team5599.com.<p>");
+
+			}
+			
 
 		},
 
@@ -702,6 +867,7 @@ function handleContactsPage(){
 
 function handleRobotsPage(){
 
+	// Dynamically load Robot data from the SQL server
 
 	var defaultRobotData = [
 		{
@@ -935,9 +1101,16 @@ function handleRobotsPage(){
 		data: {request : "robotData"},
 		success: function(response) {
 
-			console.log("RESPONSE: " + response);
+			var data = ajaxResponseToJSON(response);
 
-			buildRobots(JSON.parse(response));
+			if (data.status == 200){
+				buildRobots(JSON.parse(data.message));
+			} else {
+				console.alert("Database parse failure.\n" + response);
+				buildRobots(defaultRobotData);
+				$("#robot-buttons").append("<p class=\"text-center\" style=\"margin-top:20px\">An error occured when loading the Robots page. A cached version of this page is currently being displayed and is at risk of being not up to date.</p>");
+
+			}			
 
 		},
 
@@ -953,6 +1126,8 @@ function handleRobotsPage(){
 
 
 function handleTeamPage() {
+
+	// Dynamically load Team Data from the SQL Database
 
 	// Loads following cached data when database fails to load
 	var defaultPeopleData = {
@@ -1161,7 +1336,15 @@ function handleTeamPage() {
 					url: "assets/php/getPageData.php",
 					data: {request : "getPeopleData"},
 					success: function(response) {
-						callback(sortRelevantPeople(year, JSON.parse(response)));
+
+						var data = ajaxResponseToJSON(response);
+						if (data.status == 200){
+							callback(sortRelevantPeople(year, JSON.parse(data.message)));
+						} else {
+							console.alert("Database parse failure.\n" + response);
+							callback(sortRelevantPeople(year, defaultPeopleData), true);
+						}
+						
 					},
 					error : function(){
 						console.log("An error occured when fetching team data.");
@@ -1363,6 +1546,10 @@ function handleTeamPage() {
 
 function handleResourcesPage(pageIndex){
 
+	// Resources page
+
+	// Copy HEX, RGB, and CMYK values on-click.
+
 	$(".colorDisplayButton").click(function(){
 
 		var $temp = $("<input>");
@@ -1380,6 +1567,8 @@ function handleResourcesPage(pageIndex){
 
 
 function scrollUpdate(){ 
+
+	// When the user scrolls, this is spammed and adjusts the position/color of the navbar and paralax displays.
 
 	var pos = $(window).scrollTop();
 	var navbarTransparency;
@@ -1407,6 +1596,8 @@ function scrollUpdate(){
 };
 
 function getBackgroundImageSize(el){
+
+	// Crazy stuff that loads the paralax splash headers
 
 	var imageUrl = $(el).css('background-image').match(/^url\(["']?(.+?)["']?\)$/);
 	var dfd = new $.Deferred();
@@ -1453,6 +1644,8 @@ function getBackgroundImageSize(el){
 
 function scaleSize(){
 
+	// Scales the page depending on mobile, tablet, normal, and wide displays.
+
 	if (pageSettings.splashPageSet == false){
 		return console.log("Splash Page Image not set yet.");
 	}
@@ -1487,7 +1680,7 @@ function scaleSize(){
 		divBlueHeight = 100;
 
 		if (windowWidth > 1200){
-			contentPadding = (windowWidth - 1200)/2
+			contentPadding = (windowWidth - 1200)/2;
 		}
 
 		$('.SplashHeaderLogo').removeClass("SplashHeaderLogo-mobile");
@@ -1653,9 +1846,25 @@ function scaleSize(){
 		var splashContentHeaderLogoPushHalf = Math.round(((splashContentHeight/2)*2/3) - ($('.splashContentHeader').height())/2);
 
 		$('.splashContentHeader').css('top', splashContentHeaderLogoPush + "px");
-		$('.splashContentHeaderHalf').css('top', splashContentHeaderLogoPushHalf + "px");
-		
+		$('.splashContentHeaderHalf').css('top', splashContentHeaderLogoPushHalf + "px");	
 
 		scrollUpdate();
+
 	}
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+// #
+// # Michael Rooplall | DeveloperBlue 2018 Copyright
+// # Benjamin N. Cardozo High School Robotics Team | FRC Team 5599 - The Sentinels
+// # 
+// # Cheers to months in the making, learned HTML, CSS, JavaScript, SQL, and many valuable website, frameworks, databases, and security tips.
+// # 
+// # Website 			: www.team5599.com
+// # Developer 			: https://github.com/DeveloperBlue
+// #					: https://twitter.com/MichaelRooplall
+// # Commercial Contact : Webmaster@team5599.com
+// #
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////

@@ -7,37 +7,67 @@ require 'db.php';
 $request = $mysqli->escape_string($_POST["request"]);
 $dataObject = $mysqli->escape_string($_POST["$objectData"]);
 
-$query;
+// Authentication is only valid through SESSION
 
-if ($request == "robotData"){
+$osis = $_SESSION["osis"];
 
-	$query = "SELECT * FROM robots";
+$authentication_check = $mysqli->query("SELECT * FROM users WHERE osis='$osis'") or die (mysqli_error($mysqli));
 
-} else if ($request == "teamData"){
+if ($authentication_check->num_rows == 0){
 
-	$query = "SELECT * FROM leadership";
+	echo '{status: 400, message : "Invalid Request -> User with the OSIS presented in SESSION does not exist."}';
 
-} else if ($request == "sponsorData"){
-
-	$query = "SELECT * FROM sponsors";
-
-} else if ($request == "contactData"){
-
-	$query = "SELECT * FROM contacts";
-
-} else if ($request == "splashPageData"){
-
-	// $query = "SELECT * FROM logs";
-
-} else if ($request == "logData"){
-
-	$query = "SELECT * FROM logs";
-
-} else {
-
-	echo "Invalid Request -> '" . $request . "'";
+	exit();
 }
 
+$user = $authentication_check->fetch_assoc();
+
+$authentication_array = [
+	"robotData" => "p11x",
+	"teamData" => "p12x",
+	"sponsorData" => "p13x",
+	"contactData" => "p14x",
+	"splashPageData" => "p15x",
+	"logData" => "p16x",
+];
+
+if (array_key_exists($request, $authentication_array) == false){
+
+	echo '{status: 400, message : "Invalid Request -> ' . $request . '"}';
+
+	exit();
+
+}
+
+$isFullAdmin = strpos($user["permissions"],"p99x");
+$isAuthenticated = strpos($user["permissions"], $authentication_array[$request]);
+
+if (($isFullAdmin == false) && ($isAuthenticated == false)){
+	echo '{status: 403, message: "Invalid Permissions -> Use with this OSIS ' . $osis . ' does not have the right permissions to make website changes."}';
+	exit();
+}
+
+
+$databaseByRequest = [
+	"robotData" => "robots",
+	"teamData" => "leadership",
+	"sponsorData" => "sponsors",
+	"contactData" => "contacts",
+	"splashPageData" => "",
+	"logData" => "logs",
+];
+
+if (array_key_exists($request, $databaseByRequest) == false){
+
+	echo '{status: 400, message : "Invalid Request -> ' . $request . '"}';
+
+	exit();
+
+}
+
+$query = "SELECT * FROM " . $databaseByRequest[$request];
+
+/*
 if ($result->num_rows > 0) {
 
 	$result = $mysqli->query($query) or die(mysqli_error($mysqli));
@@ -49,9 +79,14 @@ if ($result->num_rows > 0) {
 
 	echo json_encode( $data );
 
+	exit();
+
 } else {
 	
 	echo "0 results for request '" . $request . "'";
+
+	exit();
 }
+*/
 
 ?>

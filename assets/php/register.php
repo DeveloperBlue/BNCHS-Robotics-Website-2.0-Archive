@@ -28,24 +28,24 @@ $existing_user = mysqli_fetch_assoc($result);
 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	echo "Invalid email address. Please check the email address you have entered. '$email'";
+	echo '{status: 400, message:"Invalid email address. Please check the email address you have entered. ' . $email . '"}';
 	die();
 }
 
 if ($password !== $password_re){
-	echo "Password mismatch. Please check the passwords you have entered. '$password' '$password_re'";
+	echo '{status: 400, message:"Password mismatch. Please check the passwords you have entered."}';
 	die();
 }
 
 $password = password_hash($password, PASSWORD_BCRYPT);
 
 if (strlen($OSIS) != 9){
-	echo "Invalid Student ID. Please double check the Student ID you have entered.";
+	echo '{status: 400, message:"Invalid Student ID. Please double check the Student ID you have entered."}';
 	die();
 }
 
 if ($OSIS !== $OSIS_re){
-	echo "Student ID mismatch. Please check that you have entered your Student ID correctly twice";
+	echo '{status: 400, message:"Student ID mismatch. Please check that you have entered your Student ID correctly twice"}';
 	die();
 }
 
@@ -56,9 +56,9 @@ if ($existing_user){
 
 	if ($user['osis'] === $osis){
 		if ($confirmed == 0){
-			echo "An account with this Student ID already exists.  Check your email '$confirmed_email' to activate your account.";
+			echo '{status: 400, message: "An account with this Student ID already exists.  Check your email ' . $confirmed_email . ' to activate your account."}';
 		} else {
-			echo "An account with this Student ID already exists.";
+			echo '{status: 400, message: "An account with this Student ID already exists."}';
 		}
 		
 		die();
@@ -66,9 +66,9 @@ if ($existing_user){
 
 	if ($user['email'] === $email){
 		if ($confirmed == 0){
-			echo "An account with this email address already exists. Check your email '$confirmed_email' to activate your account.";
+			echo '{status: 400, message: "An account with this email address already exists. Check your email ' . $confirmed_email . ' to activate your account."}';
 		} else {
-			echo "An account with this Student ID already exists.";
+			echo '{status: 400, message: "An account with this Student ID already exists."}';
 		}
 		die();
 	}
@@ -99,13 +99,13 @@ if ($existing_user){
 
 		mail( $to, $subject, $message_body, $headers);
 
-		echo "success";
+		echo '{status: 200}';
 
 		header("location: http://www.team5599.com/Verify.html?request=notify");
 
 	} else {
 
-		echo "An error has occured (" .sql_query. + ") " . mysqli_error($mysqli);
+		echo '{status: 400, message:"An error has occured (' . sql_query . ') ' . mysqli_error($mysqli) . '"}';
 		die();
 
 	}

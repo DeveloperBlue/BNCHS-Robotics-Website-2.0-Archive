@@ -65,6 +65,32 @@ function initFunctions(){
 
 // Neccessary methods
 
+function ajaxResponseToJSON(response){
+	var data;
+	try {
+		data = JSON.parse(response);
+	} catch (e) {
+		data = {status: 404, message: "Invalid response from server.\n" + response}
+	}
+	
+	if (!("status" in data)){
+		data.status = 404;
+		data.message = "Invalid JSON response from Server\n" + response;
+		console.alert(data.message);
+	}
+
+	if (!("message" in data)){
+		if (data.status == 200){
+			data.message = "success";
+		} else {
+			data.message = "No message provided with error of status code " + data.status;
+		}
+	}
+	
+	return data;
+}
+
+
 function flipButton(button, text, status, special){
 
 	console.log("Flipping Button:" + button + " | " + text + ", " + status);
@@ -205,7 +231,14 @@ function activateStaticContentPanels(){
 			url: "assets/php/getPageData.php",
 			data: {request : "getPeopleOrder"},
 			success: function(response) {
-				sortRelevantUsers(response);	
+				var data = ajaxResponseToJSON(response);
+				if (data.status == 200){
+					sortRelevantUsers(data.message);	
+				} else {
+					alert("Database error.");
+					sortRelevantUsers();
+				}
+				
 			},
 			error : function(){
 				sortRelevantUsers();
@@ -900,7 +933,7 @@ function activateDynamicContentPanels(){
 
 		function postAJAX(response){
 
-			var dataObject = JSON.parse(response);
+			var dataObject = response; //JSON.parse(response);
 			var newDataObject = {};
 
 			for (item in dataObject){
@@ -935,20 +968,23 @@ function activateDynamicContentPanels(){
 
 				console.log("LOAD RESPONSE: " + response);
 
-				if (response == false){
+				var data = ajaxResponseToJSON(response);
+
+				if (data.status == 200){
+					postAJAX(response.message);
+				} else {
+					
 					alert("An error has occured. Consider reloading the page.");
+					postAJAX("{}");
+
 					return;
 				}
 
-				postAJAX(response);
 
 			},
 			error: function (xhr, status) {
 				postAJAX("{}");
-				/*
-				alert(panelName + " -> " + status);
-				alert(xhr);
-				*/
+
 			}
 		});
 	}
@@ -1154,3 +1190,19 @@ var dataURLToBlob = function(dataURL) {
     return new Blob([uInt8Array], {type: contentType});
 }
 /* End Utility function to convert a canvas to a BLOB      */
+
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+// #
+// # Michael Rooplall | DeveloperBlue 2018 Copyright
+// # Benjamin N. Cardozo High School Robotics Team | FRC Team 5599 - The Sentinels
+// # 
+// # Cheers to months in the making, learned HTML, CSS, JavaScript, SQL, and many valuable website, frameworks, databases, and security tips.
+// # 
+// # Website 			: www.team5599.com
+// # Developer 			: https://github.com/DeveloperBlue
+// #					: https://twitter.com/MichaelRooplall
+// # Commercial Contact : Webmaster@team5599.com
+// #
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////

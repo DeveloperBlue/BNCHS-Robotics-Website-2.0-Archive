@@ -12,11 +12,11 @@ $session = $_SESSION['logged_in'];
 if ($request == "getSession"){
 
 	if ($session == true){
-		echo $_SESSION['osis'];
+		echo '{status: 200, message : "' + $_SESSION['osis'] + '"}';
 		die();
 	}
 
-	echo false;
+	echo '{status: 401, message: "User is not logged in."}';
 
 } else if ($request == "isConfirmed"){
 
@@ -28,7 +28,7 @@ if ($request == "getSession"){
 
 		if ($result->num_rows == 0){
 			// User doesn't exist . . .
-			echo "404";
+			echo '{status:404, message:"Invalid OSIS. A user with that OSIS does not exist."}';
 			die();
 
 		} else {
@@ -39,20 +39,26 @@ if ($request == "getSession"){
 			$active = $user['active'];
 
 			if (($active != 0) && ($active != null)){
-				echo "200";
+				echo '{status:200, message: "Success."}';
 				die();
 			}
 
-			echo "401";
+			echo '{status:401}';
 			die();
 		}
 
 	} else {
-		echo "403";
+		echo '{status:403}';
 		die();
 	}
 
-} else if ($request == "endSession"){
+} else if ($request == "log_out"){
+
+	session_destroy();
+
+	echo '{status:200}';
+	header("location: http://www.team5599.com/SignIn.html");
+	exit();
 
 }
 
