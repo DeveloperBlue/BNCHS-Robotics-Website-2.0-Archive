@@ -365,6 +365,37 @@ a {
   margin-bottom:40px;
 }
 
+.indexContainer {
+  text-align:left;
+  padding-left:20px;
+  padding-right:20px;
+  max-width:1800px;
+  margin:0 auto;
+  margin-top:40px;
+  margin-bottom:40px;
+}
+
+.projects-github-btn {
+  background-color:transparent;
+  border:1px solid #444;
+  border-radius:2px;
+  color:#444;
+  height:50px;
+  line-height:34px;
+  width:255px;
+  margin:2px;
+}
+
+.projectsContainer {
+  text-align:center;
+  padding-left:20px;
+  padding-right:20px;
+  max-width:1800px;
+  margin:0 auto;
+  margin-top:40px;
+  margin-bottom:40px;
+}
+
 .sponsor-container-mobile {
   margin-top:40px;
   padding-left:10px;
@@ -524,11 +555,12 @@ p.SplashHeaderText {
 }
 
 .SponsorLogo {
-  padding:15px 15px 15px 15px;
-  margin:10px 10px 10px 10px;
+  padding:10px;
+  margin:5px;
   background-color:#DDD;
   height:16vh;
   max-height:100px;
+  border:2px solid #DDD;
 }
 
 .SponsorLogo-mobile-dep {
@@ -538,7 +570,8 @@ p.SplashHeaderText {
 }
 
 .SponsorLogo:hover {
-  background-color:#EEE;
+  background-color:#CCC;
+  border:2px solid #EEE;
 }
 
 .headerSplashDisplay {
@@ -843,6 +876,8 @@ p.SplashHeaderText {
 
 .infoBlock {
   margin-top:10px;
+  margin-left:5px;
+  margin-right:5px;
 }
 
 .calendarDateSingleDiv {
@@ -1135,14 +1170,19 @@ p.SplashHeaderText {
   padding-right:10px;
 }
 
+#project-col-1, #project-col-2, #project-col-3 {
+  padding-left:5px;
+  padding-right:5px;
+}
+
 .projectDiv {
   width:100%;
   height:auto;
-  border-radius:5px;
-  border:1px solid #444;
+  background-color:#eee;
+  border:1px solid #ccc;
   padding-left:10px;
   padding-right:10px;
-  margin-bottom:30px;
+  margin-bottom:10px;
 }
 
 .projectHeading {
@@ -1156,7 +1196,7 @@ p.SplashHeaderText {
   width:140px;
   float:right;
   border-radius:2px;
-  font-weight:bold;
+  font-family:'Allerta';
 }
 
 .projectAuthors {
@@ -1186,6 +1226,33 @@ p.SplashHeaderText {
   text-align:left;
 }
 
+.color-discord {
+  background-color:#7289DA;
+}
+
+.projects-index-heading {
+  font-family:'Coming Soon';
+  font-weight:bold;
+  color:#1E6C93;
+}
+
+.noSplashPageHeading {
+  margin-top:40px;
+  text-shadow:-1px 1px #bbb;
+  padding:5px;
+  margin-bottom:30px;
+}
+
+.projects-off-div {
+  background-color:#eee;
+  padding:20px;
+  margin-top:20px;
+  text-align:center;
+  margin-left:-10px;
+  margin-right:-10px;
+  border:1px solid #ccc;
+}
+
 .projectSpacer {
   height:20px;
 }
@@ -1209,11 +1276,11 @@ p.SplashHeaderText {
 .languageCircle {
   margin-top:3px;
   display:inline-block;
-  padding-right:5px;
+  margin-right:5px;
 }
 
 .buttonIcon {
-  padding-left:10px;
+  margin-left:10px;
 }
 
 .contactContainer {
@@ -1392,10 +1459,6 @@ p.SplashHeaderText {
 
 .panelNotActive {
   visibility:hidden;
-}
-
-.indexContainer {
-  text-align:left;
 }
 
 .mobileWarning {

@@ -12,7 +12,7 @@ $session = $_SESSION['logged_in'];
 if ($request == "getSession"){
 
 	if ($session == true){
-		echo '{"status": 200, "message": "' . $_SESSION['osis'] . '"}';
+		echo '{"status": 200, "message": {"osis" :"' . $_SESSION['osis'] . '", "first_name" : "' . $_SESSION['first_name'] . '", "last_name": "' . $_SESSION['last_name'] . '"}';
 		die();
 	}
 

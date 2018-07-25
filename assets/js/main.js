@@ -46,15 +46,7 @@ $(document).ready(function(){
 
 	pageSettings.documentReady = true;
 
-	prepareSplashImage();
-	scaleSize();
-
-
-});
-
-// Call different threads depending on what page we're on
-$(window).on("load", function(){
-
+	// Call different threads depending on what page we're on
 	const pageIndex = getPageIndex();
 
 	configureNavbar(pageIndex);
@@ -65,8 +57,6 @@ $(window).on("load", function(){
 		handleTeamPage(pageIndex);
 	} else if (pageIndex == "Robots.html"){
 		handleRobotsPage(pageIndex);
-	} else if (pageIndex == "Resources.html"){
-		handleResourcesPage(pageIndex);
 	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Verify.html")) {
 		handleLoginPage(pageIndex);
 		checkLocation();
@@ -75,10 +65,22 @@ $(window).on("load", function(){
 		checkLocation();
 	} else if (pageIndex == "Contact.html"){
 		handleContactsPage();
+	} else if (pageIndex == "Resources.html"){
+		handleResourcesPage(pageIndex);
+	} else if (pageIndex == "Projects.html"){
+		handleProjectsPage();
 	}
+		
 
 	handleNewsfeedContainer();
 
+	prepareSplashImage();
+	scaleSize();
+
+
+});
+
+$(window).on("load", function(){
 	scaleSize();
 })
 
@@ -470,6 +472,8 @@ function handleAccountPage(pageIndex){
 				// User is signed in
 				$("#account-loading").addClass("VisibilityHiddenAbsolute");
 				$("#account-page").removeClass("VisibilityHiddenAbsolute");
+
+				$("#accountPage-userTitle").text("Logged in as " + data.first_name + " " + data.last_name);
 			} else {
 				// User is not signed in
 				console.warn("User is not signed in. Redirecting . . .");
@@ -482,7 +486,6 @@ function handleAccountPage(pageIndex){
 		}
 	});
 
-	$("#accountPage-userTitle").text("Logged in as FIRSTNAME-LASTNAME");
 	// $("#facebookLoginInformationPhotoActual")
 
 	$("#accountPage-signOut").click(function(){
@@ -1691,6 +1694,27 @@ function handleResourcesPage(pageIndex){
 
 		alert("Coppied " + $(this).text() + " to clipboard.");
 	})
+}
+
+function handleProjectsPage(){
+
+	for (var i = 1; i <= 3; i++){
+
+		var projectIndexColumn = $("#project-index-"+i);
+
+		projectIndexColumn.empty();
+
+		$("#project-col-"+i).children().each(function(){
+			var titleHeading = $(this).find(".projectHeading");
+			if (titleHeading.length != 0){
+
+				projectIndexColumn.append("<li><a href=\"#" + titleHeading.attr("id") + "\">" + titleHeading.text() + "</a></li>");
+
+			}
+		})
+
+	}
+
 }
 
 //////////////////////////////////////////////////////////////////
