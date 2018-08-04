@@ -72,16 +72,16 @@
     </nav>
     <div class="divBlue"></div>
     <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
-    <div id="account-loading" class="text-center VisibilityHiddenAbsolute">
+    <div id="account-loading" class="text-center">
         <h1 class="text-center text-muted" id="loading-title">Loading Your Account</h1>
         <div><img src="assets/img/Logos/Logo765.png" class="loading-icon"></div><button class="btn btn-link loading-redirect" type="button">If nothing happens after 10 seconds, click here.</button></div>
-    <div id="account-page">
+    <div id="account-page" class="VisibilityHiddenAbsolute">
         <div class="PageContent">
             <div id="loginInformation" class="facebookLoginInformation">
                 <p id="accountPage-userTitle">Logged in as FIRSTNAME LASTNAME</p>
                 <div class="facebookLoginInformationPhoto">
                     <div class="facebookLoginInformationPhotoInner"><img id="facebookLoginInformationPhotoActual"></div>
-                </div><a href="#" id="accountPage-signOut">Sign out</a></div>
+                </div><a href="#" id="accountPage-signOut">Not you? Sign out</a></div>
         </div>
         <div class="sectionContainer">
             <div class="row">
@@ -111,11 +111,11 @@ Share to Twitter</a>
                     </div>
                 </div>
                 <div class="feedDiv">
-                    <p class="lead sm-lead">Your Resources</p><button class="btn btn-primary feed-btn" type="button">Check <strong>Attendance Records</strong></button><button class="btn btn-primary feed-btn" type="button">Upload <strong>Event Photos</strong></button>
+                    <p class="lead sm-lead">Your Resources</p><button class="btn btn-default feed-btn better-blue-btn" type="button">Check <strong>Attendance Records</strong></button><button class="btn btn-default feed-btn better-blue-btn" type="button">Upload <strong>Event Photos</strong></button>
                     <button
-                        class="btn btn-info feed-btn color-discord" type="button">Request <strong>Discord Invitation</strong></button><button class="btn btn-info feed-btn" type="button">Request <strong>DropBox&nbsp;Access</strong></button><button class="btn btn-default feed-btn" type="button">Request <strong>GitHub&nbsp;Access</strong></button>
-                        <button
-                            class="btn btn-default feed-btn" type="button">Request <strong>SOLIDWORKS Download</strong></button><button class="btn btn-info feed-btn" type="button">Request <strong>Custom Team Email</strong></button></div>
+                        class="btn btn-default feed-btn better-blue-btn" type="button">Request <strong>Discord Invitation</strong></button><button class="btn btn-default feed-btn better-blue-btn" type="button">Request <strong>DropBox&nbsp;Access</strong></button><button class="btn btn-default feed-btn better-blue-btn"
+                            type="button">Request <strong>GitHub&nbsp;Access</strong></button><button class="btn btn-default feed-btn better-blue-btn" type="button">Request <strong>SOLIDWORKS Download</strong></button><button class="btn btn-default feed-btn better-blue-btn"
+                            type="button">Request <strong>Custom Team Email</strong></button></div>
                 <div class="feedDiv">
                     <p class="lead sm-lead">Know your Leaders</p>
                     <p>Take some time to visit the Leadership page and understand who is in charge of what responsibilities and what mentors are available to help you!</p><a class="btn btn-link" role="button" href="Team.html">View Leadership</a></div>
@@ -124,7 +124,7 @@ Share to Twitter</a>
                     <p class="lead sm-lead">Add our Google Calendar</p>
                     <p>Head to to the Team Calendar page, and hit "<strong>+ Google Calendar</strong>" on the bottom right of the calendar to add the Team Calendar to your Google Calendars.</p><a class="btn btn-link" role="button" href="Team.html">View Calendar</a></div>
         </div>
-        <div class="col-md-5"><iframe src="https://discordapp.com/widget?id=223151489864957953&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe><br><br>
+        <div class="col-md-5"><iframe src="https://discordapp.com/widget?id=223151489864957953&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe><br><br>
             <div class="feedDiv">
                 <p class="lead sm-lead">Actions</p><button class="btn btn-success feed-admin-sm" type="button" disabled="disabled" id="action-announcement">Post an Announcement<i class="fa fa-facebook socialMediaIcon"></i><img src="assets/img/Logos/Discord-Logo-White.svg" id="DiscordSVG" class="fa fa-facebook"></button>
                 <button
@@ -319,8 +319,6 @@ Share to Twitter</a>
             </div>
         </div>
     </div>
-    <div class="construction-banner">
-        <p class="construction-text">Sorry! This page is currently under maintenance!</p><button class="btn btn-link construction-sub-text" type="button"><strong>Please come back at a later time to use this feature.</strong><br></button></div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>

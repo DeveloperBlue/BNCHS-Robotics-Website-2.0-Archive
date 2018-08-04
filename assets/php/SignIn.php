@@ -7,12 +7,14 @@ session_start();
 
 // SQL Injection Protection
 
-$username = $mysqli->escape_string($_POST['username']);
-$result = $mysqli->query("SELECT * FROM users WHERE email='$username' OR osis='$username'");
+$username = $mysqli->escape_string($_POST['user']);
+$username = intval($username);
+
+$result = $mysqli->query("SELECT * FROM users WHERE email= '$username' OR osis='$username'");
 
 if ($result->num_rows == 0){
 	// User doesn't exist . . .
-	echo '{"status": 400, "message":"An account with that OSIS/Email does not exist!"}';
+	echo '{"status": 400, "message":"An account with that OSIS/Email does not exist!-> ' . $username . '"}';
 	die();
 
 } else {
@@ -30,7 +32,7 @@ if ($result->num_rows == 0){
 		$_SESSION['logged_in'] = true;
 
 		echo '{"status": 200}';
-		header("location: http://www.team5599.com/Account.html");
+		// header("location: http://www.team5599.com/Account.html");
 	} else {
 
 		echo '{"status": 400, "message": "You have entered an incorrect password. Please try again."}';

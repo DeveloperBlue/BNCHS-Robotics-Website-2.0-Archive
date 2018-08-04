@@ -61,7 +61,7 @@ $(document).ready(function(){
 		handleLoginPage(pageIndex);
 		checkLocation();
 	} else if ((pageIndex == "Account.html") || (pageIndex == "WebsiteManager.html")){
-		// handleAccountPage(pageIndex);
+		handleAccountPage(pageIndex);
 		checkLocation();
 	} else if (pageIndex == "Contact.html"){
 		handleContactsPage();
@@ -98,6 +98,10 @@ function ajaxResponseToJSON(response){
 	console.log(response);
 
 	var data;
+
+	if (typeof response != "object"){
+		response = {message : response};
+	}
 
 	try {
 		data = JSON.parse(response);
@@ -174,31 +178,33 @@ function configureNavbar(pageIndex){
 
 	pageIndex = (pageIndex != null) ? pageIndex : getPageIndex();
 
-	if (pageIndex == "Blog.html" || pageIndex == "SocialMedia.html"){
-		$("#MediaBlogNavButton").addClass("active");
-	} else if (pageIndex == "Projects.html" || pageIndex == "Calendar.html" || pageIndex == "Resources.html"){
-		$("#CommunityResourcesNavButton").addClass("active");
-	} else if (pageIndex == "Sponsors.html" || pageIndex == "OurSponsors.html"){
-		$("#SponsorsNavButton").addClass("active");
-	} else if (pageIndex == "Contact.html"){
-		$("#ContactNavButton").addClass("active");
-	} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Verify.html") || (pageIndex == "Account.html") || (pageIndex == "WebsiteManager.html")){
-		$("#TeamResourcesNavButton").addClass("active");
-	} else {
-		$("#IndexNavButton").addClass("active");
+	if ($(window).width() > 992){
+		if (pageIndex == "Blog.html" || pageIndex == "SocialMedia.html"){
+			$("#MediaBlogNavButton").addClass("active");
+		} else if (pageIndex == "Projects.html" || pageIndex == "Calendar.html" || pageIndex == "Resources.html"){
+			$("#CommunityResourcesNavButton").addClass("active");
+		} else if (pageIndex == "Sponsors.html" || pageIndex == "OurSponsors.html"){
+			$("#SponsorsNavButton").addClass("active");
+		} else if (pageIndex == "Contact.html"){
+			$("#ContactNavButton").addClass("active");
+		} else if ((pageIndex == "SignIn.html") || (pageIndex == "SignUp.html") || (pageIndex == "Verify.html") || (pageIndex == "Account.html") || (pageIndex == "WebsiteManager.html")){
+			$("#TeamResourcesNavButton").addClass("active");
+		} else {
+			$("#IndexNavButton").addClass("active");
+		}
 	}
 
 	$(".NavButton").hover(function(){
 		if ($(document).scrollTop() > 50){
-			$(this).css("color", "#1E6C93")
+			$(this).css("color", "#1E6C93");
 		} else {
-			$(this).css("color", "#000000")
+			$(this).css("color", "#000000");
 		}
 	}, function(){
 		if ($(document).scrollTop() > 50){
-			$(this).css("color", "#FFFFFF")
+			$(this).css("color", "#FFFFFF");
 		} else {
-			$(this).css("color", "#DDDDDD")
+			$(this).css("color", "#DDDDDD");
 		}
 	});
 
@@ -300,7 +306,7 @@ function scrollToElement(element){
 
 	var offset = $(element).offset();
 	offset.left -= 20;
-	offset.top -= 30;
+	offset.top -= 40;
 
 	$('html, body').animate({
 		scrollTop: offset.top,
@@ -468,12 +474,21 @@ function handleAccountPage(pageIndex){
 		success: function(response) {
 			var data = ajaxResponseToJSON(response);
 
+			console.log(data);
+
 			if (data.status == 200){
 				// User is signed in
-				$("#account-loading").addClass("VisibilityHiddenAbsolute");
-				$("#account-page").removeClass("VisibilityHiddenAbsolute");
 
-				$("#accountPage-userTitle").text("Logged in as " + data.first_name + " " + data.last_name);
+				if (data.message.active == 0){
+					// User has not authenticated their account
+					window.location = "http://www.team5599.com/Verify.html?request=notify";
+				} else {
+					$("#account-loading").addClass("VisibilityHiddenAbsolute");
+					$("#account-page").removeClass("VisibilityHiddenAbsolute");
+
+					$("#accountPage-userTitle").text("Logged in as " + data.message.first_name + " " + data.message.last_name + " (" + data.message.osis + ")");
+				}
+				
 			} else {
 				// User is not signed in
 				console.warn("User is not signed in. Redirecting . . .");
@@ -560,8 +575,6 @@ function handleLoginPage(pageIndex){
 		$("#account-sign-in").click(function(e) {
 			e.preventDefault();
 
-			console.log($("#input-username").val() + " USERNAME");
-
 			if ($("#input-username").val().replace(/ /g, "") == ""){
 				// No username
 				$("#error").text("Please enter a username and password");
@@ -589,7 +602,9 @@ function handleLoginPage(pageIndex){
 					var data = ajaxResponseToJSON(response);
 
 					if (data.status == 200){
-						console.log("Successful Sign In!\nServer should redirect to Accounts page momentarily."); // PHP will automatically redirect
+						console.log("Successful Sign In!\nServer should redirect to Accounts page momentarily.");
+						$("#error").text("Successfully Signed in . . . Redirecting momentarily . . .");
+						window.location = "http://www.team5599.com/Account.html";
 					} else {
 						$("#account-sign-in").prop("disabled",false);
 						$("#error").text(data.message);
@@ -631,7 +646,7 @@ function handleLoginPage(pageIndex){
 						var data = ajaxResponseToJSON(response);
 
 						if (data.status == 200){
-							$("#error_activate").text("Success! You will be redirected momentarily to your Account page.");
+							$("#error_activate").text(data.message);
 						} else {
 							$("#error_activate").text(data.message);
 						}
@@ -661,6 +676,7 @@ function handleLoginPage(pageIndex){
 						if (data.status == 200){
 							$("#error_activate").text("Your account has been successfully verified!");
 							$("#activate-go-to-dashboard").removeClass("VisibilityHiddenAbsolute");
+							window.location = "http://www.team5599.com/Account.html";
 						} else {
 							console.warn("Failure: " + data.message);
 							$("#error_activate").text(data.message);

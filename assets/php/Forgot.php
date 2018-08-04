@@ -6,11 +6,15 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
 	$username = $mysqli->escape_string($_POST['username']);
-	$result = $mysqli->query("SELECT * FROM users WHERE osis='$username' OR email='$username'");
+	$results = $mysqli->query("SELECT * FROM users WHERE osis='$username' OR email='$username'");
 
 	if ($results->num_rows == 0){
+
 		$_SESSION['message'] = "An account with that OSIS/email does not exist!";
-		header("location: error.php");
+		echo '{"status": 200, "message": "An account with that OSIS/email does not exist. Please try again."}';
+		
+		die();
+
 	} else {
 
 		$user = $results->fetch_assoc();

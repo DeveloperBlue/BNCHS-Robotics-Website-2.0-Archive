@@ -177,7 +177,7 @@ img#DivOrangeImage, img#DivBlueImage {
 }
 
 div.divBlue {
-  height:100px;
+  height:80px;
   overflow:hidden;
   position:relative;
   background-image:url("../../assets/img/Backdrops/BlueBlurBackdrop.png");
@@ -215,7 +215,7 @@ div.divBlue {
 }
 
 .TitleHeadingMobileSmall {
-  font-size:26px;
+  font-size:24px;
   padding-bottom:5px;
   line-height:40px;
   font-family:'ABeeZee';
@@ -1836,5 +1836,13 @@ p.SplashHeaderText {
   background-color:transparent;
   border:1px solid #666;
   color:#666;
+}
+
+.better-blue-btn {
+  background-color:#0b485b;
+}
+
+.better-blue-btn:hover {
+  background-color:#042630;
 }
 

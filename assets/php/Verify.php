@@ -11,34 +11,36 @@ if ($request=="verify"){
 
 	if (isset($_POST['osis']) && !empty($_POST['osis']) AND isset($_POST['key']) && !empty($_POST['key'])){
 
-		$osis = $mysqli->escape_string($_POST['osis']);
+		$osis = intval($mysqli->escape_string($_POST['osis']));
 		$hash = $mysqli->escape_string($_POST['key']);
 
 		// Select user with matching email who hasn't activated their account yet
 		$result = $mysqli->query("SELECT * FROM users WHERE osis='$osis'");
 
-		if ($results->num_rows == 0){
+		if ($result->num_rows == 0){
 
 			// Invalid OSIS
-			echo '{"status" : 400, "message": "The account you are trying to activate does not exist. Invalid OSIS of ' . $osis . '"}';
+			echo '{"status" : 400, "message": "The account you are trying to activate does not exist. Invalid OSIS of \'' . $osis . '\'"}';
 			die();
 
 		} else {
 
 			$user = $result->fetch_assoc();
 
-			if ($user['activation_key'] != '$key'){
+			if ($user['activation_key'] != $_POST['key']){
 				// Invalid Key
-				echo '{"status" : 400, "message": "Invalid activation key. Please contact webmaster@team5599.com with your OSIS."}';
+				echo '{"status" : 400, "message": "Invalid activation key. Please look for a more recent email, or contact webmaster@team5599.com with your OSIS if you keep getting this issue."}';
 				die();
 			}
 
 			// Set the user active status to 1.
-			$mysqli->query("UPDATE users SET active='1' WHERE osis='$osis'") or die($mysqli->error);
+			$mysqli->query("UPDATE users SET active='1' WHERE osis=" . $osis) or die($mysqli->error);
 			$_SESSION['active'] = 1;
 
+			// header("Location: http://www.team5599.com/Account.html");
 			echo '{"status" : 200, "message": "success"}';
-			header("location: http://www.team5599.com/Account.html");
+			
+			die();
 		}
 
 	} else {
@@ -49,7 +51,7 @@ if ($request=="verify"){
 } else if ($request == "forgot"){
 
 	$email = $mysqli->escape_string($_POST["email"]);
-	$OSIS = $mysqli->escape_string($_POST["OSIS"]);
+	$OSIS = intval($mysqli->escape_string($_POST["OSIS"]));
 
 	$result = $mysqli->query("SELECT * FROM users WHERE osis='$OSIS' OR email='$email' LIMIT 1") or die($mysqli->error());
 	$existing_user = mysqli_fetch_assoc($result);
@@ -58,7 +60,7 @@ if ($request=="verify"){
 
 		$activation_key = $mysqli->escape_string( md5 ( rand(0, 1000)));
 
-		$mysqli->query("UPDATE users SET activation_key='$activation_key' WHERE osis='$OSIS' OR email='$email'") or die($mysqli->error);
+		$mysqli->query("UPDATE users SET activation_key= '$activation_key' WHERE osis= '$OSIS' OR email='$email'") or die($mysqli->error);
 		$_SESSION['active'] = 0;
 
 		$to = $email;
@@ -89,7 +91,7 @@ if ($request=="verify"){
 
 	if (isset($_POST['osis']) && !empty($_POST['osis']) AND isset($_POST['key']) && !empty($_POST['key'])){
 
-		$osis = $mysqli->escape_string($_POST['osis']);
+		$osis = intval($mysqli->escape_string($_POST['osis']));
 		$hash = $mysqli->escape_string($_POST['key']);
 
 		// Select user with matching email who hasn't activated their account yet
@@ -125,8 +127,9 @@ if ($request=="verify"){
 			$mysqli->query("UPDATE users SET password='$password' WHERE osis='$osis' AND activation_key='$key'") or die($mysqli->error);
 			$_SESSION['active'] = 1;
 
+			// header("Location: http://www.team5599.com/Account.html");
 			echo '{"status" : 200, "message": "success"}';
-			// header("location: http://www.team5599.com/Account.html");
+			
 		}
 
 	} else {
@@ -141,7 +144,7 @@ if ($request=="verify"){
 		$email = $_SESSION["email"];
 		$osis = $_SESSION["OSIS"];
 
-		echo '{"status" : 200, "message": "An email was sent to ' . $email . '. Please open the email and click the activation link for the account ' .osis. '."}';
+		echo '{"status" : 200, "message": "An email was sent to ' . $email . '. Please open the email and click the activation link for the account ' . $osis . '."}';
 		die();
 	}
 

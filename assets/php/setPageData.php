@@ -9,11 +9,11 @@ $dataObject = $mysqli->escape_string($_POST["$objectData"]);
 
 // Authentication is only valid through SESSION
 
-$osis = $_SESSION["osis"];
+$osis = intval($_SESSION["osis"]);
 
 $authentication_check = $mysqli->query("SELECT * FROM users WHERE osis='$osis'") or die (mysqli_error($mysqli));
 
-if ($authentication_check->num_rows == 0){
+if ($authentication_check->num_rows == FALSE){
 
 	echo '{status: 400, message : "Invalid Request -> User with the OSIS presented in SESSION does not exist."}';
 
