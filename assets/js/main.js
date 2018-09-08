@@ -53,6 +53,7 @@ $(document).ready(function(){
 
 	if ((pageIndex == "") || (pageIndex == "index.html")){
 		handleSliders(pageIndex);
+        handleTwitchBanner()
 	} else if (pageIndex == "Team.html"){
 		handleTeamPage(pageIndex);
 	} else if (pageIndex == "Robots.html"){
@@ -446,6 +447,24 @@ function handleSliders(){
 		pageSettings.didLoadSlides.slide_3 = true;
 	})
 
+}
+
+function handleTwitchBanner(){
+    $.ajax({
+        url: "https://api.twitch.tv/kraken/streams/team5599_thesentinels",
+        dataType: 'json',
+        headers: {
+            'Client-ID': 'qd2a6znhhe3b2pw4i5xp3aspxzwueo'
+        },
+        success: function(channel) {
+            if (channel["stream"] == null) {
+                $(".twitch-banner").addClass("hidden");
+            } else {
+                console.log("We're live on Twitch!");
+                $(".twitch-banner").removeClass("hidden");
+            }
+        }
+    });
 }
 
 function handleNewsfeedContainer(){
