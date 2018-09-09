@@ -87,7 +87,7 @@
     <div id="account-loading" class="text-center">
         <h1 class="text-center text-muted" id="loading-title">Loading Your Account</h1>
         <div><img src="assets/img/Logos/Logo765.png" class="loading-icon"></div><button class="btn btn-link loading-redirect" type="button">If nothing happens after 10 seconds, click here.</button></div>
-    <div id="account-page" class="VisibilityHiddenAbsolute">
+    <div id="account-page">
         <div class="PageContent">
             <div id="loginInformation" class="facebookLoginInformation">
                 <p id="accountPage-userTitle">Logged in as FIRSTNAME LASTNAME</p>
@@ -328,6 +328,31 @@ Share to Twitter</a>
                     <p>If you have any photos you would like to submit, hit the button below to be redirected to Upload.Team5599.com</p>
                 </div>
                 <div class="modal-footer"><a class="btn btn-info" role="button" href="#">Submit Photos</a><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="ViewUserAccountsModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">User Accounts</h4>
+                </div>
+                <div class="modal-body" id="user-account-display-body">
+                    <div class="table-responsive user-account-display-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>OSIS</th>
+                                    <th>LAST NAME</th>
+                                    <th>FIRST NAME</th>
+                                    <th>EMAIL</th>
+                                </tr>
+                            </thead>
+                            <tbody id="user-account-display-content"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
             </div>
         </div>
     </div>

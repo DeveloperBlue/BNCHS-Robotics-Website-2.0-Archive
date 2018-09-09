@@ -3,6 +3,7 @@
 // Grabs data for Robots, Team, Sponsors, Contact, and Splash Page Headers.
 
 require 'db.php';
+session_start();
 
 $request = $mysqli->escape_string($_POST["request"]);
 $dataObject = $mysqli->escape_string($_POST["$objectData"]);

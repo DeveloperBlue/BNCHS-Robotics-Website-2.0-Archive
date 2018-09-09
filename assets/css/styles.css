@@ -1853,3 +1853,16 @@ p.SplashHeaderText {
   column-fill:auto;
 }
 
+.user-account-display-table {
+  color:#000;
+}
+
+table, th, td {
+  border:1px solid #000 !important;
+  text-align:left;
+}
+
+#user-account-display-body {
+  overflow-y:scroll;
+}
+

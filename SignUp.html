@@ -48,144 +48,145 @@
             <h3 class="text-center">Create an Account</h3><a href="SignIn.html" class="user-has-account">Already have an account? Click Here.</a>
             <div class="sign-up-divider"></div>
             <div class="form-group"><input class="form-control" type="email" name="email" required="" placeholder="Email Address" maxlength="255" autofocus=""></div>
-            <div class="form-group"><input class="form-control" type="text" name="password" required="" placeholder="Password" maxlength="255"><input class="form-control" type="text" name="password-re" required="" placeholder="Re-type Password" maxlength="255"></div>
-            <div class="sign-up-divider"></div>
-            <div class="form-group"><input class="form-control" type="text" name="firstname" required="" placeholder="First Name" maxlength="255"><input class="form-control" type="text" name="lastname" required="" placeholder="Last Name" maxlength="255"></div>
-            <div class="form-group"><input class="form-control" type="text" name="OSIS" required="" placeholder="Student ID" maxlength="9" minlength="9"><input class="form-control" type="text" name="OSIS-re" required="" placeholder="Re-type Student ID" maxlength="9" minlength="9"></div>
+            <div class="form-group"><input class="form-control" type="password" name="password" required="" placeholder="Password" maxlength="255"><input class="form-control" type="password" name="password-re" required="" placeholder="Re-type Password" maxlength="255"></div>
             <div
                 class="sign-up-divider"></div>
-    <p class="lead text-center sign-up-p">To verify that you are a member of this team, please connect your Facebook or Discord account.</p>
-    <div class="sign-up-connections"><button class="btn btn-default login-btn-block login-btn-facebook" type="button"><img src="assets/img/OtherImages/Checkmark.png" class="sign-up-verify-fb VisibilityHidden"><img src="assets/img/Logos/facebook-logo.svg" class="login-btn-facebook-icon"></button><button class="btn btn-default login-btn-block login-btn-discord"
-            type="button"><img src="assets/img/OtherImages/Checkmark.png" class="sign-up-verify-discord VisibilityHidden"><img src="assets/img/Logos/Discord-Logo-White.svg" class="login-btn-discord-icon"></button>
-        <div class="clearfix"></div>
-    </div>
-    <p class="text-center sign-up-p"><strong>Please connect both accounts if possible.</strong></p>
-    <div class="sign-up-divider"></div>
-    <div class="form-group"><button class="btn btn-primary btn-block login-main-btn" type="button" id="account-create">Create Account</button>
-        <p class="text-center text-danger signing-error" id="error"></p>
-    </div>
-    </form>
-    </div>
-    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="FlickrModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Photos &amp; Videos</h4>
+    <div class="form-group"><input class="form-control" type="text" name="firstname" required="" placeholder="First Name" maxlength="255"><input class="form-control" type="text" name="lastname" required="" placeholder="Last Name" maxlength="255"></div>
+    <div class="form-group"><input class="form-control" type="text" name="OSIS" required="" placeholder="Student ID" maxlength="9" minlength="9"><input class="form-control" type="text" name="OSIS-re" required="" placeholder="Re-type Student ID" maxlength="9" minlength="9"></div>
+    <div
+        class="sign-up-divider"></div>
+        <p class="lead text-center sign-up-p">To verify that you are a member of this team, please connect your Facebook or Discord account.</p>
+        <div class="sign-up-connections"><button class="btn btn-default login-btn-block login-btn-facebook" type="button"><img src="assets/img/OtherImages/Checkmark.png" class="sign-up-verify-fb VisibilityHidden"><img src="assets/img/Logos/facebook-logo.svg" class="login-btn-facebook-icon"></button><button class="btn btn-default login-btn-block login-btn-discord"
+                type="button"><img src="assets/img/OtherImages/Checkmark.png" class="sign-up-verify-discord VisibilityHidden"><img src="assets/img/Logos/Discord-Logo-White.svg" class="login-btn-discord-icon"></button>
+            <div class="clearfix"></div>
+        </div>
+        <p class="text-center sign-up-p"><strong>Please connect both accounts if possible.</strong></p>
+        <div class="sign-up-divider"></div>
+        <div class="form-group"><button class="btn btn-primary btn-block login-main-btn" type="button" id="account-create">Create Account</button>
+            <p class="text-center text-danger signing-error" id="error"></p>
+        </div>
+        </form>
+        </div>
+        <div class="modal fade pushModal" role="dialog" tabindex="-1" id="FlickrModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Photos &amp; Videos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><em>All of our photos can be found on Flickr at Flickr.Team5599.com!</em></p><a class="btn btn-default FlickrModalButtonBackground" role="button" href="https://www.flickr.com/photos/142731277@N02/">Proceed to Flickr</a><a class="btn btn-link"
+                            role="button" href="">Are you looking for our Instagram or Youtube?</a>
+                        <div class="smallDiv"></div>
+                        <p>If you have any photos you would like to submit, hit the button below to be redirected to Upload.Team5599.com</p>
+                    </div>
+                    <div class="modal-footer"><a class="btn btn-info" role="button" href="#">Submit Photos</a><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button></div>
                 </div>
-                <div class="modal-body">
-                    <p><em>All of our photos can be found on Flickr at Flickr.Team5599.com!</em></p><a class="btn btn-default FlickrModalButtonBackground" role="button" href="https://www.flickr.com/photos/142731277@N02/">Proceed to Flickr</a><a class="btn btn-link"
-                        role="button" href="">Are you looking for our Instagram or Youtube?</a>
-                    <div class="smallDiv"></div>
-                    <p>If you have any photos you would like to submit, hit the button below to be redirected to Upload.Team5599.com</p>
-                </div>
-                <div class="modal-footer"><a class="btn btn-info" role="button" href="#">Submit Photos</a><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button></div>
             </div>
         </div>
-    </div>
-    <div class="modal fade pushModal" role="dialog" tabindex="-1" id="SchoolDeviceModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Hey! You're in school!</h4>
+        <div class="modal fade pushModal" role="dialog" tabindex="-1" id="SchoolDeviceModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Hey! You're in school!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><em>We noticed that you've connected to this website over a DoE IP Address.</em></p>
+                        <p><strong>When logging into the Admin Panel, you need to MAKE SURE you are in <span style="text-decoration: underline;">Incognito</span> or <span style="text-decoration: underline;">log out</span> when you are finished!</strong></p>
+                        <p><em>Leaving yourself logged in to a public computer means anyone can</em><strong><em> pretend to be YOU</em></strong><em> and can make dramatic changes that you don't authorize!</em></p><button class="btn btn-primary FlickrModalButtonBackground"
+                            type="button" data-dismiss="modal">I got it</button></div>
+                    <div class="modal-footer"></div>
                 </div>
-                <div class="modal-body">
-                    <p><em>We noticed that you've connected to this website over a DoE IP Address.</em></p>
-                    <p><strong>When logging into the Admin Panel, you need to MAKE SURE you are in <span style="text-decoration: underline;">Incognito</span> or <span style="text-decoration: underline;">log out</span> when you are finished!</strong></p>
-                    <p><em>Leaving yourself logged in to a public computer means anyone can</em><strong><em> pretend to be YOU</em></strong><em> and can make dramatic changes that you don't authorize!</em></p><button class="btn btn-primary FlickrModalButtonBackground"
-                        type="button" data-dismiss="modal">I got it</button></div>
-                <div class="modal-footer"></div>
             </div>
         </div>
-    </div>
-    <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
-    <div class="PageFooter footer-clean">
-        <footer>
+        <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
+        <div class="PageFooter footer-clean">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4 item">
+                            <h3>BNCHS Robotics</h3>
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="Team.html">Our Team</a></li>
+                                <li><a href="Sponsors.html">Sponsorship</a></li>
+                                <li><a href="Contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-4 item">
+                            <h3>Community</h3>
+                            <ul>
+                                <li><a href="http://blog.team5599.com">Our Blog</a></li>
+                                <li><a href="SocialMedia.html">Social Media</a></li>
+                                <li><a href="Projects.html">Code, Projects, &amp; Demos</a></li>
+                                <li><a href="Resources.html">Documents &amp; Resources</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-4 item">
+                            <h3>Team</h3>
+                            <ul>
+                                <li><a href="Calendar.html">Calendar</a></li>
+                                <li><a href="http://flickr.team5599.com/">Photos &amp; Videos</a><a class="btn btn-default footer_upload_btn" role="button" href="#">Submit</a></li>
+                                <li><a href="Account.html" id="footer-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 item social"><a href="https://www.facebook.com/team5599sentinels/"><i class="icon ion-social-facebook"></i></a><a href="https://twitter.com/Sentinels5599"><i class="icon ion-social-twitter"></i></a><a href="https://www.instagram.com/sentinels_5599/"><i class="icon ion-social-instagram"></i></a>
+                            <a
+                                href="https://www.youtube.com/channel/UCALF3caI0F4WJfJisLFSBWQ"><i class="fa fa-youtube-play"></i></a>
+                                <p class="copyright">Copyright BNCHS Sentinels | Michael Rooplall ©&nbsp;2018</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-4 item">
-                        <h3>BNCHS Robotics</h3>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="Team.html">Our Team</a></li>
-                            <li><a href="Sponsors.html">Sponsorship</a></li>
-                            <li><a href="Contact.html">Contact Us</a></li>
+                <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="assets/img/Logos/SubLogo_Blue.png" data-bs-hover-animate="tada" class="navbar-left MicroLogo MicroLogoInner"><p class="text-nowrap hidden-sm hidden-xs" style="color:white;margin-top:10px;font-weight:bold;">&lt; Cardozo Robotics | Team 5599 &gt;</p></a>
+                    <button
+                        class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a href="index.html">About Us</a></li>
+                                <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
+                                <li role="presentation"><a href="Team.html">Our Team</a></li>
+                                <li role="presentation"><a href="Robots.html">Our Robots</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown NavButton" id="CommunityResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe socialMediaIcon"></i>Community<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a href="http://blog.team5599.com/" target="_blank" id="navbarBlogButton">Our Blog </a></li>
+                                <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
+                                <li
+                                    role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
+                        <li role="presentation"><a href="Resources.html">Documents &amp; Resources</a></li>
                         </ul>
-                    </div>
-                    <div class="col-md-3 col-sm-4 item">
-                        <h3>Community</h3>
-                        <ul>
-                            <li><a href="http://blog.team5599.com">Our Blog</a></li>
-                            <li><a href="SocialMedia.html">Social Media</a></li>
-                            <li><a href="Projects.html">Code, Projects, &amp; Demos</a></li>
-                            <li><a href="Resources.html">Documents &amp; Resources</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 col-sm-4 item">
-                        <h3>Team</h3>
-                        <ul>
-                            <li><a href="Calendar.html">Calendar</a></li>
-                            <li><a href="http://flickr.team5599.com/">Photos &amp; Videos</a><a class="btn btn-default footer_upload_btn" role="button" href="#">Submit</a></li>
-                            <li><a href="Account.html" id="footer-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 item social"><a href="https://www.facebook.com/team5599sentinels/"><i class="icon ion-social-facebook"></i></a><a href="https://twitter.com/Sentinels5599"><i class="icon ion-social-twitter"></i></a><a href="https://www.instagram.com/sentinels_5599/"><i class="icon ion-social-instagram"></i></a>
-                        <a
-                            href="https://www.youtube.com/channel/UCALF3caI0F4WJfJisLFSBWQ"><i class="fa fa-youtube-play"></i></a>
-                            <p class="copyright">Copyright BNCHS Sentinels | Michael Rooplall ©&nbsp;2018</p>
-                    </div>
+                        </li>
+                        <li class="dropdown NavButton" id="TeamResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Team&nbsp;Resources<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
+                                <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
+                                <li role="presentation"><a href="Resources.html">Documents &amp; Resources</a></li>
+                                <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
+                            </ul>
+                        </li>
+                        <li role="presentation" id="SponsorsNavButton" class="NavButton"><a href="Sponsors.html">Our Sponsors</a></li>
+                        <li role="presentation" id="ContactNavButton" class="NavButton"><a href="Contact.html">Contact Us</a></li>
+                    </ul>
                 </div>
             </div>
-        </footer>
-    </div>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header"><a class="navbar-brand" href="index.html"><img src="assets/img/Logos/SubLogo_Blue.png" data-bs-hover-animate="tada" class="navbar-left MicroLogo MicroLogoInner"><p class="text-nowrap hidden-sm hidden-xs" style="color:white;margin-top:10px;font-weight:bold;">&lt; Cardozo Robotics | Team 5599 &gt;</p></a>
-                <button
-                    class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            </div>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown NavButton" id="IndexNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" target="_top">About <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="index.html">About Us</a></li>
-                            <li role="presentation"><a href="FIRST.html">About FIRST</a></li>
-                            <li role="presentation"><a href="Team.html">Our Team</a></li>
-                            <li role="presentation"><a href="Robots.html">Our Robots</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown NavButton" id="CommunityResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe socialMediaIcon"></i>Community<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="http://blog.team5599.com/" target="_blank" id="navbarBlogButton">Our Blog </a></li>
-                            <li role="presentation"><a href="SocialMedia.html">Social<i class="fa fa-facebook-square socialMediaIcon" data-bs-hover-animate="tada" style="height:12px;"></i><i class="fa fa-twitter-square socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-instagram socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-youtube-play socialMediaIcon" data-bs-hover-animate="tada"></i><i class="fa fa-ellipsis-v socialMediaIcon" data-bs-hover-animate="tada"></i></a></li>
-                            <li
-                                role="presentation"><a href="Projects.html">Code, Projects, &amp; Demos<i class="fa fa-github socialMediaIcon" data-bs-hover-animate="jello"></i></a></li>
-                    <li role="presentation"><a href="Resources.html">Documents &amp; Resources</a></li>
-                    </ul>
-                    </li>
-                    <li class="dropdown NavButton" id="TeamResourcesNavButton"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Team&nbsp;Resources<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="Calendar.html">Team Calendar <i class="glyphicon glyphicon-calendar socialMediaIcon"></i></a></li>
-                            <li role="presentation" id="FlickrModalTrigger"><a data-toggle="&quot;Modal&quot;">Photos &amp; Videos</a></li>
-                            <li role="presentation"><a href="Resources.html">Documents &amp; Resources</a></li>
-                            <li role="presentation"><a id="navbar-account-btn" class="access-account-btn">Sign In<i class="glyphicon glyphicon-log-in socialMediaIcon"></i></a></li>
-                        </ul>
-                    </li>
-                    <li role="presentation" id="SponsorsNavButton" class="NavButton"><a href="Sponsors.html">Our Sponsors</a></li>
-                    <li role="presentation" id="ContactNavButton" class="NavButton"><a href="Contact.html">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/bs-animation.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-    <script src="assets/js/ImageSelectorModal.js"></script>
-    <script src="assets/js/Simple-Slider.js"></script>
-    <script src="assets/js/Webpanel/html5sortable.js"></script>
-    <script src="assets/js/Webpanel/webpanelMaster.js"></script>
+        </nav>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/bs-animation.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+        <script src="assets/js/ImageSelectorModal.js"></script>
+        <script src="assets/js/Simple-Slider.js"></script>
+        <script src="assets/js/Webpanel/html5sortable.js"></script>
+        <script src="assets/js/Webpanel/webpanelMaster.js"></script>
 </body>
 
 </html>

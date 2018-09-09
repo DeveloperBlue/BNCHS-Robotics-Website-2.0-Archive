@@ -5,18 +5,21 @@
 require 'db.php';
 session_start();
 
-$request = $mysqli->escape_string($_POST["request"]);
+$request = $_POST["request"];
 
 if ($request == "log_out"){
 
 	$_SESSION['logged_in'] = false;
 
+	session_unset(); 
 	session_destroy();
+
 	echo '{"status":200}';
 	
 	die();
 
 }
+
 
 $session = $_SESSION['logged_in'];
 

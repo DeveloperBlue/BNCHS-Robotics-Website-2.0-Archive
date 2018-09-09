@@ -108,7 +108,7 @@ function ajaxResponseToJSON(response){
 		data = JSON.parse(response);
 		console.log(data);
 	} catch (e) {
-		console.warn("Invalid response from server:");
+		console.warn("Invalid response from server:\n");
 		console.warn(response);
 		data = {status: 404, message: "Invalid response from server."}
 	}
@@ -116,7 +116,7 @@ function ajaxResponseToJSON(response){
 	if (!("status" in data)){
 		data.status = 404;
 		data.message = "Invalid JSON response from Server";
-		console.warn("Invalid response from server:");
+		console.warn("Invalid response from server:\n");
 		console.warn(response);
 	}
 
@@ -218,7 +218,7 @@ function configureNavbar(pageIndex){
 	$.ajax({
 		type: "POST",
 		url: "assets/php/getSession.php",
-		data: '{request : "getSession"}',
+		data: {request : "getSession"},
 		success: function(response) {
 
 			var data = ajaxResponseToJSON(response);
@@ -489,7 +489,7 @@ function handleAccountPage(pageIndex){
 	$.ajax({
 		type: "POST",
 		url: "assets/php/getSession.php",
-		data: '{request : "getSession"}',
+		data: {request : "getSession"},
 		success: function(response) {
 			var data = ajaxResponseToJSON(response);
 
@@ -506,6 +506,9 @@ function handleAccountPage(pageIndex){
 					$("#account-page").removeClass("VisibilityHiddenAbsolute");
 
 					$("#accountPage-userTitle").text("Logged in as " + data.message.first_name + " " + data.message.last_name + " (" + data.message.osis + ")");
+				
+					validateAccountPage();
+
 				}
 				
 			} else {
@@ -527,7 +530,7 @@ function handleAccountPage(pageIndex){
 		$.ajax({
 			type: "POST",
 			url: "assets/php/getSession.php",
-			data: '{request : "log_out"}',
+			data: {request : "log_out"},
 			success: function(response) {
 				var data = ajaxResponseToJSON(response);
 
@@ -543,6 +546,81 @@ function handleAccountPage(pageIndex){
 			error : function(){
 				console.warn("Could not authenticate over server. User is not able to log out.");
 				window.location = "http://www.team5599.com/SignIn.html";
+			}
+		});
+
+	})
+
+	var button_to_permission = {
+		"action-announcement" : "postAnnouncement",
+		"action-blog" : "manageBlog",
+		"action-social" : "manageSocialMedia",
+		"action-website" : "manageWebsite",
+		"action-calendar" : "manageCalendar",
+		"action-accounts" : "viewAccounts",
+		"action-permissions" : "administrator",
+		"action-activity" : "viewActivityLogs"
+	}
+
+	function validateAccountPage(){
+		$.ajax({
+			type: "POST",
+			url: "assets/php/validatePermissions.php",
+			data: {permissions : ["administrator", "manageWebsite", "postAnnouncement", "manageBlog", "manageSocialMedia", "manageCalendar", "viewAccounts", "viewActivityLogs", "lemon"]},
+			success: function(response) {
+
+				var data = ajaxResponseToJSON(response);
+
+				console.log(data);
+
+				if (data.status == 200){
+
+					for (buttonID in button_to_permission){
+						$("#" + buttonID).prop("disabled", (data.message[button_to_permission[buttonID]] == 200) ? false : true);
+					}
+
+				} else {
+					console.warn("Something went wrong trying to validate actions.");
+				}
+
+			},
+			error : function(){
+				console.warn("Could not validate over server. Actions cannot be validated.");
+			}
+		});
+	}
+
+	$("#action-accounts").click(function(){
+
+		$("#ViewUserAccountsModal").modal('show');
+
+		$("#user-account-display-body").empty();
+
+		$.ajax({
+			type: "POST",
+			url: "assets/php/getUserAccountsDisplay.php",
+			success: function(response) {
+
+				var data = ajaxResponseToJSON(response);
+
+				console.log(data);
+
+				if (data.status == 200){
+
+					var userAccounts = data.message;
+
+					for (account in userAccounts){
+						var tableDisplay = "<tr><th>" + userAccounts[account].osis + "</th><th>" + userAccounts[account].firstname + "</th><th>" + userAccounts[account].lastname + "</th><th>" + userAccounts[account].email +"</th></tr>";
+						$("#user-account-display-content").append(tableDisplay);
+					}
+					
+				} else {
+					console.warn("Something went wrong trying get user accounts.");
+				}
+
+			},
+			error : function(){
+				console.warn("Could not get user accounts.");
 			}
 		});
 
@@ -721,10 +799,13 @@ function handleLoginPage(pageIndex){
 				$("#form-forgot-button").prop("disabled", true);
 				$("#error_forgot").addClass("VisibilityHiddenAbsolute");
 
+				var postData = $("#form-forgot").serialize();
+				postData["request"] = "forgot";
+
 				$.ajax({
 					type: "POST",
 					url: "assets/php/Verify.php",
-					data: "request=forgot&" + $("#form-forgot").serialize(),
+					data: postData,
 					success: function(response) {
 
 						var data = ajaxResponseToJSON(response);
@@ -758,10 +839,13 @@ function handleLoginPage(pageIndex){
 				$("#form-reset-button").prop("disabled", true);
 				$("#error_reset").addClass("VisibilityHiddenAbsolute");
 
+				var postData = $("#form-reset").serialize();
+				postData["request"] = "reset";
+
 				$.ajax({
 					type: "POST",
 					url: "assets/php/Verify.php",
-					data: "request=reset&" + $("#form-reset").serialize(),
+					data: postData,
 					success: function(response) {
 
 						var data = ajaxResponseToJSON(response);
@@ -794,7 +878,7 @@ function handleLoginPage(pageIndex){
 		$.ajax({
 			type: "POST",
 			url: "assets/php/getSession.php",
-			data: '{request:"getSession"}',
+			data: {request:"getSession"},
 			success: function(response) {
 
 				var data = ajaxResponseToJSON(response)
