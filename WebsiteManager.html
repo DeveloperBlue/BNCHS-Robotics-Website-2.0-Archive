@@ -49,7 +49,7 @@
         <div class="divBlue"></div>
         <h1 class="text-center text-muted" id="loading-title">Authenticating Administrator Access</h1>
         <div><img src="assets/img/Logos/Logo765.png" class="loading-icon"></div><button class="btn btn-link loading-redirect" type="button">If nothing happens after 10 seconds, click here.</button></div>
-    <div id="account-page" class="PageContent VisibilityHiddenAbsolute">
+    <div id="account-page" class="PageContent">
         <div class="divBlue"></div>
         <div class="divOrange-sm"><img src="assets/img/Backdrops/OrangeBlurBackdrop.png" id="DivOrangeImage"></div>
         <div class="PageContent">
@@ -116,19 +116,19 @@
             <div class="accordian_container">
                 <div class="webmasterLeadershipTabs">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab-3" class="uploadTab" role="tab" data-toggle="tab">Manage People<i class="fa fa-users spacedIcon"></i></a></li>
-                        <li class="uploadTab"><a href="#tab-4" id="btn_People_changeOrder" role="tab" data-toggle="tab">Change Display Order<i class="glyphicon glyphicon-menu-hamburger spacedIcon"></i></a></li>
+                        <li><a href="#tab-3" class="uploadTab" role="tab" data-toggle="tab">Manage People<i class="fa fa-users spacedIcon"></i></a></li>
+                        <li class="active uploadTab"><a href="#tab-4" id="btn_People_changeOrder" role="tab" data-toggle="tab">Change Display Order<i class="glyphicon glyphicon-menu-hamburger spacedIcon"></i></a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" role="tabpanel" id="tab-3">
+                        <div class="tab-pane" role="tabpanel" id="tab-3">
                             <div id="panel_People" class="webmasterPeoplePanel"></div>
                             <div class="webmaster_configDiv"><button class="btn btn-info personButton" type="button" id="Btn_AddPeople">New Person<i class="fa fa-user-plus spacedIcon"></i></button><button class="btn btn-success personButton" type="button" id="Btn_SavePeople">Save Changes</button></div>
                             <div
                                 id="form_People" class="webmasterPeopleInfoPanel">
                                 <form>
                                     <h4 class="BlackFont">Full Name</h4><input class="form-control input-sm robotInfoTextField gray-outline" type="text" required="" placeholder="FirstName LastName" id="form_People_name">
-                                    <h5 class="BlackFont">Year Person Joined Team</h5><select class="form-control input-sm dropdownYearInput1 BlackFont gray-outline" value="2018" id="form_People_yearJoined"><option value="2018">2018</option></select>
-                                    <h5 class="BlackFont">Year of Graduation/Left Team</h5><select class="form-control input-sm dropdownYearInput2 BlackFont gray-outline" value="2018" id="form_People_yearGraduated"><option value="2018">2018</option></select>
+                                    <h5 class="BlackFont">Term Person Joined Team</h5><select class="form-control input-sm dropdownYearInput1 BlackFont gray-outline" value="2018" id="form_People_yearJoined"><option value="2018">2018</option></select>
+                                    <h5 class="BlackFont">Term of Graduation/Left Team</h5><select class="form-control input-sm dropdownYearInput2 BlackFont gray-outline" value="2018" id="form_People_yearGraduated"><option value="2018">2018</option></select>
                                     <h4 class="BlackFont">Headshot</h4>
                                     <div class="uploadFileDiv"><button class="btn btn-default btn-sm uploadFileButton" type="button">Choose File</button><span class="label label-default uploadFileLabel">No File Selected<button class="btn btn-danger btn-xs uploadFileRemove" type="button" disabled="disabled"><i class="icon ion-android-delete"></i></button></span>
                                         <div
@@ -147,7 +147,7 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="tab-4">
+                <div class="tab-pane active" role="tabpanel" id="tab-4">
                     <h3 class="text-center BlackFont">Change Order</h3>
                     <div class="row">
                         <div class="col-md-6"><select id="teamHistorySelector" class="teamHistoryYearSelectorWeb"><optgroup label="History"><option value="2018" selected="">Season 2018</option><option value="2017">Season 2017</option><option value="2016">Season 2016</option><option value="2015">Season 2015</option></optgroup></select>

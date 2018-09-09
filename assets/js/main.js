@@ -1198,175 +1198,175 @@ function handleTeamPage() {
 	var defaultPeopleData = {
 		"000000" : {
 			name : "Hansen Pan",
-			yearJoined : "2016",
+			yearJoined : "2016.5",
 			yearGraduated : "2018",
 			headshot : "",
 			titles : {
 				"Captain" : {
 					title : "Captain",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "2018"
 				},
 				"Head of Mechanics" : {
 					title : "Head of Mechanics",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "2018"
 				}
 			}
 		},
 		"000001" : {
 			name : "Danielle Louie",
-			yearJoined : "2016",
+			yearJoined : "2016.5",
 			yearGraduated : "2019",
 			headshot : "",
 			titles : {
 				"Vice Captain" : {
 					title : "Captain",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "present"
 				},
 				"Director of Marketing" : {
 					title : "Director of Marketing",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "present"
 				}
 			}
 		},
 		"000002" : {
 			name : "Nazifa Prapti",
-			yearJoined : "2017",
+			yearJoined : "2017.5",
 			yearGraduated : "2020",
 			headshot : "",
 			titles : {
 				"Co-Head of Electronics" : {
 					title : "Co-Head of Electronics",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "present"
 				}
 			}
 		},
 		"000003" : {
 			name : "Max Menes",
-			yearJoined : "2015",
+			yearJoined : "2014.5",
 			yearGraduated : "2019",
 			headshot : "",
 			titles : {
 				"Co-Head of Electronics" : {
 					title : "Co-Head of Electronics",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "present"
 				}
 			}
 		},
 		"000004" : {
 			name : "Jeff Chan",
-			yearJoined : "2017",
+			yearJoined : "2017.5",
 			yearGraduated : "2019",
 			headshot : "",
 			titles : {
 				"Co-Head of Programming" : {
 					title : "Co-Head of Programming",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "present"
 				}
 			}
 		},
 		"000005" : {
 			name : "Ananta Sharma",
-			yearJoined : "2017",
+			yearJoined : "2017.5",
 			yearGraduated : "2020",
 			headshot : "",
 			titles : {
 				"Co-Head of Programming" : {
 					title : "Co-Head of Programming",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "present"
 				}
 			}
 		},
 		"000006" : {
 			name : "Andrew \"Happy\" Lin",
-			yearJoined : "2017",
+			yearJoined : "2017.5",
 			yearGraduated : "2020",
 			headshot : "",
 			titles : {
 				"Board Member" : {
 					title : "Board Member",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "present"
 				}
 			}
 		},
 		"000007" : {
 			name : "Tanoy Sarkar",
-			yearJoined : "2014",
+			yearJoined : "2014.5",
 			yearGraduated : "2016",
 			headshot : "",
 			titles : {
 				"Founder" : {
 					title : "Founder",
-					startYear : "2014",
+					startYear : "2014.5",
 					endYear : "present"
 				},
 				"Captain" : {
 					title : "Captain",
-					startYear : "2014",
+					startYear : "2014.5",
 					endYear : "2016"
 				},
 				"Mentor" : {
 					title : "Mentor",
-					startYear : "2016",
+					startYear : "2016.5",
 					endYear : "present"
 				},
 			}
 		},
 		"000008" : {
 			name : "Kelin Qu",
-			yearJoined : "2014",
+			yearJoined : "2014.5",
 			yearGraduated : "2017",
 			headshot : "",
 			titles : {
 				"Captain" : {
 					title : "Captain",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "2018"
 				},
 				"Head of Electronics" : {
 					title : "Haed of Electronics",
-					startYear : "2014",
+					startYear : "2014.5",
 					endYear : "2017"
 				},
 				"Head of Pneumatics" : {
-					title : "Haed of Electronics",
-					startYear : "2014",
+					title : "Haed of Pneumatics",
+					startYear : "2014.5",
 					endYear : "2017"
 				},
 				"Mentor" : {
 					title : "Mentor",
-					startYear : "2017",
+					startYear : "2017.5",
 					endYear : "present"
 				},
 			}
 		},
 		"000009" : {
 			name : "Michael Rooplall",
-			yearJoined : "2016",
+			yearJoined : "2015.5",
 			yearGraduated : "2017",
 			headshot : "",
 			titles : {
 				"Head of Programming" : {
 					title : "Haed of Programming",
-					startYear : "2016",
+					startYear : "2015.5",
 					endYear : "2017"
 				},
 				"Webmaster" : {
 					title : "Webmaster",
-					startYear : "2016",
+					startYear : "2015.5",
 					endYear : "present"
 				},
 				"Mentor" : {
 					title : "Mentor",
-					startYear : "2017",
+					startYear : "2016.5",
 					endYear : "present"
 				},
 			}
@@ -1380,18 +1380,19 @@ function handleTeamPage() {
 		if (yearGiven == null){ return 0 };
 
 		if (yearGiven.toLowerCase() == "present"){
-			return new Date().getFullYear();
+			var currentDate = new Date()
+			if (currentDate.getMonth() >= 9){
+				return currentDate.getFullYear() + 0.5;
+			} else {
+				return currentDate.getFullYear();
+			}
 		}
 		return yearGiven;
 	}
 
 	function loadTeamHistory(year){
 
-		if (getUrlParam("viewType") == "alumni"){
-			console.log("Loading Alumni Data for the " + year + " Season");
-		} else {
-			console.log("Loading Leadership Data for the " + year + " Season");
-		}
+		console.log("Loading Leadership Data for the " + (year - 1) + " - " + year + " Season");
 
 		function getRelevantPeopleForYear(year, callback){
 
@@ -1423,11 +1424,66 @@ function handleTeamPage() {
 
 		}
 
+		function getYearAsValue(yearInput){
+			if (yearInput.toLowerCase() == "present"){
+				return yearInput
+			} else {
+				return parseInt(yearInput);
+			}
+		}
+
 		function sortRelevantPeople(year, collectionOfPeople){
 
 			var data = {
 				leadership : [],
-				roster : {},
+				roster : {
+					"invertFirstName" : true,
+
+					"members" : [
+						"Baek Jaime",
+						"Bak David",
+						"Chai Jin",
+						"Chan Chunyin (Jeff)",
+						"Ebrahim Afnan",
+						"Guerra Frank",
+						"Gundersen Logan",
+						"Henriquez Gabriela",
+						"Hur Andrew",
+						"Hwang Austin",
+						"Jin Alan",
+						"Jin Andrew",
+						"Jun Sofia",
+						"Kadakia Ayush",
+						"Khaneja Damanbir",
+						"Kwok Timothy",
+						"Lin Andrew",
+						"Louie Danielle",
+						"Mach Nicholas",
+						"Macias Valerie",
+						"Malhotra Anmol",
+						"Menestrier Max",
+						"Molano Kaitlin",
+						"Naroze Hamad",
+						"Oh Connor",
+						"Oh Isaac",
+						"Pan Hansen",
+						"Patel Rushabh",
+						"Perkins Carleton",
+						"Prapti Nazifa",
+						"Qu Kelin",
+						"Ramos Kayciel",
+						"Rooplall Michael",
+						"Shao Alice",
+						"Sharma Ananta",
+						"Vazquez Marc",
+						"Veloz Nalya",
+						"Wan Kurtis",
+						"Wang Hanchen",
+						"Wu Janis",
+						"Xiao Emilie",
+						"Yang Qifeng"
+					]
+				},
 				mentors : [],
 				order_json : {},
 			}
@@ -1448,7 +1504,9 @@ function handleTeamPage() {
 
 					personData.relevantTitles = relevantTitles;
 
-					data.leadership.push(personData);
+					if (relevantTitles.length > 0){
+						data.leadership.push(personData);
+					}
 
 				} else {
 					for (titleID in personData.titles){
@@ -1493,12 +1551,17 @@ function handleTeamPage() {
 
 					for (titleIndex in personObject.titles){
 
-						var title = personObject.titles[titleIndex];
+						var title = personObject.titles[titleIndex].title;
 
-						for (pointer in titlePointers[sortType]){
-							if (title.replace(/ /g, "-").toLowerCase().startsWith(pointer.toLowerCase())){
-								if ((assignedValue == 999) || (titlePointers[sortType][pointer] < assignedValue)){
-									assignedValue = titlePointers[sortType][pointer];
+						console.log("title", title, typeof title);
+
+						if (title != null){
+
+							for (pointer in titlePointers[sortType]){
+								if (title.replace(/ /g, "-").toLowerCase().startsWith(pointer.toLowerCase())){
+									if ((assignedValue == 999) || (titlePointers[sortType][pointer] < assignedValue)){
+										assignedValue = titlePointers[sortType][pointer];
+									}
 								}
 							}
 						}
@@ -1591,12 +1654,12 @@ function handleTeamPage() {
 					var titleText = []; // Join with <br>
 
 					for (titleIndex in teamData.leadership[index].relevantTitles){
-						titleText.push(teamData.leadership[index].relevantTitles[titleIndex].title + " (" + teamData.leadership[index].relevantTitles[titleIndex].startYear + "-" + teamData.leadership[index].relevantTitles[titleIndex].endYear + ")");
+						titleText.push(teamData.leadership[index].relevantTitles[titleIndex].title + " (" + getYearAsValue(teamData.leadership[index].relevantTitles[titleIndex].startYear) + "-" + getYearAsValue(teamData.leadership[index].relevantTitles[titleIndex].endYear) + ")");
 					}
 
 					$(personBoxContent).children("#PersonDisplayName").text(teamData.leadership[index].name);
 					$(personBoxContent).children("#PersonDisplayTitles").html(titleText.join("<br>"));
-					$(personBoxContent).children("#PersonDisplayInfo").text(teamData.leadership[index].yearJoined + "-" + teamData.leadership[index].yearGraduated);
+					$(personBoxContent).children("#PersonDisplayInfo").text(getYearAsValue(teamData.leadership[index].yearJoined) + "-" + getYearAsValue(teamData.leadership[index].yearGraduated));
 
 					$(personBox).attr("id", "PersonDisplayBox_"+index);
 
@@ -1613,7 +1676,7 @@ function handleTeamPage() {
 
 				for (memberIndex in teamData.roster.members){
 					var memberName = teamData.roster.members[memberIndex];
-					if (teamData.roster.flipFirstName){
+					if (teamData.roster.invertFirstName){
 						memberName = memberName.split(" ").reverse().join(" ");
 					}
 					$("#TeamHistoryList").append("<p class=\"text-center team-member no-select\">" + memberName + "</p>");
@@ -1635,7 +1698,7 @@ function handleTeamPage() {
 					var titleText;
 
 					for (titleIndex in teamData.mentors[index].relevantTitles){
-						titleText.push(teamData.mentors[index].relevantTitles[titleIndex].title + " (" + teamData.mentors[index].relevantTitles[titleIndex].startYear + "-" + teamData.mentors[index].relevantTitles[titleIndex].endYear + ")");
+						titleText.push(teamData.mentors[index].relevantTitles[titleIndex].title + " (" + getYearAsValue(teamData.mentors[index].relevantTitles[titleIndex].startYear) + "-" + getYearAsValue(teamData.mentors[index].relevantTitles[titleIndex].endYear) + ")");
 					}
 
 					$(personBoxContent).children("#PersonDisplayName").text(teamData.mentors[index].name);
@@ -1677,31 +1740,12 @@ function handleTeamPage() {
 	$(baseObject).appendTo($("#teamHistorySelector"));
 
 	for (var year = dateObject.getFullYear(); year >= 2015; year--){
-		$(baseObject).append($("<option></option>").val(year).html("Season " + year));
+		$(baseObject).append($("<option></option>").val(year).html((year - 1) + " - " + year + " Season"));
 	}
 
 	$("#teamHistorySelector").val(queryYear);
 
 	// Handle
-
-	if (getUrlParam("viewType") == "alumni"){
-		$("#toggleTeamPageButton").prop("value", "Our Leadership");
-	} else {
-		$("#toggleTeamPageButton").prop("value", "Our Alumni");
-	}
-
-	$("#toggleTeamPageButton").click(function(){
-		var selectedYear = $("#teamHistorySelector").val();
-		if (getUrlParam("viewType") == "alumni"){
-			updateQueryStringParam("viewType","leadership");
-			$("#toggleTeamPageButton").text("Our Alumni");
-			loadTeamHistory(selectedYear);
-		} else {
-			updateQueryStringParam("viewType","alumni");
-			$("#toggleTeamPageButton").text("Our Leadership");
-			loadTeamHistory(selectedYear);
-		}
-	});
 
 	$("#teamHistorySelector").change(function(data){
 		var selectedYear = $("#teamHistorySelector").val();

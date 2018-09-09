@@ -33,7 +33,7 @@ var dataType = {}; // All organizable data is dumped to this object.
 
 function initFunctions(){
 
-	function initYearDropdowns(dropdownClassName, appendSeason){
+	function initYearDropdowns(dropdownClassName){
 
 		var dateObject = new Date();
 		var currentYear = dateObject.getFullYear();
@@ -48,10 +48,10 @@ function initFunctions(){
 			$(this).val(currentYear);
 
 			for (var year = currentYear; year >= 2014; year--){
-				$(this).append($("<option></option>").val(year).html(((appendSeason == true) ? "Season " : "") + year));
+				$(this).append($("<option></option>").val(year).html("Spring " + year));
+				$(this).append($("<option></option>").val(year + 0.5).html("Fall " + year))
 			}
 
-			
 		})
 
 	}
@@ -165,7 +165,7 @@ function activateStaticContentPanels(){
 	$(baseObject).appendTo($("#teamHistorySelector"));
 
 	for (var year = dateObject.getFullYear() + 1; year >= 2014; year--){
-		$(baseObject).append($("<option></option>").val(year).html("Season " + year));
+		$(baseObject).append($("<option></option>").val(year).html((year - 1) + " - " + year + " Season"));
 	}
 
 	$("#teamHistorySelector").prepend($("<option></option>").val("no-select").html("Select a Season"));

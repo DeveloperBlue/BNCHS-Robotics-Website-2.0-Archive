@@ -28,10 +28,10 @@
 
 .teamHistoryYearSelector {
   color:#000;
-  margin-left:10px;
   height:59px;
-  width:140px;
-  padding-left:20px;
+  width:280px;
+  font-size:18px;
+  padding-left:40px;
   text-align:center;
   display:inline-block;
 }
@@ -1424,7 +1424,7 @@ p.SplashHeaderText {
 }
 
 .personTitleY1Input, .personTitleY2Input, .dropdownYearInput {
-  width:90px;
+  width:120px;
   margin-top:4px;
   margin-bottom:2px;
   margin-left:3px;
@@ -1433,7 +1433,7 @@ p.SplashHeaderText {
 }
 
 .dropdownYearInput2, .dropdownYearInput1 {
-  width:100px;
+  width:140px;
   height:25px;
 }
 
@@ -1844,5 +1844,12 @@ p.SplashHeaderText {
 
 .better-blue-btn:hover {
   background-color:#042630;
+}
+
+.team-carousel-container {
+  padding:10px;
+  height:100%;
+  background-color:#eee;
+  column-fill:auto;
 }
 
